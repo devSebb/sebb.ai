@@ -1,0 +1,32 @@
+<div class="flex">
+   <%# Sidebar container %>
+  <div class="relative flex transition-all duration-300 ease-in-out sticky top-0 h-screen" data-controller="left-sidebar" data-left-sidebar-expanded-value="true">
+    <%# Collapsible sidebar content %>
+    <div class="w-64 overflow-y-auto transition-all duration-300 ease-in-out" data-left-sidebar-target="content">
+      <%= render "shared/sidebar" %>
+    </div>
+    <%# Toggle button %>
+    <button data-action="click->left-sidebar#toggle" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-gray-300 rounded-r-md p-2 z-10">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  </div>
+  <%# Main content %>
+  <div class="flex-grow px-3 space-y-40 my-10 mx-10 md:mx-14 lg:mx-16 overflow-hidden transition-all duration-300 ease-in-out group-[.collapsed]:w-[calc(100%-1rem)] ">
+    <%# Welcome, & About %>
+    <%= render "shared/hero" %>
+    <%# Tech Stack %>
+    <%= render "shared/techstach_carousel" %>
+    <%# Education & Experience %>
+    <%= render "shared/experience" %>
+    <%# Services / Specializations %>
+    <%= render "shared/specializations" %>
+    <%# Projects %>
+    <%= render "shared/projects" %>
+    <%# Contact %>
+    <%= render "shared/contact" %>
+    <%# My Favorite Tools %>
+    <%= render "shared/tools" %>
+  </div>
+</div>

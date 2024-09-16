@@ -1,0 +1,75 @@
+<div class="">
+  <h2 class="text-2xl font-bold mb-10">My Tech Stack</h2>
+  <div class="relative overflow-hidden w-full">
+    <div id="carousel" class="flex animate-carousel">
+      <% tech_stack = [
+        { name: "Ruby", icon: "Ruby_logo.png" },
+        { name: "Ruby on Rails", icon: "Rails_logo.png" },
+        { name: "HTML", icon: "HTML5 Achievement Badge.png" },
+        { name: "GitHub", icon: "Git Social Media Icon.png" },
+        { name: "Figma", icon: "Figma_logo.png" },
+        { name: "GSAP", icon: "Gsap_logo.jpg" },
+        { name: "Git", icon: "Github icon.png" },
+        { name: "CSS", icon: "CSS3 Achievement Icon.png" },
+        { name: "Slack", icon: "Slack_logo.png" },
+        { name: "Scss/Sass", icon: "Sass icon.png" },
+        { name: "Firebase", icon: "Developer Firebase Google Icon.png" },
+        { name: "JavaScript", icon: "JS Logo Icon.png" },
+        { name: "APIs", icon: "Coding Icons API.png" },
+        { name: "React", icon: "Sass icon.png" },
+        { name: "Notion", icon: "Notion_logo.png" },
+        { name: "Jira", icon: "Jira_logo.png" },
+        # { name: "Tailwind", icon: "Tailwind icon.png" },
+        # { name: "Bootstrap", icon: "Bootstrap icon.png" },
+        # { name: "PostgreSQL", icon: "PostgreSQL icon.png" },
+        # { name: "MySQL", icon: "MySQL icon.png" },
+        # { name: "MongoDB", icon: "MongoDB icon.png" },
+        # { name: "Mongoose", icon: "Mongoose icon.png" },
+
+      ] %>
+
+      <% (tech_stack * 2).each do |tech| %>
+        <div class="flex flex-col items-center justify-center w-24 flex-shrink-0 mx-4">
+          <%= image_tag "icons/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "w-16 h-16 mb-2" %>
+          <p class="text-sm text-center"><%= tech[:name] %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('carousel');
+    let isDragging = false;
+    let startPosition = 0;
+    let currentTranslate = 0;
+
+    carousel.addEventListener('mousedown', dragStart);
+    carousel.addEventListener('mousemove', drag);
+    carousel.addEventListener('mouseup', dragEnd);
+    carousel.addEventListener('mouseleave', dragEnd);
+
+    function dragStart(e) {
+      isDragging = true;
+      startPosition = e.clientX - currentTranslate;
+      carousel.style.animation = 'none';
+      carousel.style.cursor = 'grabbing';
+    }
+
+    function drag(e) {
+      if (isDragging) {
+        const currentPosition = e.clientX - startPosition;
+        currentTranslate = currentPosition;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
+      }
+    }
+
+    function dragEnd() {
+      isDragging = false;
+      carousel.style.cursor = 'grab';
+      carousel.style.animation = 'carousel 10s linear infinite';
+      carousel.style.transform = '';
+    }
+  });
+</script>
