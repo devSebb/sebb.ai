@@ -1,20 +1,25 @@
-<div class="z-30">
-  <%= form_for :contact, url: contact_path, local: true do |f| %>
-    <div class="mb-4">
-      <%= f.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.text_field :name, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "John Doe" %>
-    </div>
+<div class="flex">
+  <div class="w-1/2">
+    <h1 class="text-6xl text-center font-light text-primary mb-4 leading-snug font-heading">Let's<br>Work<br>Together</h1>
+  </div>
+  <div class="z-30 w-1/2">
+    <%= form_for :contact, url: contact_path, local: true do |f| %>
+      <div class="mb-4">
+        <%= f.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.text_field :name, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "John Doe" %>
+      </div>
 
-    <div class="mb-4">
-      <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.email_field :email, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "john@example.com" %>
-    </div>
+      <div class="mb-4">
+        <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.email_field :email, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "john@example.com" %>
+      </div>
 
-    <div class="mb-4">
-      <%= f.label :message, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.text_area :message, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "Your message here" %>
-    </div>
+      <div class="mb-4">
+        <%= f.label :message, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.text_area :message, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "Your message here" %>
+      </div>
 
-    <%= f.submit 'Send Message', class: "text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary" %>
-  <% end %>
+      <%= f.submit 'Send Message', class: "text-white bg-gray-800 hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
+    <% end %>
+  </div>
 </div>
