@@ -16,24 +16,38 @@ body::before {
   z-index: -1;
 }
 
+.background-primary {
+  @apply content-[''] absolute inset-0 bg-fuchsia-400 opacity-20 blur-[100px];
+  background-size: 20px 20px;
+  z-index: -1;
+}
+
 .box-shadow {
   box-shadow: 0 0 9px 3px #0ED762;
 }
 
 .text-shadow {
-  text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5); /* Adjust values as needed */
+  text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
 }
 
 
 .foggy-bg {
-  background-color: rgba(249, 250, 251, 1); /* bg-neutral-50 */
-  background-clip: padding-box; /* bg-clip-padding */
-  backdrop-filter: blur(10px); /* backdrop-blur */
-  opacity: 0.4; /* bg-opacity-40 */
-  filter: saturate(1); /* saturate-100 */
-  filter: contrast(1); /* backdrop-contrast-100 */
-  padding: 1rem; /* p-4 */
-  border-radius: 0.5rem; /* rounded-lg */
+  position: relative;
+  overflow: hidden;
+}
+
+.foggy-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(249, 250, 251, 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.foggy-bg > * {
+  position: relative;
+  z-index: 2;
 }
 
 

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const texts = [
     "software developer",
     "web designer",
-    "fullstack engineer",
+    "full-stack engineer",
     "project manager",
     "product manager"
   ];

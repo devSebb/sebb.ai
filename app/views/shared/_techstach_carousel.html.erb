@@ -1,7 +1,7 @@
 <div class="">
   <h2 class="text-3xl font-bold mb-10">My Tech Stack</h2>
-  <div class="relative overflow-hidden w-full">
-    <div id="carousel" class="flex animate-carousel">
+  <div class="relative overflow-hidden w-full ">
+    <div id="carousel" class="flex animate-carousel ">
       <% tech_stack = [
         { name: "Ruby", icon: "Ruby_logo.png" },
         { name: "Ruby on Rails", icon: "Rails_logo.png" },
@@ -29,9 +29,9 @@
       ] %>
 
       <% (tech_stack * 2).each do |tech| %>
-        <div class="flex flex-col items-center justify-center w-24 flex-shrink-0 mx-4">
-          <%= image_tag "icons/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "w-16 h-16 mb-2" %>
-          <p class="text-sm text-center"><%= tech[:name] %></p>
+        <div class="flex flex-col items-center justify-center w-24 flex-shrink-0 mx-4 group relative">
+          <%= image_tag "icons/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "w-16 h-16" %>
+          <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"><%= tech[:name] %></p>
         </div>
       <% end %>
     </div>

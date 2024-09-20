@@ -1,25 +1,25 @@
 <div class="w-full h-screen rounded-xl border-2 border-gray-300 items-center flex flex-col shadow-xl">
-  <div class="flex flex-col px-3 py-5 items-center">
+  <div class="flex flex-col py-5 items-center">
     <div class="flex flex-col">
       <h1 class="font-bold text-2xl">SEBB</h1>
       <p class="font-bold text-gray-300">Software Developer</p>
       <%= image_tag "profile.JPG", alt: "Profile picture", class: "w-32 h-32 rounded-full object-cover my-20" %>
       <div class="flex-grow h-48"></div>
-      <div class="flex flex-col sticky bottom-0 ">
-        <div class="flex justify-between mx-5 mt-3">
-          <%= image_tag "icons/Github icon.svg", class: "w-6 h-6 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
-          <%= image_tag "icons/Linkedin icon.svg", class: "w-6 h-6 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
-          <%= image_tag "icons/XLogo.svg", class: "w-6 h-6 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
-        </div>
-        <div class="flex justify-between mt-10">
-          <div class="px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white">
-            Contact
-          </div>
-          <div class="px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white">
-            Play
-          </div>
+      <div class="flex flex-col bottom-0">
+        <div class="flex justify-between mx-2 mt-3">
+          <%= image_tag "icons/Github icon.svg", class: "w-8 h-8 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= image_tag "icons/Linkedin icon.svg", class: "w-8 h-8 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= image_tag "icons/XLogo.svg", class: "w-8 h-8 rounded-full hover:scale-110 transition-all duration-300 ease-in-out" %>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="flex justify-between space-x-10 mt-10">
+    <div class="px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white">
+      Contact
+    </div>
+    <div class="px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white">
+      Play
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   gsap.set("#animate-icon", {
     xPercent: 80,
     yPercent: 0,
-    transformOrigin: "300% 300%",
+    transformOrigin: "0% 0%",
   });
 
   gsap.to("#animate-icon", {
