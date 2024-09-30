@@ -19,7 +19,8 @@ module.exports = {
         heading: ['Russo One', ...defaultTheme.fontFamily.sans],
       },
       animation: {
-        carousel: 'carousel 30s linear infinite',
+        'carousel': 'carousel 120s linear infinite',
+        'spin-slow': 'spin 6s linear infinite',
       },
       keyframes: {
         carousel: {

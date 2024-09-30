@@ -1,17 +1,29 @@
     <div>
       <h2 class="text-3xl font-bold mb-8">Projects</h2>
       <div class="grid grid-cols-2 gap-4">
-        <div class="foggy-bg h-full p-4 relative rounded-lg">
-      <%= image_tag "project.png", alt: "Project 1", class: "w-full h-full object-cover relative z-10" %>
+        <div class="relative rounded-lg group overflow-hidden">
+          <%= image_tag "project.png", alt: "Project 1", class: "w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-20" %>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="text-white text-lg font-semibold text-center p-4">More XP</p>
+          </div>
         </div>
-        <div class="foggy-bg h-full p-4 relative rounded-lg">
-      <%= image_tag "project.png", alt: "Project 2", class: "w-full h-full object-cover relative z-10" %>
+        <div class="relative rounded-lg group overflow-hidden">
+          <%= image_tag "project.png", alt: "Project 1", class: "w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-20" %>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="text-white text-lg font-semibold text-center p-4">Arabella Rock & Roll Store</p>
+          </div>
         </div>
-        <div class="foggy-bg h-full p-4 relative rounded-lg">
-      <%= image_tag "project.png", alt: "Project 3", class: "w-full h-full object-cover relative z-10" %>
+        <div class="relative rounded-lg group overflow-hidden">
+          <%= image_tag "project.png", alt: "Project 1", class: "w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-20" %>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="text-white text-lg font-semibold text-center p-4">Make-Me-Fit</p>
+          </div>
         </div>
-        <div class="foggy-bg h-full p-4 relative rounded-lg">
-      <%= image_tag "project.png", alt: "Project 4", class: "w-full h-full object-cover relative z-10" %>
+        <div class="relative rounded-lg group overflow-hidden">
+          <%= image_tag "project.png", alt: "Project 1", class: "w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-20" %>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="text-white text-lg font-semibold text-center p-4">Domo Kanban Board</p>
+          </div>
         </div>
       </div>
     </div>
