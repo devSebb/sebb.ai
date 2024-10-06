@@ -1,0 +1,149 @@
+ <!-- Container -->
+  <div class="container mx-auto px-6 py-12">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold mb-4">Sebastian Burke</h1>
+      <p class="text-xl font-light">Full Stack Developer & Designer</p>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="flex justify-center space-x-8 mb-16">
+      <a href="mailto:your.email@example.com" class="text-gray-300 hover:text-teal-400 transition duration-300">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <!-- Email Icon SVG -->
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/yourprofile" class="text-gray-300 hover:text-teal-400 transition duration-300">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <!-- LinkedIn Icon SVG -->
+        </svg>
+      </a>
+      <a href="https://github.com/yourusername" class="text-gray-300 hover:text-teal-400 transition duration-300">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <!-- GitHub Icon SVG -->
+        </svg>
+      </a>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="mb-16">
+      <h2 class="text-4xl font-semibold mb-12 text-center">Experience</h2>
+      <!-- Timeline -->
+      <div class="timeline">
+        <!-- Timeline Item -->
+        <div class="timeline-item" id="item1">
+          <div class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-500">
+            <h3 class="text-2xl font-semibold mb-2">Full Stack Developer</h3>
+            <p class="text-teal-400 italic mb-4">June 2020 – Present</p>
+            <ul class="list-disc list-inside text-lg text-gray-200 space-y-2">
+              <li>Independently developed over six fully functional applications.</li>
+              <li>Focused on secure login functionalities with multi-user capabilities.</li>
+              <li>Implemented data safety and retrieval mechanisms.</li>
+              <li>Integrated AI features and GSAP animations.</li>
+              <li>Developed payment gateways and ensured code consistency.</li>
+              <li>Designed modern, responsive user interfaces.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Repeat Timeline Items for other experiences -->
+        <!-- Le Wagon Bootcamp -->
+        <div class="timeline-item" id="item2">
+          <div class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-500">
+            <h3 class="text-2xl font-semibold mb-2">Le Wagon Full-Stack Development Bootcamp</h3>
+            <p class="text-teal-400 italic mb-4">March 2020 – May 2020</p>
+            <ul class="list-disc list-inside text-lg text-gray-200 space-y-2">
+              <li>Completed a 9-week intensive software engineering bootcamp.</li>
+              <li>Gained proficiency in Ruby, Ruby on Rails, JavaScript ES6, SQL, Git, GitHub, Heroku, HTML, CSS, and Bootstrap.</li>
+              <li>Designed, implemented, and deployed a clone of Airbnb.</li>
+              <li>Developed a Rails prototype of a fully functioning flight search mobile app.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Startup Project Manager -->
+        <div class="timeline-item" id="item3">
+          <div class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-500">
+            <h3 class="text-2xl font-semibold mb-2">Startup Project Manager at Sumr</h3>
+            <p class="text-teal-400 italic mb-4">June 2019 – February 2020</p>
+            <ul class="list-disc list-inside text-lg text-gray-200 space-y-2">
+              <li>Co-founder, project manager, and front-end designer.</li>
+              <li>Aimed to revolutionize news consumption using AI.</li>
+              <li>Leveraged AI to summarize news articles, providing users with an unbiased feed.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Web3 Entrepreneur -->
+        <div class="timeline-item" id="item4">
+          <div class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-500">
+            <h3 class="text-2xl font-semibold mb-2">Web3 Entrepreneur</h3>
+            <p class="text-teal-400 italic mb-4">January 2018 – May 2019</p>
+            <ul class="list-disc list-inside text-lg text-gray-200 space-y-2">
+              <li>Junior front-end designer and community manager for multiple NFT-based projects.</li>
+              <li>Developed custom marketplaces for NFT trading.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="mb-16">
+      <h2 class="text-4xl font-semibold mb-12 text-center">Education</h2>
+      <div class="flex justify-center">
+        <div class="bg-gray-800 bg-opacity-80 p-8 rounded-lg shadow-lg w-full md:w-2/3 hover:shadow-2xl transition duration-500">
+          <h3 class="text-2xl font-semibold mb-2">Tulane University, A.B. Freeman School of Business</h3>
+          <p class="text-teal-400 italic mb-4">Bachelor of Science in Management</p>
+          <p class="text-lg mb-2">Major: Finance and Management | Minor: Entrepreneurship</p>
+          <p class="text-lg mb-2">GPA: 3.2 | Honors: Tulane Founders Scholarship</p>
+          <p class="text-gray-400 italic">New Orleans, LA | May 2020</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="mb-16">
+      <h2 class="text-4xl font-semibold mb-12 text-center">Skills</h2>
+      <!-- Technical Skills -->
+      <h3 class="text-2xl font-semibold mb-8 text-center">Technical Skills</h3>
+      <div class="flex flex-wrap justify-center gap-8 mb-12">
+        <!-- Skill Card -->
+        <div class="relative group w-24 h-24">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-teal-500 to-blue-500 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          <div class="relative z-10 bg-gray-800 bg-opacity-80 p-4 rounded-full shadow-lg">
+            <img src="path/to/ruby_on_rails_logo.png" alt="Ruby on Rails" class="w-16 h-16">
+          </div>
+        </div>
+        <!-- Repeat for other technical skills -->
+        <!-- Dart -->
+        <div class="relative group w-24 h-24">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-teal-500 to-blue-500 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          <div class="relative z-10 bg-gray-800 bg-opacity-80 p-4 rounded-full shadow-lg">
+            <img src="path/to/dart_logo.png" alt="Dart" class="w-16 h-16">
+          </div>
+        </div>
+        <!-- Additional skill cards... -->
+      </div>
+
+      <!-- Additional Skills -->
+      <h3 class="text-2xl font-semibold mb-8 text-center">Additional Skills</h3>
+      <div class="flex justify-center">
+        <div class="bg-gray-800 bg-opacity-80 p-8 rounded-lg shadow-lg w-full md:w-2/3 hover:shadow-2xl transition duration-500">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg text-gray-200">
+            <li>Cross-functional Management</li>
+            <li>Data Analytics</li>
+            <li>Sales & Budgeting</li>
+            <li>Business Development</li>
+            <li>Web Design & Development</li>
+            <li>User Experience (UX) Design</li>
+            <li>Branding</li>
+            <li>Google Workspace</li>
+            <li>Notion, Jira, Slack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-gray-500 text-sm mt-8">
+      <p>© 2024 Sebastian Burke. All rights reserved.</p>
+    </div>
+  </div>

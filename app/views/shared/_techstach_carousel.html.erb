@@ -1,5 +1,7 @@
+<!-- index.html.erb -->
 <div class="">
   <h2 class="text-3xl font-bold mb-10">My Tech Stack</h2>
+
   <% tech_stack = [
     { name: "Ruby", icon: "ruby_logo.png" },
     { name: "Ruby on Rails", icon: "rails_logo.png" },
@@ -22,17 +24,65 @@
     { name: "Jira", icon: "jira_logo.png" },
     { name: "MongoDB", icon: "mongodb_logo.png" },
   ] %>
-  <div class="relative overflow-hidden w-full">
-    <div class="flex animate-carousel" style="width: <%= tech_stack.length * 100 %>%;">
-      <% 2.times do %>
-        <% tech_stack.each do |tech| %>
-          <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mx-4 group relative">
-            <div class="w-16 h-16 flex items-center justify-center">
-              <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
-            </div>
-            <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"><%= tech[:name] %></p>
+
+  <% half = (tech_stack.length / 2.0).ceil %>
+  <% first_half = tech_stack.first(half) %>
+  <% second_half = tech_stack.last(tech_stack.length - half) %>
+
+  <!-- First Carousel (Scrolling Left) -->
+  <div class="relative overflow-hidden w-full mb-8">
+    <div class="flex whitespace-nowrap animate-scroll-left hover:pause-animation">
+      <% first_half.each do |tech| %>
+        <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
+          <!-- Icon and Label -->
+          <div class="w-16 h-16 flex items-center justify-center">
+            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
           </div>
-        <% end %>
+          <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+            <%= tech[:name] %>
+          </p>
+        </div>
+      <% end %>
+      <!-- Duplicate for Seamless Loop -->
+      <% first_half.each do |tech| %>
+        <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
+          <!-- Icon and Label -->
+          <div class="w-16 h-16 flex items-center justify-center">
+            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+          </div>
+          <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+            <%= tech[:name] %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Second Carousel (Scrolling Right) -->
+  <div class="relative overflow-hidden w-full">
+    <div class="flex whitespace-nowrap animate-scroll-right hover:pause-animation">
+      <% second_half.each do |tech| %>
+        <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
+          <!-- Icon and Label -->
+          <div class="w-16 h-16 flex items-center justify-center">
+            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+          </div>
+          <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+            <%= tech[:name] %>
+          </p>
+        </div>
+      <% end %>
+      <!-- Duplicate for Seamless Loop -->
+      <% second_half.each do |tech| %>
+        <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
+          <!-- Icon and Label -->
+          <div class="w-16 h-16 flex items-center justify-center">
+            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+          </div>
+          <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+            <%= tech[:name] %>
+          </p>
+        </div>
       <% end %>
     </div>
   </div>

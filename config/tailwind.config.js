@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: [
@@ -19,13 +20,18 @@ module.exports = {
         heading: ['Russo One', ...defaultTheme.fontFamily.sans],
       },
       animation: {
-        'carousel': 'carousel 120s linear infinite',
+        'scroll-left': 'scrollLeft 20s linear infinite',
+        'scroll-right': 'scrollRight 20s linear infinite',
         'spin-slow': 'spin 6s linear infinite',
       },
       keyframes: {
-        carousel: {
+        scrollLeft: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        scrollRight: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
         },
       },
     },
@@ -34,6 +40,13 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.pause-animation': {
+          'animation-play-state': 'paused',
+        },
+      }, ['hover']);
+    }),
   ]
 }
 
