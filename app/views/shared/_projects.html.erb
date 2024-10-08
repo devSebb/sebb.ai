@@ -1,6 +1,6 @@
-    <div>
+<div>
       <h2 class="text-3xl font-bold mb-8">Projects</h2>
-      <div class="grid grid-cols-2 gap-6">
+      <div class="grid grid-cols-2 gap-6" id="projects-container">
         <% projects = [
           { name: "More XP", url: "https://morexp.example.com", description: "Revolutionizing the job market: Pay for experiences, boost your resume, land your dream job!" },
           { name: "Arabella Rock & Roll Store", url: "https://arabellarock.example.com", description: "Rock out with our e-commerce site for musical instruments, powered by Rails and Stripe!" },
@@ -8,10 +8,10 @@
           { name: "Domo Kanban Board", url: "https://domokanban.example.com", description: "Streamline your workflow with our Rails-powered Kanban board for task and goal tracking!" }
         ] %>
 
-        <% projects.each do |project| %>
-          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <%= image_tag "project.png", alt: project[:name], class: "w-full h-64 object-cover" %>
-            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-200 transition-opacity duration-200 bg-gray-900 bg-opacity-80">
+        <% projects.each_with_index do |project, index| %>
+          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 project-item" data-index="<%= index %>">
+            <%= image_tag "project.png", alt: project[:name], class: "w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-50" %>
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out bg-gray-900 bg-opacity-80">
               <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:underline" do %>
                 <%= project[:name] %> <i class="fas fa-external-link-alt text-sm ml-1"></i>
               <% end %>
