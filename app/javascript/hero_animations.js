@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", function() {
   gsap.registerPlugin(TextPlugin);
   const title = document.querySelector("#hero-text");
 
+  if (!title) return;
+
+
   const texts = [
     "software developer",
     "web designer",
-    "full-stack engineer",
-    "project manager",
-    "product manager"
+    "mobile app designer",
+    "product manager",
+    "business developer",
+    "data analyst"
   ];
   let index = 0;
 
@@ -16,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
       duration: 2,
       text: {
         value: "I'm a " + texts[index],
-        delimiter: ""
+        delimiter: "",
+        type: "diff"
       },
       ease: "power1.inOut",
       onComplete: () => {
