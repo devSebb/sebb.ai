@@ -101,6 +101,7 @@ GEM
     drb (2.2.1)
     error_highlight (0.6.0)
     erubi (1.13.0)
+    foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -307,6 +308,7 @@ DEPENDENCIES
   capybara
   debug
   error_highlight (>= 0.4.0)
+  foreman
   importmap-rails
   jbuilder
   pg (~> 1.1)
