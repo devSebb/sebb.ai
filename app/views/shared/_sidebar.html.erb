@@ -7,17 +7,23 @@
       <div class="flex-grow h-48"></div>
       <div class="flex flex-col bottom-0">
         <div class="flex justify-between mx-2 mt-3">
-          <%= image_tag "icons/github_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
-          <%= image_tag "icons/linkedin_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
-          <%= image_tag "icons/x_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= link_to "https://github.com/devSebb", target: "_blank" do %>
+            <%= image_tag "icons/github_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <% end %>
+          <%= link_to "https://www.linkedin.com/in/sebastian-burke/", target: "_blank" do %>
+            <%= image_tag "icons/linkedin_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <% end %>
+          <%= link_to "https://x.com/dev_sebb", target: "_blank" do %>
+            <%= image_tag "icons/x_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
   <div class="flex justify-between space-x-10 mt-10">
-    <div class="px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white">
+    <%= link_to "#contact", class: "px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white hover:bg-gray-700 transition-colors duration-300", data: { turbo: false } do %>
       Contact
-    </div>
+    <% end %>
     <%= link_to resume_path, class: "px-3 py-2 text-center box-shadow bg-gray-600 rounded-lg text-white hover:bg-gray-700 transition-colors duration-300" do %>
       Resume
     <% end %>

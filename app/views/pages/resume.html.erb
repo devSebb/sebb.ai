@@ -1,24 +1,27 @@
 <!-- Resume Page -->
 <div class="px-10 py-8 text-white font-sans">
   <!-- Header -->
-  <div class="text-center text-4xl font-bold mb-8">
-    <h1>Sebastian Burke</h1>
+  <div class="relative text-center my-10">
+    <%= link_to root_path, class: "absolute left-0 top-1/2 -translate-y-1/2 text-gray-100 hover:text-white" do %>
+      <%= image_tag "icons/back_arrow.svg", class: "w-8 h-8" %>
+    <% end %>
+    <h1 class="text-4xl font-bold">Sebastian Burke</h1>
   </div>
 
   <!-- Contact Information -->
-  <div class="flex flex-col items-center mb-8">
-    <p class="text-lg">Email: <a href="mailto:your.email@example.com" class="text-blue-400 hover:underline">your.email@example.com</a></p>
-    <p class="text-lg">LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" class="text-blue-400 hover:underline">linkedin.com/in/yourprofile</a></p>
-    <p class="text-lg">GitHub: <a href="https://github.com/yourusername" class="text-blue-400 hover:underline">github.com/yourusername</a></p>
-  </div>
+  <%# <div class="flex flex-col items-center mb-8">
+    <p class="text-lg">Email: <a href="mailto:burke.sebastian1@gmail.com" class="text-gray-400 hover:underline">your.email@example.com</a></p>
+    <p class="text-lg">LinkedIn: <a href="https://www.linkedin.com/in/sebastian-burke/" class="text-blue-400 hover:underline">www.linkedin.com/in/sebastian-burke/</a></p>
+    <p class="text-lg">GitHub: <a href="https://github.com/devSebb" class="text-blue-400 hover:underline">github.com/devSebb</a></p>
+  </div> %>
 
   <!-- Experience Section -->
-  <div class="mb-8">
+  <div class="my-8">
     <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Experience</h2>
     <!-- Full Stack Developer -->
     <div class="mb-6">
       <h3 class="text-xl font-semibold">Full Stack Developer</h3>
-      <p class="text-gray-400 italic">June 2020 – Present</p>
+      <p class="text-gray-400 italic">July 2024 – Present</p>
       <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
         <li>Independently developed over six fully functional applications.</li>
         <li>Focused on secure login functionalities with multi-user capabilities.</li>
@@ -31,7 +34,7 @@
     <!-- Le Wagon Bootcamp -->
     <div class="mb-6">
       <h3 class="text-xl font-semibold">Le Wagon Full-Stack Development Bootcamp</h3>
-      <p class="text-gray-400 italic">March 2020 – May 2020</p>
+      <p class="text-gray-400 italic">April 2024 – July 2024</p>
       <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
         <li>Completed a 9-week intensive software engineering bootcamp.</li>
         <li>Gained proficiency in Ruby, Ruby on Rails, JavaScript ES6, SQL, Git, GitHub, Heroku, HTML, CSS, and Bootstrap.</li>
@@ -42,7 +45,7 @@
     <!-- Startup Project Manager -->
     <div class="mb-6">
       <h3 class="text-xl font-semibold">Startup Project Manager at Sumr</h3>
-      <p class="text-gray-400 italic">June 2019 – February 2020</p>
+      <p class="text-gray-400 italic">June 2021 – February 2022</p>
       <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
         <li>Co-founder, project manager, and front-end designer.</li>
         <li>Aimed to revolutionize news consumption using AI.</li>
@@ -52,7 +55,7 @@
     <!-- Web3 Entrepreneur -->
     <div>
       <h3 class="text-xl font-semibold">Web3 Entrepreneur</h3>
-      <p class="text-gray-400 italic">January 2018 – May 2019</p>
+      <p class="text-gray-400 italic">January 2021 – May 2021</p>
       <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
         <li>Junior front-end designer and community manager for multiple NFT-based projects.</li>
         <li>Developed custom marketplaces for NFT trading.</li>
@@ -66,8 +69,8 @@
     <div>
       <h3 class="text-xl font-semibold">Tulane University, A.B. Freeman School of Business</h3>
       <p class="text-gray-400 italic">Bachelor of Science in Management</p>
-      <p class="text-lg">Major: Finance and Management | Minor: Entrepreneurship</p>
-      <p class="text-lg">GPA: 3.2 | Honors: Tulane Founders Scholarship</p>
+      <p class="text-lg">Majors: Finance and Management | Minor: Entrepreneurship</p>
+      <p class="text-lg">Honors: Tulane Founders Scholarship</p>
       <p class="text-gray-400 italic">New Orleans, LA | May 2020</p>
     </div>
   </div>
@@ -130,7 +133,6 @@
     <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
       <span class="text-white text-lg">React.js</span>
     </div>
-    <!-- Add more skill cards as needed -->
     <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
       <span class="text-white text-lg">HTML</span>
     </div>
@@ -145,6 +147,9 @@
     </div>
     <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
       <span class="text-white text-lg">Firebase</span>
+    </div>
+    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
+      <span class="text-white text-lg">Figma</span>
     </div>
     <!-- ...and so on -->
   </div>
