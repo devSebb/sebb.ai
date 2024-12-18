@@ -33,14 +33,14 @@
         ] %>
 
         <% projects.each_with_index do |project, index| %>
-          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 project-item" data-index="<%= index %>">
-            <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-all duration-300 ease-in-out group-hover:opacity-50" %>
-            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out bg-gray-900 bg-opacity-80">
-              <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:underline" do %>
+          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item" data-index="<%= index %>">
+            <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-transform duration-00 ease-in-out group-hover:scale-105 hover:opacity-100" %>
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+              <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:text-primary transition-colors duration-200" do %>
                 <%= project[:name] %> <i class="fas fa-external-link-alt text-sm ml-1"></i>
               <% end %>
               <p class="text-white text-md text-center px-6 mb-4"><%= project[:description] %></p>
-              <%= link_to "See More", project_path(project[:path]), class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" %>
+              <%= link_to "See More", project_path(project[:path]), class: "px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-200 font-semibold" %>
             </div>
           </div>
         <% end %>

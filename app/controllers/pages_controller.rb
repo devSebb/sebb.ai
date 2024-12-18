@@ -6,6 +6,20 @@ class PagesController < ApplicationController
   end
 
   def project
+    @techstack = {
+      "fab fa-react" => "techstack/api_icon.png",
+      "fab fa-ruby" => "techstack/ruby_logo.png",
+      "fas fa-train" => "techstack/ruby_logo.png",
+      "fas fa-database" => "techstack/ruby_logo.png",
+      "fab fa-python" => "techstack/ruby_logo.png",
+      "fab fa-js" => "techstack/ruby_logo.png",
+      "fab fa-aws" => "techstack/ruby_logo.png",
+      "fas fa-brain" => "techstack/ruby_logo.png",
+      "fab fa-html5" => "techstack/ruby_logo.png",
+      "fab fa-css3" => "techstack/ruby_logo.png",
+      "fab fa-stripe" => "techstack/ruby_logo.png"
+    }
+
     @projects = {
       "more-xp" => {
         name: "More XP",
@@ -35,8 +49,8 @@ class PagesController < ApplicationController
         features: [
           "AI-generated meal plans",
           "Customizable dietary preferences",
-          "Automated shopping lists",
-          "Recipe database integration"
+          "OpenAi Integration",
+          "GSAP Animated"
         ],
         technologies: [
           { icon: "fab fa-python", color: "#3776AB" },
@@ -74,7 +88,7 @@ class PagesController < ApplicationController
           "Secure Stripe integration",
           "Product inventory management",
           "Customer reviews system",
-          "Order tracking dashboard"
+          "Cloudinary Integration"
         ],
         technologies: [
           { icon: "fab fa-ruby", color: "#CC342D" },
