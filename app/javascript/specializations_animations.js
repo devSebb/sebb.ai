@@ -3,35 +3,78 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const container = document.getElementById("specializations-container");
   const boxes = document.querySelectorAll(".specialization-box");
+  const title = container.querySelector("h1");
 
-  gsap.set(boxes, { scale: 0, opacity: 0 });
+  // Initial state
+  gsap.set(boxes, {
+    scale: 0.8,
+    opacity: 0,
+    y: 50
+  });
+  gsap.set(title, {
+    opacity: 0,
+    y: 30
+  });
 
   function animateSpecializations() {
-    ScrollTrigger.create({
-      trigger: container,
-      start: "center center",
-      end: "center center",
-      // markers: true,
-      onEnter: () => {
-        gsap.to(boxes, {
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.3,
-          ease: "back.out(1.7)",
-          overwrite: "auto",
-        });
+    // Title animation
+    const titleTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 80%",
+        end: "top 20%",
+        toggleActions: "play reverse play reverse",
+      }
+    });
+
+    titleTl.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    // Boxes animation
+    const boxesTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 90%",
+        end: "top 5%",
+        toggleActions: "play reverse play reverse",
+        // markers: true,
+      }
+    });
+
+    boxesTl.to(boxes, {
+      scale: 1,
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: {
+        each: 0.15,
+        from: "start",
+        grid: "auto",
       },
-      onLeaveBack: () => {
-        gsap.to(boxes, {
-          scale: 0,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: "back.in(1.7)",
-          overwrite: "auto",
+      ease: "power3.out",
+    });
+
+    // Add hover animations
+    boxes.forEach(box => {
+      box.addEventListener('mouseenter', () => {
+        gsap.to(box.querySelector('img'), {
+          rotate: 360,
+          duration: 0.6,
+          ease: "power2.out"
         });
-      },
+      });
+
+      box.addEventListener('mouseleave', () => {
+        gsap.to(box.querySelector('img'), {
+          rotate: 0,
+          duration: 0.6,
+          ease: "power2.out"
+        });
+      });
     });
   }
 

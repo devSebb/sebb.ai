@@ -6,25 +6,29 @@
             name: "More XP",
             url: "https://morexp.example.com",
             description: "Revolutionizing the job market: Pay for experiences, boost your resume, land your dream job!",
-            image: "more_XP_index.png"
+            image: "more_XP_index.png",
+            path: "more-xp"
           },
           {
             name: "Make-Me-Fit",
             url: "https://makemefit.example.com",
             description: "AI-powered meal planning tailored to your fitness goals and dietary needs",
-            image: "MMF_Home.png"
+            image: "MMF_Home.png",
+            path: "make-me-fit"
           },
           {
             name: "Domo Kanban Board",
             url: "https://domokanban.example.com",
             description: "Streamline your workflow with our Rails-powered Kanban board for task and goal tracking!",
-            image: "Domo_Kanban.png"
+            image: "Domo_Kanban.png",
+            path: "domo-kanban"
           },
           {
             name: "Arabella Rock & Roll Store",
             url: "https://arabellarock.example.com",
             description: "Rock & Roll themed e-commerce site for musical instruments, powered by Rails and Stripe",
-            image: "Arabella_index.png"
+            image: "Arabella_index.png",
+            path: "arabella-rock"
           }
         ] %>
 
@@ -35,7 +39,8 @@
               <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:underline" do %>
                 <%= project[:name] %> <i class="fas fa-external-link-alt text-sm ml-1"></i>
               <% end %>
-              <p class="text-white text-md text-center px-6"><%= project[:description] %></p>
+              <p class="text-white text-md text-center px-6 mb-4"><%= project[:description] %></p>
+              <%= link_to "See More", project_path(project[:path]), class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" %>
             </div>
           </div>
         <% end %>

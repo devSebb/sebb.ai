@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   post "/contact", to: "contacts#create"
+
+  get "/projects/:name", to: "pages#project", as: "project"
 end

@@ -1,0 +1,67 @@
+<div class="container mx-auto px-4">
+  <div class="mt-10">
+    <%= link_to root_path, class: "inline-flex items-center text-primary hover:text-secondary transition-colors duration-200" do %>
+      <i class="fas fa-arrow-left mr-2"></i> Back to Home
+    <% end %>
+  </div>
+
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col md:flex-row gap-10 items-center md:items-start relative">
+      <div class="w-full md:w-2/3">
+    <h1 class="text-6xl font-heading text-primary text-center mt-6 mb-10 hover:text-secondary transition-colors duration-300">
+      <%= @project[:name] %>
+    </h1>
+        <div class="p-8 mb-8">
+          <%= image_tag "projects/#{@project[:image]}",
+              alt: @project[:name],
+              class: "w-full object-cover rounded-2xl shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105" %>
+        </div>
+
+        <div class="flex flex-wrap gap-4 justify-center mb-8">
+          <% @projects.each do |key, project| %>
+            <%= link_to project_path(name: key),
+                class: "px-4 py-2 rounded-lg bg-black/20 backdrop-blur-sm
+                        hover:bg-black/30 transition-all duration-300
+                        #{params[:name] == key ? 'shadow-lg shadow-primary/50 scale-105' : ''}" do %>
+              <span class="text-text text-sm font-medium"><%= project[:name] %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/3">
+        <div class="backdrop-blur-sm bg-black/20 rounded-2xl shadow-xl p-8 hover:bg-black/30 transition-all duration-300 h-full">
+          <p class=" text-text mb-6 leading-relaxed"><%= @project[:detailed_description] %></p>
+
+          <div class="mb-6">
+            <h3 class="text-xl font-bold text-primary mb-4">Built with:</h3>
+            <div class="flex flex-wrap gap-4 justify-center">
+              <% @project[:technologies].each do |tech| %>
+                <i class="<%= tech[:icon] %> text-4xl" style="color: <%= tech[:color] %>"></i>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-primary mb-4">Features:</h3>
+            <ul class="list-disc list-inside space-y-2 text-text">
+              <% @project[:features].each do |feature| %>
+                <li><%= feature %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="text-center">
+            <%= link_to @project[:url], target: "_blank",
+                class: "inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-xl
+                       hover:bg-secondary transform hover:-translate-y-1 transition-all duration-300
+                       shadow-lg hover:shadow-primary/50" do %>
+              Visit Project <i class="fas fa-external-link-alt ml-2"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
