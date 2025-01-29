@@ -7,17 +7,13 @@ class PagesController < ApplicationController
 
   def project
     @techstack = {
-      "fab fa-react" => "techstack/api_icon.png",
+      "fab fa-api" => "techstack/api_icon.png",
       "fab fa-ruby" => "techstack/ruby_logo.png",
-      "fas fa-train" => "techstack/ruby_logo.png",
-      "fas fa-database" => "techstack/ruby_logo.png",
-      "fab fa-python" => "techstack/ruby_logo.png",
-      "fab fa-js" => "techstack/ruby_logo.png",
-      "fab fa-aws" => "techstack/ruby_logo.png",
-      "fas fa-brain" => "techstack/ruby_logo.png",
-      "fab fa-html5" => "techstack/ruby_logo.png",
-      "fab fa-css3" => "techstack/ruby_logo.png",
-      "fab fa-stripe" => "techstack/ruby_logo.png"
+      "fab fa-tailwind" => "techstack/tailwindcss_logo.png",
+      "fab fa-postgres" => "techstack/postgresql_logo.png",
+      "fab fa-gsap" => "techstack/gsap_logo.jpg",
+      "fab fa-mysql" => "techstack/mysql_logo.png",
+      "fab fa-html5" => "techstack/html5_icon.png"
     }
 
     @projects = {
@@ -34,10 +30,10 @@ class PagesController < ApplicationController
           "Review and rating system"
         ],
         technologies: [
-          { icon: "fab fa-react", color: "#61DAFB" },
-          { icon: "fab fa-ruby", color: "#CC342D" },
-          { icon: "fas fa-train", color: "#CC0000" },
-          { icon: "fas fa-database", color: "#4299E1" }
+          { icon: "fab fa-ruby", color: "#61DAFB" },
+          { icon: "fab fa-postgres", color: "#61DAFB" },
+          { icon: "fab fa-tailwind", color: "#61DAFB" },
+          { icon: "fab fa-gsap", color: "#61DAFB" }
         ]
       },
       "make-me-fit" => {
@@ -53,10 +49,10 @@ class PagesController < ApplicationController
           "GSAP Animated"
         ],
         technologies: [
-          { icon: "fab fa-python", color: "#3776AB" },
-          { icon: "fab fa-js", color: "#F7DF1E" },
-          { icon: "fab fa-aws", color: "#FF9900" },
-          { icon: "fas fa-brain", color: "#FF4088" }
+          { icon: "fab fa-ruby", color: "#61DAFB" },
+          { icon: "fab fa-api", color: "#61DAFB" },
+          { icon: "fab fa-tailwind", color: "#61DAFB" },
+          { icon: "fab fa-gsap", color: "#61DAFB" }
         ]
       },
       "domo-kanban" => {
@@ -72,10 +68,10 @@ class PagesController < ApplicationController
           "Team progress analytics"
         ],
         technologies: [
-          { icon: "fab fa-ruby", color: "#CC342D" },
-          { icon: "fas fa-train", color: "#CC0000" },
-          { icon: "fab fa-js", color: "#F7DF1E" },
-          { icon: "fab fa-html5", color: "#E34F26" }
+          { icon: "fab fa-ruby", color: "#61DAFB" },
+          { icon: "fab fa-postgres", color: "#61DAFB" },
+          { icon: "fab fa-tailwind", color: "#61DAFB" },
+          { icon: "fab fa-gsap", color: "#61DAFB" }
         ]
       },
       "arabella-rock" => {
@@ -91,10 +87,10 @@ class PagesController < ApplicationController
           "Cloudinary Integration"
         ],
         technologies: [
-          { icon: "fab fa-ruby", color: "#CC342D" },
-          { icon: "fas fa-train", color: "#CC0000" },
-          { icon: "fab fa-stripe", color: "#008CDD" },
-          { icon: "fab fa-css3", color: "#2965F1" }
+          { icon: "fab fa-ruby", color: "#61DAFB" },
+          { icon: "fab fa-html5", color: "#61DAFB" },
+          { icon: "fab fa-tailwind", color: "#61DAFB" },
+          { icon: "fab fa-mysql", color: "#61DAFB" }
         ]
       }
     }

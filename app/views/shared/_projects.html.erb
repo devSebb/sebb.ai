@@ -1,6 +1,6 @@
 <div>
       <h2 class="text-3xl font-bold mb-8">Projects</h2>
-      <div class="grid grid-cols-2 gap-6" id="projects-container">
+      <div class="grid grid-cols-2 gap-6 z-20" id="projects-container">
         <% projects = [
           {
             name: "More XP",
@@ -33,7 +33,7 @@
         ] %>
 
         <% projects.each_with_index do |project, index| %>
-          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item" data-index="<%= index %>">
+          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item z-20" data-index="<%= index %>">
             <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-transform duration-00 ease-in-out group-hover:scale-105 hover:opacity-100" %>
             <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
               <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:text-primary transition-colors duration-200" do %>
