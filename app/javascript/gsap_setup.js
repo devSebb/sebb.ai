@@ -9,8 +9,7 @@ function setupGSAP() {
   console.log('GSAP setup completed');
 }
 
-// Initialize GSAP setup
+
 setupGSAP();
 
-// Export gsap for use in other files
 export { gsap }; 

@@ -1,13 +1,10 @@
-// GSAP is loaded via CDN in the layout
-
 function initExperienceAnimations() {
-  // Check GSAP and ScrollTrigger availability
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.error('GSAP or ScrollTrigger not available - animations disabled');
     return;
   }
 
-  gsap.registerPlugin(ScrollTrigger); // Explicitly register ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
 
   console.log('Experience animations initializing...');
 
@@ -33,7 +30,7 @@ function initExperienceAnimations() {
           trigger: dot,
           start: "top center",
           end: "bottom center",
-          toggleActions: "play none none reverse", // Simplifies onEnter/onLeaveBack
+          toggleActions: "play none none reverse",
         },
         backgroundColor: animationConfig.activeColor,
         borderColor: animationConfig.activeColor,
@@ -41,7 +38,6 @@ function initExperienceAnimations() {
         duration: animationConfig.duration,
         ease: "back.out(1.7)",
         overwrite: "auto",
-        // Reset on reverse
         onReverseComplete: () => {
           gsap.to(dot, {
             backgroundColor: animationConfig.inactiveColor,
@@ -59,13 +55,11 @@ function initExperienceAnimations() {
   animateExperiences();
   console.log('Experience animations initialized successfully');
 
-  // Cleanup ScrollTriggers on page unload
   window.addEventListener('beforeunload', () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   });
 }
 
-// Initialize when DOM is ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initExperienceAnimations);
 } else {

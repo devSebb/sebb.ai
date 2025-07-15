@@ -28,12 +28,15 @@ function initHeroAnimations() {
       "mobile app designer",
       "product manager",
       "business developer",
-      "data analyst"
+      "digital designer",
+      "project manager",
+      "product designer",
+      "advertising designer",
     ];
     let index = 0;
 
     function animateText() {
-      // console.log("Animating text to:", texts[index]);
+    
       
       gsap.to(title, {
         duration: 2,
@@ -58,11 +61,10 @@ function initHeroAnimations() {
     animateText();
   }
 
-  // Start the animation after a short delay
   setTimeout(startTextAnimation, 1000);
 }
 
-// Initialize when DOM is ready
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initHeroAnimations);
 } else {
