@@ -1,6 +1,12 @@
-<div class="flex flex-col min-h-screen">
-  <%# Intro Section - Sticky Top %>
-  <div class="sticky top-0 z-10">
+<div class="flex flex-col min-h-screen relative">
+    <%# Intro Section - Sticky Top %>
+  <div class="sticky top-0 z-10 relative">
+    
+    <div class="absolute top-1/2 z-30" style="right: 10%;">
+      <%= link_to design_path, class: "inline-flex text-white text-sm" do %>
+        [design portfolio]
+      <% end %>
+    </div>
     <div class="flex">
       <h1 class="text-5xl tracking-wider leading-snug font-semibold mb-10">Hello and welcome,<br> people call me
         <span class="font-heading text-primary leading-snug text-6xl">Sebb</span>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "resume", to: "pages#resume"
+  get "design", to: "pages#design"
 
   get "up" => "rails/health#show", as: :rails_health_check
 

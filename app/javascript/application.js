@@ -10,3 +10,6 @@ import "./experience_animations"
 import "./path_animation"
 import "./resume_animations"
 import "./projects_animations"
+
+// Import smooth scrolling
+import "./smooth_scroll"

@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   def resume
   end
 
+  def design
+  end
+
   def project
     @techstack = {
       "fab fa-api" => "techstack/api_icon.png",
