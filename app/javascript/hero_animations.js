@@ -1,6 +1,12 @@
 // GSAP is loaded via CDN in the layout
 
 function initHeroAnimations() {
+  // Simple check if GSAP is available
+  if (typeof gsap === 'undefined') {
+    console.error('GSAP not available - hero animations disabled');
+    return;
+  }
+
   console.log("=== HERO ANIMATIONS INITIALIZING ===");
   console.log("GSAP object:", gsap);
   console.log("GSAP version:", gsap.version);
@@ -27,7 +33,7 @@ function initHeroAnimations() {
     let index = 0;
 
     function animateText() {
-      console.log("Animating text to:", texts[index]);
+      // console.log("Animating text to:", texts[index]);
       
       gsap.to(title, {
         duration: 2,
