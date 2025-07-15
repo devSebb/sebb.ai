@@ -116,7 +116,7 @@ body::before {
   }
 }
 
-/* Custom styles for the timeline */
+/* Timeline Styles */
 .timeline {
   position: relative;
   padding: 2rem 0;
@@ -156,7 +156,7 @@ body::before {
 .timeline-item:nth-child(even)::before {
   left: -10px;
 }
-/* Responsive adjustments */
+/* Responsive  */
 @media screen and (max-width: 768px) {
   .timeline::after {
     left: 8%;

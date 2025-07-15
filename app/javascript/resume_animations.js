@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+// GSAP is loaded via CDN in the layout
 
 // Timeline Animations
 gsap.utils.toArray('.timeline-item').forEach((item, i) => {

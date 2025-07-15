@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-  gsap.registerPlugin(ScrollTrigger);
+// GSAP is loaded via CDN in the layout
 
+document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("specializations-container");
   const boxes = document.querySelectorAll(".specialization-box");
   const title = container.querySelector("h1");
@@ -31,49 +31,24 @@ document.addEventListener("DOMContentLoaded", function() {
       opacity: 1,
       y: 0,
       duration: 1,
-      ease: "power3.out"
+      ease: "power2.out"
     });
 
     // Boxes animation
-    const boxesTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top 90%",
-        end: "top 5%",
-        toggleActions: "play reverse play reverse",
-        // markers: true,
-      }
-    });
-
-    boxesTl.to(boxes, {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: {
-        each: 0.15,
-        from: "start",
-        grid: "auto",
-      },
-      ease: "power3.out",
-    });
-
-    // Add hover animations
-    boxes.forEach(box => {
-      box.addEventListener('mouseenter', () => {
-        gsap.to(box.querySelector('img'), {
-          rotate: 360,
-          duration: 0.6,
-          ease: "power2.out"
-        });
-      });
-
-      box.addEventListener('mouseleave', () => {
-        gsap.to(box.querySelector('img'), {
-          rotate: 0,
-          duration: 0.6,
-          ease: "power2.out"
-        });
+    boxes.forEach((box, index) => {
+      gsap.to(box, {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: box,
+          start: "top 85%",
+          end: "top 15%",
+          toggleActions: "play reverse play reverse",
+        }
       });
     });
   }

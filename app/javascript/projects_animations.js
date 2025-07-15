@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-  gsap.registerPlugin(ScrollTrigger);
+// GSAP is loaded via CDN in the layout
 
+document.addEventListener("DOMContentLoaded", function() {
   gsap.utils.toArray(".project-item").forEach((item, index) => {
     gsap.fromTo(item,
       {

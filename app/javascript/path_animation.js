@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger);
+// GSAP is loaded via CDN in the layout
 
+document.addEventListener("DOMContentLoaded", (event) => {
   gsap.set("#animate-icon", {
     xPercent: 0,
     yPercent: 0,
