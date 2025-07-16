@@ -1,0 +1,29 @@
+{
+  "name": "sebb.ai",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.js app/javascript/**/*.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --external:@hotwired/turbo-rails --external:@hotwired/stimulus --external:@hotwired/stimulus-loading --external:controllers --external:controllers/application --external:gsap --external:gsap/ScrollTrigger --external:gsap/TextPlugin --external:gsap/Observer --external:gsap/CSSPlugin --external:gsap/PathEditor --external:gsap/utils/matrix --external:gsap/utils/paths --external:gsap/utils/strings --external:gsap/utils/VelocityTracker",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devSebb/sebb.ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devSebb/sebb.ai/issues"
+  },
+  "homepage": "https://github.com/devSebb/sebb.ai#readme",
+  "devDependencies": {
+    "esbuild": "^0.20.1"
+  }
+}
