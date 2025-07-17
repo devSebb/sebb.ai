@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: sebb-ai
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sebb-ai-db
+          property: connectionString
+      - key: SEBB_AI_DATABASE_PASSWORD
+        fromDatabase:
+          name: sebb-ai-db
+          property: password
+    databases:
+      - name: sebb-ai-db
+        databaseName: sebb_ai_production
+        user: sebb_ai 
