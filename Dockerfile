@@ -39,6 +39,13 @@ RUN bundle install && \
 # Copy application code
 COPY . .
 
+# Install Node.js dependencies and build JavaScript
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install && \
+    npm run build && \
+    npm run build:css
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 

@@ -1,7 +1,17 @@
 # Pin npm packages by running ./bin/importmap
-pin "application"
-pin "@hotwired/turbo-rails", to: "turbo.min.js"
-pin "@hotwired/stimulus", to: "stimulus.min.js"
-pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
-pin_all_from "app/javascript/controllers", under: "controllers"
-pin_all_from "vendor/javascript/utils", under: "utils"
+pin "application", preload: true
+pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
+pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
+pin_all_from "app/javascript/controllers", under: "controllers", preload: true
+pin_all_from "vendor/javascript/utils", under: "utils", preload: true
+
+# Pin built JavaScript files from esbuild
+pin "hero_animations", to: "hero_animations.js", preload: true
+pin "specializations_animations", to: "specializations_animations.js", preload: true
+pin "experience_animations", to: "experience_animations.js", preload: true
+pin "path_animation", to: "path_animation.js", preload: true
+pin "resume_animations", to: "resume_animations.js", preload: true
+pin "projects_animations", to: "projects_animations.js", preload: true
+pin "smooth_scroll", to: "smooth_scroll.js", preload: true
+pin "gsap_setup", to: "gsap_setup.js", preload: true
