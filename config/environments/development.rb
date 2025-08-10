@@ -64,6 +64,13 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # In the interactive callbacks (like websockets), the domain
+  # will be added to the allowed host list.
+  # config.hosts << "example.com"
+
+  # Uncomment for credentials debugging (temporary fix)
+  config.secret_key_base = ENV.fetch("SECRET_KEY_BASE") { "dummy_key_for_development_only_#{SecureRandom.hex(64)}" }
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

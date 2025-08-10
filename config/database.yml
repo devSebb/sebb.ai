@@ -80,6 +80,11 @@ test:
 #
 production:
   <<: *default
-  database: sebb_ai_production
-  username: sebb_ai
-  password: <%= ENV["SEBB_AI_DATABASE_PASSWORD"] %>
+  url: <%= begin
+    require "uri"
+    u = URI(ENV["DATABASE_URL"] || "")
+    u.host = u.host&.sub(/\.$/, "")
+    u.to_s
+  rescue
+    ENV["DATABASE_URL"]
+  end %>

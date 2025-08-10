@@ -17,7 +17,19 @@ services:
         fromDatabase:
           name: sebb-ai-db
           property: password
+      - key: RAILS_SERVE_STATIC_FILES
+        value: true
+      - key: RAILS_LOG_TO_STDOUT
+        value: true
     databases:
       - name: sebb-ai-db
         databaseName: sebb_ai_production
-        user: sebb_ai 
+        user: sebb_ai
+        plan: free
+    plan: free
+    region: oregon
+    buildCommand: |
+      bundle install
+      npm install
+      SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile
+    startCommand: bin/rails server -b 0.0.0.0 -p $PORT 
