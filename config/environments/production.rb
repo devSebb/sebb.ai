@@ -51,6 +51,9 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
+  # Uncomment for credentials debugging (temporary fix for deployment)
+  config.secret_key_base = ENV.fetch("RAILS_MASTER_KEY") { "dummy_key_for_production_deployment_#{SecureRandom.hex(64)}" }
+
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 

@@ -21,6 +21,8 @@ services:
         value: true
       - key: RAILS_LOG_TO_STDOUT
         value: true
+      - key: PORT
+        value: 10000
     databases:
       - name: sebb-ai-db
         databaseName: sebb_ai_production
@@ -29,7 +31,8 @@ services:
     plan: free
     region: oregon
     buildCommand: |
+      gem install bundler -v 2.5.11
       bundle install
       npm install
-      SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile
+      bin/rails assets:precompile
     startCommand: bin/rails server -b 0.0.0.0 -p $PORT 
