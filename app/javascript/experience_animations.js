@@ -1,10 +1,21 @@
 function initExperienceAnimations() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.error('GSAP or ScrollTrigger not available - animations disabled');
+  // Wait for GSAP to be fully initialized
+  if (typeof gsap === 'undefined') {
+    console.log('Waiting for GSAP to be initialized...');
+    window.addEventListener('gsapInitialized', initExperienceAnimations);
+    return;
+  }
+  
+  if (!window.GSAP_READY) {
+    console.log('GSAP not ready yet, waiting...');
+    window.addEventListener('gsapInitialized', initExperienceAnimations);
     return;
   }
 
-  gsap.registerPlugin(ScrollTrigger);
+  if (typeof ScrollTrigger === 'undefined') {
+    console.error('ScrollTrigger not available - animations disabled');
+    return;
+  }
 
   console.log('Experience animations initializing...');
 
@@ -60,6 +71,7 @@ function initExperienceAnimations() {
   });
 }
 
+// Initialize when DOM is ready and GSAP is available
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initExperienceAnimations);
 } else {

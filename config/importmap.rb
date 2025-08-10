@@ -6,12 +6,12 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers", preload: true
 pin_all_from "vendor/javascript/utils", under: "utils", preload: true
 
-# Pin built JavaScript files from esbuild
-pin "hero_animations", to: "hero_animations.js", preload: true
-pin "specializations_animations", to: "specializations_animations.js", preload: true
-pin "experience_animations", to: "experience_animations.js", preload: true
-pin "path_animation", to: "path_animation.js", preload: true
-pin "resume_animations", to: "resume_animations.js", preload: true
-pin "projects_animations", to: "projects_animations.js", preload: true
-pin "smooth_scroll", to: "smooth_scroll.js", preload: true
-pin "gsap_setup", to: "gsap_setup.js", preload: true
+# Pin individual JavaScript files
+pin "hero_animations", preload: true
+pin "specializations_animations", preload: true
+pin "experience_animations", preload: true
+pin "path_animation", preload: true
+pin "resume_animations", preload: true
+pin "projects_animations", preload: true
+pin "smooth_scroll", preload: true
+pin "gsap_setup", preload: true

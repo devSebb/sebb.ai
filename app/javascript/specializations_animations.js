@@ -1,9 +1,32 @@
-// GSAP is loaded via CDN in the layout
+// Specializations animations with proper GSAP initialization
 
-document.addEventListener("DOMContentLoaded", function() {
+function initSpecializationsAnimations() {
+  // Wait for GSAP to be fully initialized
+  if (typeof gsap === 'undefined') {
+    console.log('Waiting for GSAP to be initialized...');
+    window.addEventListener('gsapInitialized', initSpecializationsAnimations);
+    return;
+  }
+  
+  if (!window.GSAP_READY) {
+    console.log('GSAP not ready yet, waiting...');
+    window.addEventListener('gsapInitialized', initSpecializationsAnimations);
+    return;
+  }
+
   const container = document.getElementById("specializations-container");
-  const boxes = document.querySelectorAll(".specialization-box");
+  if (!container) {
+    console.log('Specializations container not found, waiting...');
+    return;
+  }
+
+  const boxes = container.querySelectorAll(".specialization-box");
   const title = container.querySelector("h1");
+
+  if (!boxes.length || !title) {
+    console.log('Specialization elements not found, waiting...');
+    return;
+  }
 
   // Initial state
   gsap.set(boxes, {
@@ -54,4 +77,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   animateSpecializations();
-});
+}
+
+// Initialize when DOM is ready and GSAP is available
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSpecializationsAnimations);
+} else {
+  initSpecializationsAnimations();
+}

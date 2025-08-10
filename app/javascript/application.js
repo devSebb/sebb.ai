@@ -2,17 +2,16 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-// GSAP is loaded via CDN in the layout, so we can use it directly
-// Import animations - these will be bundled by esbuild in production
-import "./hero_animations"
-import "./specializations_animations"
-import "./experience_animations"
-import "./path_animation"
-import "./resume_animations"
-import "./projects_animations"
+// Import animations - these will be loaded individually by importmap
+import "hero_animations"
+import "specializations_animations"
+import "experience_animations"
+import "path_animation"
+import "resume_animations"
+import "projects_animations"
 
 // Import smooth scrolling
-import "./smooth_scroll"
+import "smooth_scroll"
 
 // Import GSAP setup
-import "./gsap_setup"
+import "gsap_setup"

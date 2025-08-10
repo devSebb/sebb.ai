@@ -76,11 +76,25 @@ function initAnchorSmoothScroll() {
   });
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+// Main initialization function
+function initSmoothScrollSystem() {
+  // Wait for GSAP to be fully initialized if we need it
+  if (typeof gsap !== 'undefined' && !window.GSAP_READY) {
+    console.log('Waiting for GSAP to be initialized...');
+    window.addEventListener('gsapInitialized', initSmoothScrollSystem);
+    return;
+  }
+
   initSmoothScroll();
   initAnchorSmoothScroll();
-});
+}
+
+// Initialize when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSmoothScrollSystem);
+} else {
+  initSmoothScrollSystem();
+}
 
 // Export for potential use in other modules
 export { lenis, initSmoothScroll, initAnchorSmoothScroll }; 

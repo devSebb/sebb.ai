@@ -1,9 +1,16 @@
-// GSAP is loaded via CDN in the layout
+// Hero animations with proper GSAP initialization
 
 function initHeroAnimations() {
-  // Simple check if GSAP is available
+  // Wait for GSAP to be fully initialized
   if (typeof gsap === 'undefined') {
-    console.error('GSAP not available - hero animations disabled');
+    console.log('Waiting for GSAP to be initialized...');
+    window.addEventListener('gsapInitialized', initHeroAnimations);
+    return;
+  }
+  
+  if (!window.GSAP_READY) {
+    console.log('GSAP not ready yet, waiting...');
+    window.addEventListener('gsapInitialized', initHeroAnimations);
     return;
   }
 
@@ -36,8 +43,6 @@ function initHeroAnimations() {
     let index = 0;
 
     function animateText() {
-    
-      
       gsap.to(title, {
         duration: 2,
         text: {
@@ -64,7 +69,7 @@ function initHeroAnimations() {
   setTimeout(startTextAnimation, 1000);
 }
 
-
+// Initialize when DOM is ready and GSAP is available
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initHeroAnimations);
 } else {

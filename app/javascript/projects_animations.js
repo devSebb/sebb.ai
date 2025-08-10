@@ -1,7 +1,26 @@
-// GSAP is loaded via CDN in the layout
+// Projects animations with proper GSAP initialization
 
-document.addEventListener("DOMContentLoaded", function() {
-  gsap.utils.toArray(".project-item").forEach((item, index) => {
+function initProjectsAnimations() {
+  // Wait for GSAP to be fully initialized
+  if (typeof gsap === 'undefined') {
+    console.log('Waiting for GSAP to be initialized...');
+    window.addEventListener('gsapInitialized', initProjectsAnimations);
+    return;
+  }
+  
+  if (!window.GSAP_READY) {
+    console.log('GSAP not ready yet, waiting...');
+    window.addEventListener('gsapInitialized', initProjectsAnimations);
+    return;
+  }
+
+  const projectItems = gsap.utils.toArray(".project-item");
+  if (!projectItems.length) {
+    console.log('No project items found, waiting...');
+    return;
+  }
+
+  projectItems.forEach((item, index) => {
     gsap.fromTo(item,
       {
         opacity: 0,
@@ -23,4 +42,11 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     );
   });
-});
+}
+
+// Initialize when DOM is ready and GSAP is available
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initProjectsAnimations);
+} else {
+  initProjectsAnimations();
+}
