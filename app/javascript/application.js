@@ -1,6 +1,6 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import "./controllers/index"
+import "controllers"
 
 // Import animations - these will be loaded individually by importmap
 import "hero_animations"

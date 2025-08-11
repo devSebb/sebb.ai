@@ -33,9 +33,6 @@ services:
     buildCommand: |
       gem install bundler -v 2.5.11
       bundle install
-      npm install
-      npm run build
-      npm run build:css
       bin/rails assets:precompile
     startCommand: bin/rails server -b 0.0.0.0 -p $PORT
     # Custom domain configuration
