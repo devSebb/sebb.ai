@@ -15,52 +15,18 @@
     <link rel="apple-touch-icon" href="/icon.png">
     
     <!-- Load GSAP and plugins first -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/TextPlugin.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     
-    <!-- Ensure GSAP is ready before loading JavaScript -->
+    <!-- Dispatch gsapReady event after GSAP loads -->
     <script>
-      console.log('Layout script starting...');
-      console.log('GSAP available:', typeof gsap !== 'undefined');
-      console.log('ScrollTrigger available:', typeof ScrollTrigger !== 'undefined');
-      console.log('TextPlugin available:', typeof TextPlugin !== 'undefined');
-      
-      // Test GSAP functionality immediately
-      if (typeof gsap !== 'undefined') {
-        console.log('GSAP test - creating a simple animation');
-        try {
-          // Create a simple test animation to verify GSAP is working
-          gsap.to({}, { duration: 0.1, onComplete: () => console.log('GSAP basic functionality test passed') });
-          console.log('GSAP basic test successful');
-        } catch (error) {
-          console.error('GSAP basic test failed:', error);
-        }
-      }
-      
-      // Wait for GSAP to be fully loaded
       window.addEventListener('load', function() {
-        console.log('Window load event fired');
-        console.log('GSAP available on load:', typeof gsap !== 'undefined');
-        
-        // Register GSAP plugins
         if (typeof gsap !== 'undefined') {
-          try {
-            gsap.registerPlugin(ScrollTrigger, TextPlugin);
-            console.log('GSAP plugins registered successfully');
-            
-            // Set a flag that GSAP is ready
-            window.GSAP_READY = true;
-            
-            // Dispatch custom event
-            window.dispatchEvent(new CustomEvent('gsapReady'));
-            console.log('gsapReady event dispatched');
-          } catch (error) {
-            console.error('Error registering GSAP plugins:', error);
-          }
-        } else {
-          console.error('GSAP failed to load');
+          gsap.registerPlugin(ScrollTrigger, TextPlugin);
+          window.GSAP_READY = true;
+          window.dispatchEvent(new CustomEvent('gsapReady'));
         }
       });
     </script>
@@ -70,8 +36,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap" rel="stylesheet">
     
-    <!-- Load JavaScript after GSAP is ready -->
+    <!-- Load JavaScript via importmap -->
     <%= javascript_importmap_tags %>
+    <script type="module">
+      import "application"
+    </script>
   </head>
 
   <body>
