@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post "/contact", to: "contacts#create"
 
   get "/projects/:name", to: "pages#project", as: "project"
+  get '/sw.js', to: 'pwa#service_worker'
 end

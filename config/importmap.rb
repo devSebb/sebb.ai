@@ -15,3 +15,13 @@ pin "resume_animations", preload: true
 pin "projects_animations", preload: true
 pin "smooth_scroll", preload: true
 pin "gsap_setup", preload: true
+
+
+pin "hero_animations", to: "hero_animations.js"
+pin "specializations_animations", to: "specializations_animations.js"
+pin "experience_animations", to: "experience_animations.js"
+pin "path_animation", to: "path_animation.js"
+pin "resume_animations", to: "resume_animations.js"
+pin "projects_animations", to: "projects_animations.js"
+pin "smooth_scroll", to: "smooth_scroll.js"
+pin "gsap_setup", to: "gsap_setup.js"
