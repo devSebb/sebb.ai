@@ -4,7 +4,7 @@ import "controllers"
 
 // Import animations - these will be loaded individually by importmap
 import "hero_animations"
-import "specializations_animations"
+// import "specializations_animations"
 import "experience_animations"
 import "path_animation"
 import "resume_animations"
