@@ -50,7 +50,11 @@
     
     <!-- Load JavaScript via importmap -->
     <%= javascript_importmap_tags %>
-    <!-- REMOVED: Duplicate inline import -->
+    
+    <!-- Load application.js as a module -->
+    <script type="module">
+      import "application"
+    </script>
   </head>
 
   <body>
