@@ -9,7 +9,6 @@ function initProjectsAnimations() {
   
   // Check if already initialized to prevent duplicates
   if (window.__projectsInitialized) {
-    console.log('Projects already initialized, skipping');
     return;
   }
   window.__projectsInitialized = true;
@@ -19,7 +18,6 @@ function initProjectsAnimations() {
   const title = document.querySelector("#projects-container").previousElementSibling; // The h2 title
   
   if (!projectItems.length || !container) {
-    console.log('Project elements not found, waiting...');
     return;
   }
 
@@ -96,7 +94,6 @@ function initProjectsAnimations() {
     });
   });
 
-  console.log('Projects animations initialized successfully');
 }
 
 // Initialize on DOM ready

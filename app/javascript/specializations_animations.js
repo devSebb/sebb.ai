@@ -9,14 +9,12 @@ function initSpecializationsAnimations() {
   
   // Check if already initialized to prevent duplicates
   if (window.__specializationsInitialized) {
-    console.log('Specializations already initialized, skipping');
     return;
   }
   window.__specializationsInitialized = true;
 
   const container = document.getElementById("specializations-container");
   if (!container) {
-    console.log('Specializations container not found, waiting...');
     return;
   }
 
@@ -24,7 +22,6 @@ function initSpecializationsAnimations() {
   const title = container.querySelector("h1");
 
   if (!boxes.length || !title) {
-    console.log('Specialization elements not found, waiting...');
     return;
   }
 
@@ -87,7 +84,6 @@ function initSpecializationsAnimations() {
     });
   });
 
-  console.log('Specializations animations initialized successfully');
 }
 
 // Initialize on DOM ready

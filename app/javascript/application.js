@@ -4,7 +4,6 @@ import "controllers"
 
 // CRITICAL: Initialize GSAP system on Turbo events
 document.addEventListener('turbo:load', () => {
-  console.log('Turbo loaded - reinitializing GSAP system');
   if (typeof gsap !== 'undefined' && window.GSAP_READY) {
     window.dispatchEvent(new CustomEvent('gsapInitialized'));
   }
@@ -12,7 +11,6 @@ document.addEventListener('turbo:load', () => {
 
 // Clean up before Turbo caches the page
 document.addEventListener('turbo:before-cache', () => {
-  console.log('Turbo before cache - cleaning up ScrollTrigger');
   if (typeof ScrollTrigger !== 'undefined') {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   }
