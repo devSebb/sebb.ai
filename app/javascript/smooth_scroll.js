@@ -96,5 +96,15 @@ if (document.readyState === "loading") {
   initSmoothScrollSystem();
 }
 
+// Add Turbo lifecycle support for Lenis
+document.addEventListener('turbo:before-cache', () => {
+  if (lenis) {
+    lenis.destroy();
+    lenis = null;
+  }
+});
+
+document.addEventListener('turbo:load', initSmoothScrollSystem);
+
 // Export for potential use in other modules
 export { lenis, initSmoothScroll, initAnchorSmoothScroll }; 

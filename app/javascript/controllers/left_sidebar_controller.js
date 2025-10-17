@@ -4,7 +4,16 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["content"]
 
+  connect() {
+    console.log("Sidebar controller connected");
+  }
+
   toggle() {
+    if (!this.hasContentTarget) {
+      console.error("Content target not found for sidebar toggle");
+      return;
+    }
+    
     this.element.classList.toggle('collapsed')
     if (this.element.classList.contains('collapsed')) {
       this.contentTarget.classList.add('w-0')

@@ -2,17 +2,17 @@
 
 function initHeroAnimations() {
   // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined') {
-    console.log('Waiting for GSAP to be initialized...');
-    window.addEventListener('gsapInitialized', initHeroAnimations);
+  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
+    window.addEventListener('gsapInitialized', initHeroAnimations, { once: true });
     return;
   }
   
-  if (!window.GSAP_READY) {
-    console.log('GSAP not ready yet, waiting...');
-    window.addEventListener('gsapInitialized', initHeroAnimations);
+  // Check if already initialized to prevent duplicates
+  if (window.__heroInitialized) {
+    console.log('Hero already initialized, skipping');
     return;
   }
+  window.__heroInitialized = true;
 
   console.log("=== HERO ANIMATIONS INITIALIZING ===");
   console.log("GSAP object:", gsap);
@@ -69,9 +69,20 @@ function initHeroAnimations() {
   setTimeout(startTextAnimation, 1000);
 }
 
-// Initialize when DOM is ready and GSAP is available
+// Initialize on DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initHeroAnimations);
 } else {
   initHeroAnimations();
 }
+
+// Re-initialize on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  window.__heroInitialized = false;
+  initHeroAnimations();
+});
+
+// Clean up before Turbo caches
+document.addEventListener('turbo:before-cache', () => {
+  window.__heroInitialized = false;
+});

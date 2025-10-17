@@ -1,16 +1,16 @@
 function initExperienceAnimations() {
   // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined') {
-    console.log('Waiting for GSAP to be initialized...');
-    window.addEventListener('gsapInitialized', initExperienceAnimations);
+  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
+    window.addEventListener('gsapInitialized', initExperienceAnimations, { once: true });
     return;
   }
   
-  if (!window.GSAP_READY) {
-    console.log('GSAP not ready yet, waiting...');
-    window.addEventListener('gsapInitialized', initExperienceAnimations);
+  // Check if already initialized to prevent duplicates
+  if (window.__experienceInitialized) {
+    console.log('Experience already initialized, skipping');
     return;
   }
+  window.__experienceInitialized = true;
 
   if (typeof ScrollTrigger === 'undefined') {
     console.error('ScrollTrigger not available - animations disabled');
@@ -71,9 +71,20 @@ function initExperienceAnimations() {
   });
 }
 
-// Initialize when DOM is ready and GSAP is available
+// Initialize on DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initExperienceAnimations);
 } else {
   initExperienceAnimations();
 }
+
+// Re-initialize on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  window.__experienceInitialized = false;
+  initExperienceAnimations();
+});
+
+// Clean up before Turbo caches
+document.addEventListener('turbo:before-cache', () => {
+  window.__experienceInitialized = false;
+});

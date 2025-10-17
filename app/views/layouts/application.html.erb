@@ -20,15 +20,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/TextPlugin.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     
-    <!-- Dispatch gsapReady event after GSAP loads -->
+    <!-- UPDATED: Turbo-aware GSAP initialization -->
     <script>
-      window.addEventListener('load', function() {
+      function initializeGSAPGlobals() {
         if (typeof gsap !== 'undefined') {
           gsap.registerPlugin(ScrollTrigger, TextPlugin);
           window.GSAP_READY = true;
           window.dispatchEvent(new CustomEvent('gsapReady'));
+          window.dispatchEvent(new CustomEvent('gsapInitialized'));
+          console.log('GSAP globals initialized');
         }
-      });
+      }
+      
+      // Initialize on first load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeGSAPGlobals);
+      } else {
+        initializeGSAPGlobals();
+      }
+      
+      // Re-initialize on Turbo navigation
+      document.addEventListener('turbo:load', initializeGSAPGlobals);
     </script>
     
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
@@ -38,9 +50,7 @@
     
     <!-- Load JavaScript via importmap -->
     <%= javascript_importmap_tags %>
-    <script type="module">
-      import "application"
-    </script>
+    <!-- REMOVED: Duplicate inline import -->
   </head>
 
   <body>

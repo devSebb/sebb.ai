@@ -2,17 +2,17 @@
 
 function initPathAnimation() {
   // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined') {
-    console.log('Waiting for GSAP to be initialized...');
-    window.addEventListener('gsapInitialized', initPathAnimation);
+  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
+    window.addEventListener('gsapInitialized', initPathAnimation, { once: true });
     return;
   }
   
-  if (!window.GSAP_READY) {
-    console.log('GSAP not ready yet, waiting...');
-    window.addEventListener('gsapInitialized', initPathAnimation);
+  // Check if already initialized to prevent duplicates
+  if (window.__pathInitialized) {
+    console.log('Path already initialized, skipping');
     return;
   }
+  window.__pathInitialized = true;
 
   const animateIcon = document.querySelector("#animate-icon");
   if (!animateIcon) {
@@ -45,9 +45,20 @@ function initPathAnimation() {
     .to(animateIcon, { opacity: 1, duration: 0.3 }, "90%");
 }
 
-// Initialize when DOM is ready and GSAP is available
+// Initialize on DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initPathAnimation);
 } else {
   initPathAnimation();
 }
+
+// Re-initialize on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  window.__pathInitialized = false;
+  initPathAnimation();
+});
+
+// Clean up before Turbo caches
+document.addEventListener('turbo:before-cache', () => {
+  window.__pathInitialized = false;
+});

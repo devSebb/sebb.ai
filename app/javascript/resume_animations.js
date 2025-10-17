@@ -2,17 +2,17 @@
 
 function initResumeAnimations() {
   // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined') {
-    console.log('Waiting for GSAP to be initialized...');
-    window.addEventListener('gsapInitialized', initResumeAnimations);
+  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
+    window.addEventListener('gsapInitialized', initResumeAnimations, { once: true });
     return;
   }
   
-  if (!window.GSAP_READY) {
-    console.log('GSAP not ready yet, waiting...');
-    window.addEventListener('gsapInitialized', initResumeAnimations);
+  // Check if already initialized to prevent duplicates
+  if (window.__resumeInitialized) {
+    console.log('Resume already initialized, skipping');
     return;
   }
+  window.__resumeInitialized = true;
 
   // Timeline Animations
   const timelineItems = gsap.utils.toArray('.timeline-item');
@@ -52,9 +52,20 @@ function initResumeAnimations() {
   }
 }
 
-// Initialize when DOM is ready and GSAP is available
+// Initialize on DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initResumeAnimations);
 } else {
   initResumeAnimations();
 }
+
+// Re-initialize on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  window.__resumeInitialized = false;
+  initResumeAnimations();
+});
+
+// Clean up before Turbo caches
+document.addEventListener('turbo:before-cache', () => {
+  window.__resumeInitialized = false;
+});

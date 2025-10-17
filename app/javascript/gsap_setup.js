@@ -3,72 +3,51 @@
 console.log('GSAP setup file loaded');
 
 function setupGSAP() {
-  console.log('setupGSAP called');
-  console.log('GSAP available:', typeof gsap !== 'undefined');
-  console.log('GSAP_READY flag:', window.GSAP_READY);
+  // Prevent duplicate initialization
+  if (window.__gsapSetupComplete) {
+    console.log('GSAP already set up, skipping');
+    return;
+  }
   
-  // Check if GSAP is already available
   if (typeof gsap !== 'undefined' && window.GSAP_READY) {
-    console.log('GSAP already ready, setting up immediately');
+    console.log('GSAP ready, initializing');
     initializeGSAP();
     return;
   }
   
-  // Wait for GSAP to be ready
-  if (typeof gsap === 'undefined') {
-    console.log('Waiting for GSAP to load...');
-    window.addEventListener('gsapReady', initializeGSAP);
-  } else {
-    // GSAP is loaded but not ready yet
-    console.log('GSAP loaded but not ready, waiting for gsapReady event...');
-    window.addEventListener('gsapReady', initializeGSAP);
-  }
+  console.log('Waiting for GSAP to be ready...');
+  window.addEventListener('gsapReady', initializeGSAP, { once: true });
 }
 
 function initializeGSAP() {
+  if (window.__gsapSetupComplete) return;
+  
   console.log('initializeGSAP called');
   
   if (typeof gsap === 'undefined') {
-    console.error('GSAP not available during initialization');
+    console.error('GSAP not available');
     return;
   }
   
-  // Test GSAP functionality
-  try {
-    console.log('Testing GSAP functionality...');
-    gsap.to({}, { duration: 0.1, onComplete: () => console.log('GSAP functionality test passed') });
-    console.log('GSAP functionality test successful');
-  } catch (error) {
-    console.error('GSAP functionality test failed:', error);
-  }
-  
-  // Verify plugins are available
-  if (typeof ScrollTrigger === 'undefined') {
-    console.error('ScrollTrigger plugin not available');
-  } else {
-    console.log('ScrollTrigger plugin available');
-  }
-  
-  if (typeof TextPlugin === 'undefined') {
-    console.error('TextPlugin not available');
-  } else {
-    console.log('TextPlugin available');
-  }
-  
-  console.log('GSAP setup completed successfully');
+  // Verify plugins
   console.log('GSAP version:', gsap.version);
-  console.log('Available plugins:', gsap.plugins);
+  console.log('ScrollTrigger available:', typeof ScrollTrigger !== 'undefined');
+  console.log('TextPlugin available:', typeof TextPlugin !== 'undefined');
   
-  // Dispatch event that other modules can listen for
+  window.__gsapSetupComplete = true;
   window.dispatchEvent(new CustomEvent('gsapInitialized'));
-  console.log('gsapInitialized event dispatched');
+  console.log('GSAP setup completed');
 }
 
-// Start setup when DOM is ready
+// Initialize on load
 if (document.readyState === "loading") {
-  console.log('DOM still loading, waiting for DOMContentLoaded...');
   document.addEventListener("DOMContentLoaded", setupGSAP);
 } else {
-  console.log('DOM already ready, calling setupGSAP immediately');
   setupGSAP();
-} 
+}
+
+// Reset on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  window.__gsapSetupComplete = false;
+  setupGSAP();
+}); 
