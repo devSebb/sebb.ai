@@ -1,71 +1,32 @@
-// Resume animations with proper GSAP initialization
-
-function initResumeAnimations() {
-  // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
-    window.addEventListener('gsapInitialized', initResumeAnimations, { once: true });
-    return;
+function init(section) {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    return { destroy() {} };
   }
-  
-  // Check if already initialized to prevent duplicates
-  if (window.__resumeInitialized) {
-    console.log('Resume already initialized, skipping');
-    return;
-  }
-  window.__resumeInitialized = true;
 
-  // Timeline Animations
-  const timelineItems = gsap.utils.toArray('.timeline-item');
-  if (timelineItems.length) {
-    timelineItems.forEach((item, i) => {
-      gsap.fromTo(item, { opacity: 0, y: 50 }, {
+  const timelineItems = Array.from(section.querySelectorAll("[data-animate-item='resume-timeline']"));
+  const tweens = timelineItems.map((item) =>
+    gsap.fromTo(
+      item,
+      { opacity: 0, y: 50 },
+      {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: 'power2.out',
+        ease: "power2.out",
         scrollTrigger: {
           trigger: item,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          start: "top 80%",
+          toggleActions: "play none none reverse"
         }
-      });
-    });
-  }
-
-  // Skill Cards Hover Effect
-  const skillCards = gsap.utils.toArray('.group');
-  if (skillCards.length) {
-    skillCards.forEach((card) => {
-      const absoluteElement = card.querySelector('.absolute');
-      if (absoluteElement) {
-        let hover = gsap.to(absoluteElement, {
-          opacity: 1,
-          paused: true,
-          duration: 0.5,
-          ease: 'power1.inOut'
-        });
-
-        card.addEventListener('mouseenter', () => hover.play());
-        card.addEventListener('mouseleave', () => hover.reverse());
       }
-    });
-  }
+    )
+  );
+
+  return {
+    destroy() {
+      tweens.forEach((tween) => tween.kill());
+    }
+  };
 }
 
-// Initialize on DOM ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initResumeAnimations);
-} else {
-  initResumeAnimations();
-}
-
-// Re-initialize on Turbo navigation
-document.addEventListener('turbo:load', () => {
-  window.__resumeInitialized = false;
-  initResumeAnimations();
-});
-
-// Clean up before Turbo caches
-document.addEventListener('turbo:before-cache', () => {
-  window.__resumeInitialized = false;
-});
+export { init };

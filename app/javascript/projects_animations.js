@@ -1,48 +1,29 @@
-// Clean and professional Projects animations
-
-function initProjectsAnimations() {
-  // Wait for GSAP to be fully initialized
-  if (typeof gsap === 'undefined' || !window.GSAP_READY) {
-    window.addEventListener('gsapInitialized', initProjectsAnimations, { once: true });
-    return;
-  }
-  
-  // Check if already initialized to prevent duplicates
-  if (window.__projectsInitialized) {
-    return;
-  }
-  window.__projectsInitialized = true;
-
-  const container = document.getElementById("projects-container");
-  const projectItems = gsap.utils.toArray(".project-item");
-  const title = document.querySelector("#projects-container").previousElementSibling; // The h2 title
-  
-  if (!projectItems.length || !container) {
-    return;
+function init(section) {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    return { destroy() {} };
   }
 
-  // Simple initial state
-  gsap.set(projectItems, {
-    opacity: 0,
-    y: 40
-  });
-  
-  gsap.set(title, {
-    opacity: 0,
-    y: 20
-  });
+  const title = section.querySelector("[data-animate-title='projects']");
+  const projectItems = Array.from(section.querySelectorAll("[data-animate-item='project']"));
+  const cleanups = [];
+  const hoverTimelines = [];
 
-  // Create simple timeline for clean entrance
+  if (!projectItems.length || !title) {
+    return { destroy() {} };
+  }
+
+  gsap.set(projectItems, { opacity: 0, y: 40 });
+  gsap.set(title, { opacity: 0, y: 20 });
+
   const masterTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: container,
+      trigger: section,
       start: "top 80%",
       end: "top 20%",
       toggleActions: "play none none reverse"
     }
   });
 
-  // Clean title animation
   masterTimeline.to(title, {
     opacity: 1,
     y: 0,
@@ -50,7 +31,6 @@ function initProjectsAnimations() {
     ease: "power2.out"
   }, 0);
 
-  // Simple staggered project animations
   masterTimeline.to(projectItems, {
     opacity: 1,
     y: 0,
@@ -59,13 +39,12 @@ function initProjectsAnimations() {
     stagger: 0.15
   }, 0.2);
 
-  // Clean hover interactions
   projectItems.forEach((item) => {
-    const image = item.querySelector('img');
-    const overlay = item.querySelector('.absolute');
-    
+    const image = item.querySelector("[data-animate-image='project']");
+    const overlay = item.querySelector("[data-animate-overlay='project']");
+    if (!image || !overlay) return;
+
     const hoverTimeline = gsap.timeline({ paused: true });
-    
     hoverTimeline
       .to(item, {
         y: -8,
@@ -73,43 +52,25 @@ function initProjectsAnimations() {
         duration: 0.3,
         ease: "power2.out"
       })
-      .to(image, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out"
-      }, 0)
-      .to(overlay, {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power2.out"
-      }, 0.1);
+      .to(image, { scale: 1.05, duration: 0.3, ease: "power2.out" }, 0)
+      .to(overlay, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.1);
 
-    // Add event listeners for hover
-    item.addEventListener('mouseenter', () => {
-      hoverTimeline.play();
-    });
-    
-    item.addEventListener('mouseleave', () => {
-      hoverTimeline.reverse();
-    });
+    const onEnter = () => hoverTimeline.play();
+    const onLeave = () => hoverTimeline.reverse();
+    item.addEventListener("mouseenter", onEnter);
+    item.addEventListener("mouseleave", onLeave);
+    cleanups.push(() => item.removeEventListener("mouseenter", onEnter));
+    cleanups.push(() => item.removeEventListener("mouseleave", onLeave));
+    hoverTimelines.push(hoverTimeline);
   });
 
+  return {
+    destroy() {
+      masterTimeline.kill();
+      hoverTimelines.forEach((timeline) => timeline.kill());
+      cleanups.forEach((cleanup) => cleanup());
+    }
+  };
 }
 
-// Initialize on DOM ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initProjectsAnimations);
-} else {
-  initProjectsAnimations();
-}
-
-// Re-initialize on Turbo navigation
-document.addEventListener('turbo:load', () => {
-  window.__projectsInitialized = false;
-  initProjectsAnimations();
-});
-
-// Clean up before Turbo caches
-document.addEventListener('turbo:before-cache', () => {
-  window.__projectsInitialized = false;
-});
+export { init };

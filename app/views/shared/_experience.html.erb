@@ -1,30 +1,14 @@
-<div id="experience-container" class="">
+<div id="experience-container" class="" data-animate="experience">
   <h1 class="text-3xl font-bold mb-6">Experience</h1>
 
   <ol class="relative border-s border-gray-200 dark:border-gray-700">
+    <% @experience.each do |item| %>
       <li class="mb-10 ms-4">
-          <div class="experience-dot absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-          <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">August 2024</time>
-          <h3 class="text-lg font-semibold text-gray-1">Product & Digital Designer at White Tiger</h3>
-          <p class="mb-4 text-base font-normal text-zinc-200">Lead creation of digital and print ads across Italian airport Wi-Fi networks using Figma, Canva, and Framer. Architect and co-developed a React-based internal dashboard for parsing airport user-activity data and computing KPIs. Oversee end-to-end project coordination via Notion, managing deadlines, assets, and stakeholder feedback.</p>
+        <div class="experience-dot absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white" data-animate-dot="experience"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 "><%= item[:date_label] %></time>
+        <h3 class="text-lg font-semibold text-gray-1"><%= item[:title] %></h3>
+        <p class="mb-4 text-base font-normal text-zinc-200"><%= item[:summary] %></p>
       </li>
-      <li class="mb-10 ms-4">
-          <div class="experience-dot absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-          <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">July 2024</time>
-          <h3 class="text-lg font-semibold text-gray-1">Full Stack Developer</h3>
-          <p class="mb-4 text-base font-normal text-zinc-200">Independently developed over six fully functional applications with secure login functionalities. Implemented data safety mechanisms and integrated AI features with GSAP animations. Developed payment gateways and designed modern, responsive user interfaces.</p>
-      </li>
-      <li class="mb-10 ms-4">
-          <div class="experience-dot absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-          <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">January 2023</time>
-          <h3 class="text-lg font-semibold text-gray-1">Co-Founder & Operations Lead</h3>
-          <p class="mb-4 text-base font-normal text-zinc-200">Co-founded various high-growth e-commerce brands and assembled a team of over 5 employees to manage them. Managed financial operations, fulfillment structure, and organizational processes across multiple e-commerce stores. Served as primary customer success lead, maintaining 4.8/5 average satisfaction for hundreds of US-based clients.</p>
-      </li>
-      <li class="mb-10 ms-4">
-          <div class="experience-dot absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-          <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">May 2020</time>
-          <h3 class="text-lg font-semibold text-gray-1">Project Manager at Galería Shopping</h3>
-          <p class="mb-4 text-base font-normal text-zinc-200">Directed site development for a new retail strip mall, coordinating contractors, sales team, and suppliers. Managed web presence and social media design efforts while leading client and stakeholder meetings. Adapted project plans in real-time amid pandemic-era supply-chain disruptions, preserving timelines and minimizing costs.</p>
-      </li>
+    <% end %>
   </ol>
 </div>

@@ -1,6 +1,6 @@
 <div class="flex mb-20" id="contact">
   <div class="w-1/2">
-    <h1 class="text-6xl text-center font-light text-primary mb-4 leading-snug font-heading">Let's<br>Work<br>Together</h1>
+    <h1 class="text-6xl text-center font-light text-primary mb-4 leading-snug font-heading"><%= @contact_meta[:section_heading].split.join("<br>").html_safe %></h1>
   </div>
   <div class="z-30 w-1/2">
     <%= form_for :contact, url: contact_path, local: true do |f| %>

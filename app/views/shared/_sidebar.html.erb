@@ -1,9 +1,9 @@
-<div class="w-full h-screen rounded-xl border-2 border-gray-300 flex flex-col shadow-xl">
+<div class="w-full h-screen rounded-xl section-card flex flex-col shadow-xl">
   <div class="flex flex-col h-full">
     <%# Top section with profile info %>
     <div class="flex flex-col pt-12 pb-5 items-center" style="padding-top: 3rem;">
-      <h1 class="font-bold text-2xl">SEBB</h1>
-      <p class="font-bold text-gray-300 text-center">Software Developer & <br>Designer</p>
+      <h1 class="font-bold text-2xl"><%= @identity[:nickname].upcase %></h1>
+      <p class="font-bold text-gray-300 text-center"><%= safe_join(@identity[:role_line].split(" & "), " & ".html_safe + tag.br) %></p>
       <%= image_tag "profile_pic.png", alt: "Profile picture", class: "w-44 h-44 rounded-full object-cover my-14" %>
     </div>
 
@@ -14,14 +14,14 @@
     <div class="py-14">
       <div class="flex flex-col items-center">
         <div class="flex justify-between space-x-6">
-          <%= link_to "https://github.com/devSebb", target: "_blank" do %>
-            <%= image_tag "icons/github_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= link_to @links[:github], target: "_blank", rel: "noopener" do %>
+            <%= image_tag "icons/github_icon.svg", class: "icon-link" %>
           <% end %>
-          <%= link_to "https://www.linkedin.com/in/sebastian-burke/", target: "_blank" do %>
-            <%= image_tag "icons/linkedin_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= link_to @links[:linkedin], target: "_blank", rel: "noopener" do %>
+            <%= image_tag "icons/linkedin_icon.svg", class: "icon-link" %>
           <% end %>
-          <%= link_to "https://x.com/dev_sebb", target: "_blank" do %>
-            <%= image_tag "icons/x_icon.svg", class: "w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out" %>
+          <%= link_to @links[:x], target: "_blank", rel: "noopener" do %>
+            <%= image_tag "icons/x_icon.svg", class: "icon-link" %>
           <% end %>
         </div>
         <div class="flex justify-between space-x-8 mt-10">

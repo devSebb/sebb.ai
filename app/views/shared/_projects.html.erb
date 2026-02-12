@@ -1,46 +1,15 @@
-<div>
-      <h2 class="text-3xl font-bold mb-8">Projects</h2>
+<div data-animate="projects">
+      <h2 class="text-3xl font-bold mb-8" data-animate-title="projects">Projects</h2>
       <div class="grid grid-cols-2 gap-6 z-20" id="projects-container">
-        <% projects = [
-          {
-            name: "More XP",
-            url: "https://morexp.example.com",
-            description: "Revolutionizing the job market: Pay for experiences, boost your resume, land your dream job!",
-            image: "more_XP_index.png",
-            path: "more-xp"
-          },
-          {
-            name: "Make-Me-Fit",
-            url: "https://makemefit.example.com",
-            description: "AI-powered meal planning tailored to your fitness goals and dietary needs",
-            image: "MMF_Home.png",
-            path: "make-me-fit"
-          },
-          {
-            name: "Domo Kanban Board",
-            url: "https://domokanban.example.com",
-            description: "Streamline your workflow with our Rails-powered Kanban board for task and goal tracking!",
-            image: "Domo_Kanban.png",
-            path: "domo-kanban"
-          },
-          {
-            name: "Arabella Rock & Roll Store",
-            url: "https://arabellarock.example.com",
-            description: "Rock & Roll themed e-commerce site for musical instruments, powered by Rails and Stripe",
-            image: "Arabella_index.png",
-            path: "arabella-rock"
-          }
-        ] %>
-
-        <% projects.each_with_index do |project, index| %>
-          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item z-20" data-index="<%= index %>">
-            <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-transform duration-00 ease-in-out group-hover:scale-105 hover:opacity-100" %>
-            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+        <% @projects.each_with_index do |project, index| %>
+          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item z-20" data-index="<%= index %>" data-animate-item="project">
+            <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-transform duration-00 ease-in-out group-hover:scale-105 hover:opacity-100", data: { animate_image: "project" } %>
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out" data-animate-overlay="project">
               <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:text-primary transition-colors duration-200" do %>
                 <%= project[:name] %> <i class="fas fa-external-link-alt text-sm ml-1"></i>
               <% end %>
               <p class="text-white text-md text-center px-6 mb-4"><%= project[:description] %></p>
-              <%= link_to "See More", project_path(project[:path]), class: "px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-200 font-semibold" %>
+              <%= link_to "See More", project_path(project[:slug]), class: "px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-200 font-semibold" %>
             </div>
           </div>
         <% end %>

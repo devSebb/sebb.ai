@@ -3,9 +3,13 @@
 
 // Initialize Lenis smooth scrolling
 let lenis;
+let rafId;
+let anchorHandler;
 
 // Function to initialize smooth scrolling
 function initSmoothScroll() {
+  if (lenis) return;
+
   // Check if Lenis is available (loaded via CDN)
   if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
@@ -20,32 +24,24 @@ function initSmoothScroll() {
       infinite: false,
     });
 
-    // RAF for smooth scrolling
+    // Single RAF driver for smooth scrolling
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Integrate with GSAP ScrollTrigger if available
-    if (typeof gsap !== 'undefined' && gsap.ScrollTrigger) {
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-
-      gsap.ticker.lagSmoothing(0);
+    if (typeof ScrollTrigger !== "undefined") {
+      lenis.on("scroll", ScrollTrigger.update);
     }
-
-    console.log('Smooth scrolling initialized with Lenis');
-  } else {
-    console.log('Lenis not available, falling back to CSS smooth scrolling');
   }
 }
 
 // Function to handle anchor link clicks for smooth scrolling
 function initAnchorSmoothScroll() {
-  document.addEventListener('click', function(e) {
+  if (anchorHandler) return;
+  anchorHandler = function(e) {
     const target = e.target.closest('a[href^="#"]');
     
     if (target) {
@@ -73,18 +69,12 @@ function initAnchorSmoothScroll() {
         }
       }
     }
-  });
+  };
+  document.addEventListener('click', anchorHandler);
 }
 
 // Main initialization function
 function initSmoothScrollSystem() {
-  // Wait for GSAP to be fully initialized if we need it
-  if (typeof gsap !== 'undefined' && !window.GSAP_READY) {
-    console.log('Waiting for GSAP to be initialized...');
-    window.addEventListener('gsapInitialized', initSmoothScrollSystem);
-    return;
-  }
-
   initSmoothScroll();
   initAnchorSmoothScroll();
 }
@@ -98,9 +88,17 @@ if (document.readyState === "loading") {
 
 // Add Turbo lifecycle support for Lenis
 document.addEventListener('turbo:before-cache', () => {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
   if (lenis) {
     lenis.destroy();
     lenis = null;
+  }
+  if (anchorHandler) {
+    document.removeEventListener("click", anchorHandler);
+    anchorHandler = null;
   }
 });
 

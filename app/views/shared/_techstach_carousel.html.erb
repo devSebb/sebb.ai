@@ -2,33 +2,9 @@
 <div class="">
   <h2 class="text-3xl font-bold mb-10">My Tech Stack</h2>
 
-  <% tech_stack = [
-    { name: "Ruby", icon: "ruby_logo.png" },
-    { name: "Ruby on Rails", icon: "rails_logo.png" },
-    { name: "Tailwind", icon: "tailwindcss_logo.png" },
-    { name: "HTML", icon: "html5_icon.png" },
-    { name: "CSS", icon: "css3_icon.png" },
-    { name: "GitHub", icon: "github_icon.png" },
-    { name: "GSAP", icon: "gsap_logo.jpg" },
-    { name: "PostgreSQL", icon: "postgresql_logo.png" },
-    { name: "Figma", icon: "figma_logo.png" },
-    { name: "MySQL", icon: "mysql_logo.png" },
-    { name: "Git", icon: "git_icon.png" },
-    { name: "Bootstrap", icon: "bootstrap_logo.png" },
-    { name: "Scss/Sass", icon: "sass_icon.png" },
-    { name: "Firebase", icon: "firebase_icon.png" },
-    { name: "JavaScript", icon: "js_logo_icon.png" },
-    { name: "APIs", icon: "api_icon.png" },
-    { name: "Slack", icon: "slack_logo.png" },
-    { name: "Notion", icon: "notion_logo.png" },
-    { name: "Jira", icon: "jira_logo.png" },
-    { name: "MongoDB", icon: "mongodb_logo.png" },
-    { name: "Framer", icon: "framerlogo.png" },
-  ] %>
-
-  <% half = (tech_stack.length / 2.0).ceil %>
-  <% first_half = tech_stack.first(half) %>
-  <% second_half = tech_stack.last(tech_stack.length - half) %>
+  <% half = (@tech_stack.length / 2.0).ceil %>
+  <% first_half = @tech_stack.first(half) %>
+  <% second_half = @tech_stack.last(@tech_stack.length - half) %>
 
   <!-- First Carousel (Scrolling Left) -->
   <div class="relative overflow-hidden w-full mb-8">
@@ -37,7 +13,7 @@
         <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
           <!-- Icon and Label -->
           <div class="w-16 h-16 flex items-center justify-center">
-            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+            <%= image_tag @tech_icons[tech[:icon_key].to_sym], alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
           </div>
           <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
             <%= tech[:name] %>
@@ -49,7 +25,7 @@
         <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
           <!-- Icon and Label -->
           <div class="w-16 h-16 flex items-center justify-center">
-            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+            <%= image_tag @tech_icons[tech[:icon_key].to_sym], alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
           </div>
           <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
             <%= tech[:name] %>
@@ -66,7 +42,7 @@
         <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
           <!-- Icon and Label -->
           <div class="w-16 h-16 flex items-center justify-center">
-            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+            <%= image_tag @tech_icons[tech[:icon_key].to_sym], alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
           </div>
           <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
             <%= tech[:name] %>
@@ -78,7 +54,7 @@
         <div class="flex flex-col items-center justify-center w-32 h-32 flex-shrink-0 mr-4 group relative">
           <!-- Icon and Label -->
           <div class="w-16 h-16 flex items-center justify-center">
-            <%= image_tag "techstack/#{tech[:icon]}", alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
+            <%= image_tag @tech_icons[tech[:icon_key].to_sym], alt: "#{tech[:name]} icon", class: "max-w-full max-h-full object-contain" %>
           </div>
           <p class="text-sm text-center absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
             <%= tech[:name] %>

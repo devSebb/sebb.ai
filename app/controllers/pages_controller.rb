@@ -1,101 +1,29 @@
 class PagesController < ApplicationController
   def home
+    @identity = Portfolio::Content.identity
+    @links = Portfolio::Content.links
+    @about = Portfolio::Content.about
+    @tech_icons = Portfolio::Content.tech_icons
+    @tech_stack = Portfolio::Content.tech_stack
+    @experience = Portfolio::Content.experience
+    @specializations = Portfolio::Content.specializations
+    @projects = Portfolio::Content.projects
+    @contact_meta = Portfolio::Content.contact
   end
 
   def resume
+    @identity = Portfolio::Content.identity
+    @resume = Portfolio::Content.resume
   end
 
   def project
-    @techstack = {
-      "fab fa-api" => "techstack/api_icon.png",
-      "fab fa-ruby" => "techstack/ruby_logo.png",
-      "fab fa-tailwind" => "techstack/tailwindcss_logo.png",
-      "fab fa-postgres" => "techstack/postgresql_logo.png",
-      "fab fa-gsap" => "techstack/gsap_logo.jpg",
-      "fab fa-mysql" => "techstack/mysql_logo.png",
-      "fab fa-html5" => "techstack/html5_icon.png"
-    }
+    @identity = Portfolio::Content.identity
+    @projects = Portfolio::Content.projects
+    @tech_icons = Portfolio::Content.tech_icons
+    @project = Portfolio::Content.project_by_slug(params[:name])
 
-    @projects = {
-      "more-xp" => {
-        name: "More XP",
-        url: "https://morexp.example.com",
-        description: "Revolutionizing the job market: Pay for experiences, boost your resume, land your dream job!",
-        image: "more_XP_index.png",
-        detailed_description: "More XP is a revolutionary platform that connects job seekers with valuable work experiences. Users can purchase real-world experience opportunities, build their resumes, and increase their chances of landing their dream jobs. The platform features a sophisticated matching algorithm and secure payment processing.",
-        features: [
-          "AI-powered experience matching",
-          "Secure payment processing",
-          "Interactive user profiles",
-          "Review and rating system"
-        ],
-        technologies: [
-          { icon: "fab fa-ruby", color: "#61DAFB" },
-          { icon: "fab fa-postgres", color: "#61DAFB" },
-          { icon: "fab fa-tailwind", color: "#61DAFB" },
-          { icon: "fab fa-gsap", color: "#61DAFB" }
-        ]
-      },
-      "make-me-fit" => {
-        name: "Make-Me-Fit",
-        url: "https://makemefit.example.com",
-        description: "AI-powered meal planning tailored to your fitness goals and dietary needs",
-        image: "MMF_Home.png",
-        detailed_description: "Make-Me-Fit leverages artificial intelligence to create personalized meal plans that align with users' specific fitness goals and dietary requirements. The application considers factors such as allergies, preferences, and nutritional needs to generate comprehensive weekly meal plans with shopping lists and recipes.",
-        features: [
-          "AI-generated meal plans",
-          "Customizable dietary preferences",
-          "OpenAi Integration",
-          "GSAP Animated"
-        ],
-        technologies: [
-          { icon: "fab fa-ruby", color: "#61DAFB" },
-          { icon: "fab fa-api", color: "#61DAFB" },
-          { icon: "fab fa-tailwind", color: "#61DAFB" },
-          { icon: "fab fa-gsap", color: "#61DAFB" }
-        ]
-      },
-      "domo-kanban" => {
-        name: "Domo Kanban Board",
-        url: "https://domokanban.example.com",
-        description: "Streamline your workflow with our Rails-powered Kanban board for task and goal tracking!",
-        image: "Domo_Kanban.png",
-        detailed_description: "Domo Kanban Board is a powerful project management tool built with Ruby on Rails. It offers intuitive task management with drag-and-drop functionality, real-time updates, team collaboration features, and customizable workflows to help teams stay organized and productive.",
-        features: [
-          "Drag-and-drop task management",
-          "Real-time collaboration",
-          "Customizable workflows",
-          "Team progress analytics"
-        ],
-        technologies: [
-          { icon: "fab fa-ruby", color: "#61DAFB" },
-          { icon: "fab fa-postgres", color: "#61DAFB" },
-          { icon: "fab fa-tailwind", color: "#61DAFB" },
-          { icon: "fab fa-gsap", color: "#61DAFB" }
-        ]
-      },
-      "arabella-rock" => {
-        name: "Arabella Rock & Roll Store",
-        url: "https://arabellarock.example.com",
-        description: "Rock & Roll themed e-commerce site for musical instruments, powered by Rails and Stripe",
-        image: "Arabella_index.png",
-        detailed_description: "Arabella Rock & Roll Store is a full-featured e-commerce platform specializing in musical instruments. Built with Ruby on Rails and integrated with Stripe for secure payments, the store offers a wide selection of instruments, equipment, and accessories with a unique rock & roll aesthetic.",
-        features: [
-          "Secure Stripe integration",
-          "Product inventory management",
-          "Customer reviews system",
-          "Cloudinary Integration"
-        ],
-        technologies: [
-          { icon: "fab fa-ruby", color: "#61DAFB" },
-          { icon: "fab fa-html5", color: "#61DAFB" },
-          { icon: "fab fa-tailwind", color: "#61DAFB" },
-          { icon: "fab fa-mysql", color: "#61DAFB" }
-        ]
-      }
-    }
+    return render "pages/project" if @project
 
-    @project = @projects[params[:name]]
-    render "pages/project"
+    redirect_to root_path, alert: "Project not found."
   end
 end

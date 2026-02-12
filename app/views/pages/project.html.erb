@@ -21,11 +21,11 @@
         </div>
 
         <div class="flex flex-wrap gap-4 justify-center mb-8">
-          <% @projects.each do |key, project| %>
-            <%= link_to project_path(name: key),
+          <% @projects.each do |project| %>
+            <%= link_to project_path(name: project[:slug]),
                 class: "px-4 py-2 rounded-lg bg-black/20 backdrop-blur-sm
                         hover:bg-black/30 transition-all duration-300
-                        #{params[:name] == key ? 'shadow-lg shadow-primary/50 scale-105' : ''}" do %>
+                        #{params[:name] == project[:slug] ? 'shadow-lg shadow-primary/50 scale-105' : ''}" do %>
               <span class="text-text text-sm font-medium"><%= project[:name] %></span>
             <% end %>
           <% end %>
@@ -39,11 +39,11 @@
           <div class="mb-6">
             <h3 class="text-xl font-bold text-primary mb-4">Built with:</h3>
             <div class="flex flex-wrap gap-4 justify-center">
-              <% @project[:technologies].each do |tech| %>
-                <%= image_tag @techstack[tech[:icon]],
-                    alt: tech[:icon].split('-').last.capitalize,
+              <% @project[:technologies].each do |tech_key| %>
+                <%= image_tag @tech_icons[tech_key.to_sym],
+                    alt: tech_key.to_s.capitalize,
                     class: "w-12 h-12 object-contain transition-transform hover:scale-110",
-                    style: "filter: drop-shadow(0 0 4px #{tech[:color]})" %>
+                    style: "filter: drop-shadow(0 0 4px #61DAFB)" %>
               <% end %>
             </div>
           </div>

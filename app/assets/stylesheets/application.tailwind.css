@@ -53,6 +53,18 @@ body::before {
 
 
 @layer components {
+  .section-card {
+    @apply border-2 border-gray-300 rounded-md backdrop-blur-lg;
+  }
+
+  .interactive-card {
+    @apply transition-all duration-300 hover:scale-105 hover:border-primary hover:shadow-lg;
+  }
+
+  .icon-link {
+    @apply w-8 h-8 hover:scale-110 transition-all duration-300 ease-in-out;
+  }
+
   .tech-stack-slider {
     @apply flex gap-16 my-24 py-8 animate-scroll;
   }

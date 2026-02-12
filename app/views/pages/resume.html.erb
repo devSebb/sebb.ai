@@ -1,11 +1,11 @@
 <!-- Resume Page -->
-<div class="px-32 py-8 text-white font-sans">
+<div class="px-32 py-8 text-white font-sans" data-animate="resume">
   <!-- Header -->
   <div class="relative text-center my-10">
     <%= link_to root_path, class: "absolute left-0 top-1/2 -translate-y-1/2 text-gray-100 hover:text-white" do %>
       <%= image_tag "icons/back_arrow.svg", class: "w-8 h-8" %>
     <% end %>
-    <h1 class="text-4xl font-bold">Sebastian Burke</h1>
+    <h1 class="text-4xl font-bold"><%= @identity[:name] %></h1>
   </div>
 
   <!-- Contact Information -->
@@ -18,106 +18,57 @@
   <!-- Experience Section -->
   <div class="my-8">
     <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Experience</h2>
-    <!-- Product & Digital Designer -->
-    <div class="mb-6">
-      <h3 class="text-xl font-semibold">Product & Digital Designer at White Tiger</h3>
-      <p class="text-gray-400 italic">August 2024 – Present</p>
-      <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-        <li>Lead creation of digital and print ads across Italian airport Wi-Fi networks using Figma, Canva, and Framer.</li>
-        <li>Architect and co-developed a React-based internal dashboard for parsing airport user-activity data and computing KPIs.</li>
-        <li>Oversee end-to-end project coordination via Notion, managing deadlines, assets, and stakeholder feedback.</li>
-      </ul>
-    </div>
-    <!-- Full Stack Developer -->
-    <div class="mb-6">
-      <h3 class="text-xl font-semibold">Full Stack Developer</h3>
-      <p class="text-gray-400 italic">July 2024 – Present</p>
-      <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-        <li>Independently developed over six fully functional applications with secure login functionalities.</li>
-        <li>Implemented data safety mechanisms and integrated AI features with GSAP animations.</li>
-        <li>Developed payment gateways and designed modern, responsive user interfaces.</li>
-      </ul>
-    </div>
-    <!-- Co-Founder & Operations Lead -->
-    <div class="mb-6">
-      <h3 class="text-xl font-semibold">Co-Founder & Operations Lead</h3>
-      <p class="text-gray-400 italic">January 2023 – Present</p>
-      <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-        <li>Co-founded various high-growth e-commerce brands and assembled a team of over 5 employees to manage them.</li>
-        <li>Managed financial operations, fulfillment structure, and organizational processes across multiple e-commerce stores.</li>
-        <li>Served as primary customer success lead, maintaining 4.8/5 average satisfaction for hundreds of US-based clients.</li>
-      </ul>
-    </div>
-    <!-- Project Manager -->
-    <div class="mb-6">
-      <h3 class="text-xl font-semibold">Project Manager at Galería Shopping</h3>
-      <p class="text-gray-400 italic">May 2020 – December 2022</p>
-      <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-        <li>Directed site development for a new retail strip mall, coordinating contractors, sales team, and suppliers.</li>
-        <li>Managed web presence and social media design efforts while leading client and stakeholder meetings.</li>
-        <li>Adapted project plans in real-time amid pandemic-era supply-chain disruptions, preserving timelines and minimizing costs.</li>
-      </ul>
-    </div>
+    <% @resume[:experience].each do |item| %>
+      <div class="mb-6" data-animate-item="resume-timeline">
+        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
+        <p class="text-gray-400 italic"><%= item[:date_label] %></p>
+        <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
+          <% item[:bullets].each do |bullet| %>
+            <li><%= bullet %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
   <!-- Education Section -->
   <div class="mb-8">
     <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Education</h2>
-    <!-- Le Wagon Bootcamp -->
-    <div class="mb-6">
-      <h3 class="text-xl font-semibold">Le Wagon Full-Stack Development Bootcamp</h3>
-      <p class="text-gray-400 italic">April 2024 – July 2024</p>
-      <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-        <li>Completed a 9-week intensive software engineering bootcamp.</li>
-        <li>Gained proficiency in Ruby, Ruby on Rails, JavaScript ES6, SQL, Git, GitHub, Heroku, HTML, CSS, and Bootstrap.</li>
-        <li>Designed, implemented, and deployed a clone of Airbnb and a Rails prototype flight search mobile app.</li>
-      </ul>
-    </div>
-    <!-- Tulane University -->
-    <div>
-      <h3 class="text-xl font-semibold">Tulane University, A.B. Freeman School of Business</h3>
-      <p class="text-gray-400 italic">Bachelor of Science in Management</p>
-      <p class="text-lg">Majors: Finance and Management | Minor: Entrepreneurship</p>
-      <p class="text-lg">Honors: Tulane Founders Scholarship</p>
-      <p class="text-gray-400 italic">New Orleans, LA | May 2020</p>
-    </div>
+    <% @resume[:education].each do |item| %>
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
+        <% if item[:subtitle].present? %>
+          <p class="text-gray-400 italic"><%= item[:subtitle] %></p>
+        <% end %>
+        <p class="text-gray-400 italic"><%= item[:date_label] %></p>
+        <% if item[:bullets].present? %>
+          <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
+            <% item[:bullets].each do |bullet| %>
+              <li><%= bullet %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <% if item[:details].present? %>
+          <% item[:details].each do |detail| %>
+            <p class="text-lg"><%= detail %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <!-- Certifications Section -->
 <div class="mb-8">
   <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Certifications</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- Tailwind CSS From Scratch -->
-    <div class="bg-gray-800 rounded-lg p-4">
-      <h3 class="text-xl font-semibold">Tailwind CSS From Scratch</h3>
-      <p class="text-gray-400">Udemy</p>
-      <p class="text-sm text-gray-500">Issued Dec 2023 · Expires Jul 2032</p>
-      <p class="text-sm text-gray-500">Credential ID UC-6b6cd3df-3781-4523-893f-bd09d4135d5d</p>
-    </div>
-
-    <!-- Modern Javascript From The Beginning 2.0 -->
-    <div class="bg-gray-800 rounded-lg p-4">
-      <h3 class="text-xl font-semibold">Modern Javascript From The Beginning 2.0</h3>
-      <p class="text-gray-400">Udemy</p>
-      <p class="text-sm text-gray-500">Issued Nov 2023</p>
-      <p class="text-sm text-gray-500">Credential ID UC-753a0403-260a-4723-bf0a-80a9080b914a</p>
-    </div>
-
-    <!-- Flutter & Firebase Tutorial -->
-    <div class="bg-gray-800 rounded-lg p-4">
-      <h3 class="text-xl font-semibold">Flutter & Firebase Tutorial: Build 5 Social Media Apps</h3>
-      <p class="text-gray-400">Udemy</p>
-      <p class="text-sm text-gray-500">Issued Aug 2023</p>
-      <p class="text-sm text-gray-500">Credential ID UC-166807c-8c87-4£55-907f-ae7£19801c6</p>
-    </div>
-
-    <!-- Flutter & Dart - The Complete Guide -->
-    <div class="bg-gray-800 rounded-lg p-4">
-      <h3 class="text-xl font-semibold">Flutter & Dart - The Complete Guide [2023 Edition]</h3>
-      <p class="text-gray-400">Udemy</p>
-      <p class="text-sm text-gray-500">Issued Jul 2023 · Expires Jul 2033</p>
-      <p class="text-sm text-gray-500">Credential ID UC-1094190-0221-41a3-b84c-845cb624b522</p>
-    </div>
+    <% @resume[:certifications].each do |item| %>
+      <div class="bg-gray-800 rounded-lg p-4">
+        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
+        <p class="text-gray-400"><%= item[:provider] %></p>
+        <p class="text-sm text-gray-500"><%= item[:date_label] %></p>
+        <p class="text-sm text-gray-500">Credential ID <%= item[:credential_id] %></p>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -128,55 +79,11 @@
   <!-- Technical Skills -->
   <h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
-    <!-- Skill Card -->
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Ruby on Rails</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Dart</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">JavaScript</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">React.js</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Web Hosting</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">HTML</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">CSS</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Bootstrap</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Tailwind CSS</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">GSAP</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Firebase</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Figma</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Framer</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Canva</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Jitter</span>
-    </div>
-    <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <span class="text-white text-lg">Shopify</span>
-    </div>
+    <% @resume[:technical_skills].each do |skill| %>
+      <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
+        <span class="text-white text-lg"><%= skill %></span>
+      </div>
+    <% end %>
   </div>
 
   <!-- Additional Skills -->
@@ -184,16 +91,9 @@
     <div class="flex justify-center">
       <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-lg w-full md:w-2/3 hover:shadow-xl transition duration-300">
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg text-gray-200">
-          <li>Cross-functional Management</li>
-          <li>Data Analytics</li>
-          <li>Sales & Budgeting</li>
-          <li>Business Development</li>
-          <li>Design Thinking and Rapid Prototyping</li>
-          <li>Blockchain Technology Understanding</li>
-          <li>Growth Hacking and A/B Testing</li>
-          <li>Cloud Computing & DevOps Basics</li>
-          <li>Behavioral Economics Application</li>
-          <li>AI and Machine Learning Fundamentals</li>
+          <% @resume[:additional_skills].each do |skill| %>
+            <li><%= skill %></li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -202,6 +102,6 @@
 
   <!-- Footer -->
   <div class="text-center text-gray-500 text-sm mt-8">
-    <p>© 2024 Sebastian Burke. All rights reserved.</p>
+    <p>© <%= @identity[:footer_copyright_year] %> <%= @identity[:name] %>. All rights reserved.</p>
   </div>
 </div>

@@ -1,31 +1,33 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-
-// CRITICAL: Initialize GSAP system on Turbo events
-document.addEventListener('turbo:load', () => {
-  if (typeof gsap !== 'undefined' && window.GSAP_READY) {
-    window.dispatchEvent(new CustomEvent('gsapInitialized'));
-  }
-});
-
-// Clean up before Turbo caches the page
-document.addEventListener('turbo:before-cache', () => {
-  if (typeof ScrollTrigger !== 'undefined') {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-  }
-});
-
-// Import animations - these will be loaded individually by importmap
-import "hero_animations"
-import "specializations_animations"
-import "experience_animations"
-import "path_animation"
-import "resume_animations"
-import "projects_animations"
-
-// Import smooth scrolling
+import { register, initScope, destroyAll } from "animations/registry"
+import { init as initHero } from "hero_animations"
+import { init as initSpecializations } from "specializations_animations"
+import { init as initExperience } from "experience_animations"
+import { init as initProjects } from "projects_animations"
+import { init as initResume } from "resume_animations"
 import "smooth_scroll"
-
-// Import GSAP setup
 import "gsap_setup"
+
+register("hero", { init: initHero })
+register("specializations", { init: initSpecializations })
+register("experience", { init: initExperience })
+register("projects", { init: initProjects })
+register("resume", { init: initResume })
+
+function initializeAnimations() {
+  if (typeof gsap === "undefined" || !window.GSAP_READY) {
+    window.addEventListener("gsapInitialized", () => initScope(document), { once: true })
+    return
+  }
+  initScope(document)
+}
+
+document.addEventListener("turbo:load", initializeAnimations)
+document.addEventListener("turbo:before-cache", () => {
+  destroyAll()
+  if (typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+  }
+})

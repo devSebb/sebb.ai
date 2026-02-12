@@ -1,24 +1,24 @@
-<div class="flex flex-col min-h-screen relative">
+<div class="flex flex-col min-h-screen relative" data-animate="hero">
     <%# Intro Section - Sticky Top %>
   <div class="sticky top-0 z-10 relative">
     
     <div class="absolute top-1/2 z-30" style="right: 10%;">
-      <%= link_to design_path, class: "inline-flex text-white text-sm" do %>
+      <%= link_to @links[:design_portfolio], class: "inline-flex text-white text-sm", target: "_blank", rel: "noopener" do %>
         [design portfolio]
       <% end %>
     </div>
     
     <div class="flex items-center">
-      <h1 class="text-5xl tracking-wider leading-snug font-semibold mt-10">Hello and welcome,<br> people call me
-        <span class="font-heading text-primary leading-snug text-6xl">Sebb</span>
+      <h1 class="text-5xl tracking-wider leading-snug font-semibold mt-10"><%= @about[:intro_heading] %><br>
+        <span class="font-heading text-primary leading-snug text-6xl"><%= @identity[:nickname] %></span>
       </h1>
       
-      <%= image_tag "ithinkicode.svg", id:"animate-icon", alt: "text", class: "w-24 h-24 md:w-32 md:h-32 absolute top-0 right-0 animate-spin-slow z-1" %>
+      <%= image_tag "ithinkicode.svg", id:"animate-icon", alt: "text", class: "w-24 h-24 md:w-32 md:h-32 absolute top-0 right-0 animate-spin-slow z-1", data: { animate_path_icon: true } %>
     </div>
     <div class="flex-grow h-[60vh]"></div>
     <div>
-      <p id="hero-text" class="text-2xl font-heading mt-10 mb-4">I'm a .....</p>
-      <p class="text-lg mb-20">I design and build digital products. I turn ideas for software and advertising products into reality, a beautiful reality.</p>
+      <p id="hero-text" class="text-2xl font-heading mt-10 mb-4" data-animate-hero-text="true"><%= @about[:hero_rotating_prefix] %> .....</p>
+      <p class="text-lg mb-20"><%= @about[:hero_description] %></p>
     </div>
   </div>
 
@@ -26,10 +26,9 @@
   <%# About Section %>
   <div class="flex flex-col rounded-md border-2 px-4 md:px-9 py-5 md:py-7 space-y-3 border-gray-300 shadow-xl hover:shadow-2xl bg-background-primary backdrop-blur-lg z-30">
     <h2 class="text-3xl font-bold mb-2">About</h2>
-    <p class="text-lg">I'm the kind of person who looks at a blank canvas and immediately starts building — with pixels, code, and caffeine-fueled curiosity. Think of me as a digital Swiss Army knife: part frontend architect, part brand builder, part chaos-into-clarity converter. I like creating things that feel alive — not just functional, but magnetic.</p>
-    <div class="h-2"></div>
-    <p class="text-lg">From turning airport Wi-Fi ads into stories people actually stop for, to designing dashboards that make complex data feel effortless, I live at the intersection of design, strategy, and execution. My daily tools? Figma, Framer, Ruby, and a healthy dose of "let's make this way better than it needs to be."</p>
-    <div class="h-2"></div>
-    <p class="text-lg">I'm not just a developer — I'm a product thinker who codes, designs, and builds momentum. Whether I'm refining a user journey, leading a small team toward a big vision, or shaping brands from idea to identity, I'm always asking: Can we make this smarter, smoother, and a little more functional?</p>
+    <% @about[:paragraphs].each do |paragraph| %>
+      <p class="text-lg"><%= paragraph %></p>
+      <div class="h-2"></div>
+    <% end %>
   </div>
 </div>
