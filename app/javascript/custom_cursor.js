@@ -67,6 +67,17 @@ function init() {
       gsap.to(ring, { width: 40, height: 40, borderRadius: "50%", duration: 0.3, ease: "elastic.out(1, 0.3)" });
     });
   });
+
+  // Gallery viewport hover — ring becomes wide pill for drag
+  const galleryViewports = document.querySelectorAll("[data-gallery-viewport]");
+  galleryViewports.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      gsap.to(ring, { width: 80, height: 40, borderRadius: "20px", duration: 0.3 });
+    });
+    el.addEventListener("mouseleave", () => {
+      gsap.to(ring, { width: 40, height: 40, borderRadius: "50%", duration: 0.3, ease: "elastic.out(1, 0.3)" });
+    });
+  });
 }
 
 // Init on load and turbo navigate

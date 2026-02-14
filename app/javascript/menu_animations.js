@@ -25,15 +25,7 @@ function init() {
         stagger: 0.08, duration: 0.4, ease: "power3.out"
       }, "-=0.2");
 
-    if (typeof TextPlugin !== "undefined") {
-      gsap.to(toggle, {
-        duration: 0.2,
-        text: { value: "Close" },
-        ease: "none"
-      });
-    } else {
-      toggle.textContent = "Close";
-    }
+    toggle.classList.add("is-open");
   }
 
   function closeMenu() {
@@ -52,15 +44,7 @@ function init() {
         ease: "power4.inOut"
       }, "-=0.1");
 
-    if (typeof TextPlugin !== "undefined") {
-      gsap.to(toggle, {
-        duration: 0.2,
-        text: { value: "Menu" },
-        ease: "none"
-      });
-    } else {
-      toggle.textContent = "Menu";
-    }
+    toggle.classList.remove("is-open");
   }
 
   toggle.addEventListener("click", () => {

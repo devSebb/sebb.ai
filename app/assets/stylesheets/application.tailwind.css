@@ -94,6 +94,26 @@
     mix-blend-mode: difference;
   }
 
+  /* Nav menu logo button — hover color, scale, open state */
+  .nav-menu-logo {
+    @apply transition-transform duration-300 ease-expo-out;
+  }
+
+  @media (hover: hover) {
+    .nav-menu-logo:hover {
+      @apply text-accent;
+      transform: scale(1.05);
+    }
+  }
+
+  .nav-menu-logo.is-open {
+    @apply text-accent;
+  }
+
+  .nav-menu-logo.is-open:hover {
+    transform: scale(1.05);
+  }
+
   /* Menu overlay */
   .menu-overlay {
     @apply fixed inset-0 z-40 bg-surface-black flex items-center justify-center;
@@ -139,6 +159,59 @@
   .room-corridor {
     @apply h-24 md:h-32;
   }
+
+  /* Gallery strip — cinematic horizontal scroll */
+  .gallery-strip {
+    @apply relative w-full;
+    background-color: #111111;
+  }
+
+  .gallery-viewport {
+    @apply relative overflow-hidden;
+    cursor: grab;
+  }
+
+  .gallery-viewport:active {
+    cursor: grabbing;
+  }
+
+  /* Edge fade masks — cinematic exhibition strip feel */
+  .gallery-viewport::before,
+  .gallery-viewport::after {
+    content: "";
+    @apply absolute top-0 bottom-0 z-10 pointer-events-none;
+    width: clamp(2rem, 6vw, 8rem);
+  }
+
+  .gallery-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, #111111, transparent);
+  }
+
+  .gallery-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, #111111, transparent);
+  }
+
+  .gallery-slide {
+    will-change: transform;
+  }
+
+  .gallery-frame {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .gallery-frame.is-active {
+    box-shadow: 0 0 0 1px var(--gallery-theme-color, #0ED762),
+                0 0 30px -10px var(--gallery-theme-color, #0ED762);
+  }
+
+  .gallery-img {
+    display: block;
+    max-width: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
 }
 
 /* Reduced motion */
@@ -149,5 +222,20 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .gallery-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-viewport::before,
+  .gallery-viewport::after {
+    display: none;
+  }
+
+  .gallery-slide {
+    scroll-snap-align: center;
   }
 }

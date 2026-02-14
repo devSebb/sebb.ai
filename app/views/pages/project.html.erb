@@ -25,9 +25,12 @@
     </div>
   </section>
 
-  <%# 2. Metadata bar %>
+  <%# 2. Metadata bar — Role, Year, Stack, Type, Status (space-between, horizontal) %>
+  <% status_label = (@project[:status].to_s == "live") ? "Live" : "In progress" %>
+  <% pill_live = @project[:status].to_s == "live" %>
+  <% has_link = @project[:link].to_s.strip.present? %>
   <section class="section-room py-8 border-t border-b border-border project-metadata">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="flex flex-wrap justify-between items-start gap-6">
       <div class="project-meta-col">
         <span class="meta-label block mb-2">Role</span>
         <span class="text-body text-surface-light"><%= @project[:role] %></span>
@@ -46,15 +49,44 @@
         <span class="meta-label block mb-2">Type</span>
         <span class="text-body text-surface-light"><%= @project[:tagline] %></span>
       </div>
+      <div class="project-meta-col flex flex-col items-start">
+        <span class="meta-label block mb-2">Status</span>
+        <% if has_link %>
+          <%= link_to @project[:link], target: "_blank", rel: "noopener noreferrer", class: "inline-flex flex-col items-start cursor-pointer no-underline", style: "color: inherit;" do %>
+            <span class="rounded-full px-3 py-1 text-meta font-mono uppercase tracking-widest <%= pill_live ? 'bg-accent text-surface-black' : 'bg-amber-400 text-surface-black' %>">
+              <%= status_label %>
+            </span>
+            <% if @project[:domain].to_s.strip.present? %>
+              <span class="text-meta-sm text-muted mt-1.5"><%= @project[:domain] %></span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <span class="inline-flex flex-col items-start cursor-default">
+            <span class="rounded-full px-3 py-1 text-meta font-mono uppercase tracking-widest <%= pill_live ? 'bg-accent text-surface-black' : 'bg-amber-400 text-surface-black' %>">
+              <%= status_label %>
+            </span>
+            <% if @project[:domain].to_s.strip.present? %>
+              <span class="text-meta-sm text-muted mt-1.5"><%= @project[:domain] %></span>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
     </div>
   </section>
 
-  <%# 3. Description %>
+  <%# 3. Description (main + additional paragraphs) %>
   <section class="section-room py-24 md:py-32">
     <div class="max-w-3xl mx-auto">
       <p class="text-body-lg text-muted leading-relaxed project-description">
         <%= @project[:detailed_description] %>
       </p>
+      <% if @project[:additional_paragraphs].is_a?(Array) && @project[:additional_paragraphs].any? %>
+        <% @project[:additional_paragraphs].each do |paragraph| %>
+          <p class="text-body-lg text-muted leading-relaxed mt-6 project-description">
+            <%= paragraph %>
+          </p>
+        <% end %>
+      <% end %>
     </div>
   </section>
 
@@ -75,19 +107,47 @@
     </div>
   </section>
 
-  <%# 5. Gallery %>
-  <% if @project[:gallery]&.length.to_i > 1 %>
-    <section class="section-room py-16 md:py-24">
-      <span class="meta-label block mb-12">Gallery</span>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <% @project[:gallery].each do |img| %>
-          <div class="overflow-hidden rounded-lg project-gallery-item">
-            <%= image_tag img,
-                alt: @project[:name],
-                class: "w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500",
-                loading: "lazy" %>
+  <%# 5. Gallery — Cinematic Horizontal Scroll %>
+  <% if @project[:gallery]&.any? %>
+    <section class="gallery-strip py-16 md:py-24"
+             style="--gallery-theme-color: <%= theme_color %>;">
+      <%# Gallery header %>
+      <div class="section-room flex items-baseline justify-between mb-8">
+        <span class="meta-label">Gallery</span>
+        <span class="meta-label gallery-counter" data-gallery-counter>
+          01 / <%= "%02d" % @project[:gallery].length %>
+        </span>
+      </div>
+
+      <%# Horizontal scroll track with edge fade masks %>
+      <div class="gallery-viewport" data-gallery-viewport aria-label="Project image gallery">
+        <div class="gallery-track flex items-center gap-8 md:gap-12" data-gallery-track
+             style="padding-left: clamp(1.5rem, 4vw, 6rem); padding-right: clamp(1.5rem, 4vw, 6rem);">
+          <% @project[:gallery].each_with_index do |img, index| %>
+            <div class="gallery-slide flex-shrink-0"
+                 data-gallery-slide="<%= index %>">
+              <div class="gallery-frame rounded-xl overflow-hidden"
+                   style="height: 70vh; max-height: 600px;">
+                <%= image_tag img,
+                    alt: "#{@project[:name]} — #{index + 1}",
+                    class: "gallery-img h-full w-auto block",
+                    loading: index < 2 ? "eager" : "lazy",
+                    decoding: "async",
+                    style: "min-width: 280px; max-width: none; user-select: none; -webkit-user-drag: none;" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Progress bar %>
+      <div class="section-room mt-6">
+        <div class="w-full h-[2px] bg-border rounded-full overflow-hidden">
+          <div class="gallery-progress h-full rounded-full transition-none"
+               data-gallery-progress
+               style="width: 0%; background-color: var(--gallery-theme-color);">
           </div>
-        <% end %>
+        </div>
       </div>
     </section>
   <% end %>

@@ -12,7 +12,7 @@
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <%= favicon_link_tag 'ithinkicode.svg', type: 'image/svg+xml' %>
+    <%= favicon_link_tag 'devSebb_logo.svg', type: 'image/svg+xml' %>
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/icon.png">
 
@@ -79,8 +79,8 @@
       <a href="<%= root_path %>" class="font-display font-bold text-lg text-white hover-underline" data-magnetic>
         devSebb
       </a>
-      <button class="font-mono text-meta uppercase tracking-widest text-white" data-nav-toggle data-magnetic>
-        Menu
+      <button class="nav-menu-logo inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-black" data-nav-toggle data-magnetic aria-label="Toggle menu">
+        <%= render "shared/dev_sebb_logo" %>
       </button>
     </nav>
 

@@ -19,6 +19,15 @@ services:
           property: password
       - key: RAILS_SERVE_STATIC_FILES
         value: true
+      # Contact form email — set in Render Dashboard (Environment)
+      - key: MAILER_FROM
+        sync: false
+      - key: SMTP_ADDRESS
+        sync: false
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
       - key: RAILS_LOG_TO_STDOUT
         value: true
       - key: PORT

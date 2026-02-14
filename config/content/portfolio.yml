@@ -17,9 +17,10 @@ about:
   hero_tagline: "I design and build digital products that feel alive."
   hero_description: "Software Developer & Designer based in the real world, building for the digital one."
   paragraphs:
-    - "I'm the kind of person who looks at a blank canvas and immediately starts building — with pixels, code, and caffeine-fueled curiosity. Think of me as a digital Swiss Army knife: part frontend architect, part brand builder, part chaos-into-clarity converter. I like creating things that feel alive — not just functional, but magnetic."
-    - "From turning airport Wi-Fi ads into stories people actually stop for, to designing dashboards that make complex data feel effortless, I live at the intersection of design, strategy, and execution. My daily tools? Figma, Framer, Ruby, and a healthy dose of \"let's make this way better than it needs to be.\""
-    - "I'm not just a developer — I'm a product thinker who codes, designs, and builds momentum. Whether I'm refining a user journey, leading a small team toward a big vision, or shaping brands from idea to identity, I'm always asking: Can we make this smarter, smoother, and a little more functional?"
+    - "I build digital experiences that don't just work — they pull you in. Part designer, part developer, part product thinker who can't resist making things better than they need to be."
+    - "I've built consumer apps for travelers, freelancers, and everyday people trying to get things done. I've turned airport Wi-Fi ads into stories worth stopping for, designed dashboards that make complexity feel effortless, and built brands from first sketch to full identity. My work lives at the intersection of design, strategy, and execution — where pixels meet purpose and code becomes experience."
+    - "My stack: Figma, Framer, Ruby, React, (aside from the obvious ai stack: Claude, Codex, Weavy and others) and an unhealthy obsession with craft. My approach: treat every project like it deserves to feel alive, not just functional. I lead teams, shape user journeys, and solve problems that sit somewhere between \"this should be simple\" and \"nobody's figured this out yet.\""
+    - "If you need someone who designs, codes, and ships — and actually cares whether people love using it — let's talk."
 
 tech_icons:
   api: "techstack/api_icon.png"
@@ -147,13 +148,16 @@ projects:
       - "projects/Billdeck/Billdeck_4.png"
     theme_color: "#0ED762"
     theme_bg: "#0A0A0A"
-    year: "2024"
+    year: "2026"
     role: "Full Stack Developer & Designer"
+    status: "live"
+    domain: "billdeck.app"
+    link: "https://billdeck.app"
     features:
       - "Client database with contact management"
       - "Templated proposal builder"
       - "Invoice generation with PDF export"
-      - "Project tracking dashboard"
+      - "Robust document builder"
     technologies:
       - "ruby"
       - "postgres"
@@ -165,6 +169,8 @@ projects:
     tagline: "Gift cards for Ecuador remittances"
     description: "A smarter way to send money home — buy gift cards that work at selected merchants in Ecuador, turning remittances into real value."
     detailed_description: "Papayal tackles a real problem: remittances that get poorly spent. Instead of wiring cash, users purchase curated gift cards accepted at trusted Ecuadorian merchants — groceries, pharmacies, essentials. Money sent actually becomes the things families need."
+    additional_paragraphs:
+      - "Web app and mobile app developed using ruby and react respectively. Powered by stripe, and integrated to local commerces using our own API."
     hero_image: "projects/Papayal/Mockup_Desktop_1.png"
     gallery:
       - "projects/Papayal/Mockup_Desktop_1.png"
@@ -173,24 +179,31 @@ projects:
       - "projects/Papayal/Mockup_3.png"
     theme_color: "#F59E0B"
     theme_bg: "#FFFFFF"
-    year: "2024"
-    role: "Full Stack Developer"
+    year: "2025"
+    role: "Full Stack Developer & Designer"
+    status: "live"
+    domain: "papayal.app"
+    link: "https://papayal.app"
     features:
       - "Curated merchant gift card marketplace"
       - "Secure payment processing"
       - "Mobile-first responsive design"
       - "Real-time balance and redemption tracking"
+      - "Real payments and cross border redemptions"
     technologies:
       - "ruby"
       - "postgres"
       - "tailwind"
       - "javascript"
+      - "react-native"
 
   - slug: "tripstein"
     name: "Tripstein"
     tagline: "Real-cost travel budgeting"
     description: "Plan trips with actual prices, not guesses. Tripstein pulls real cost data so you know exactly what your next adventure will cost."
     detailed_description: "Tripstein is for travelers who want honest numbers. Pick a destination, and the app surfaces real pricing data — accommodation, food, transport, activities — so your budget is based on reality, not wishful thinking. No more post-trip financial surprises."
+    additional_paragraphs:
+      - "It is also a ledger app, for you to record your expenses during your travels and actually check what you spent."
     hero_image: "projects/Tripstein/Tripstein_1.png"
     gallery:
       - "projects/Tripstein/Tripstein_1.png"
@@ -199,13 +212,18 @@ projects:
       - "projects/Tripstein/Tripstein_4.png"
     theme_color: "#D97706"
     theme_bg: "#FAFAF9"
-    year: "2024"
+    year: "2026"
     role: "Full Stack Developer & Designer"
+    status: "in progress"
+    domain: "tripstein.app"
+    link: "https://tripstein.app"
     features:
       - "Real cost data per destination"
       - "Custom budget builder with categories"
       - "Multi-city trip planning"
       - "Currency conversion and local pricing"
+      - "Ledger app for expense recordings"
+      - "Cost splitting with other users"
     technologies:
       - "ruby"
       - "api"
@@ -217,13 +235,18 @@ projects:
     tagline: "Creator analytics platform"
     description: "A unified analytics dashboard for livestreamers — connect your accounts and see all your creator data in one place."
     detailed_description: "TwitchMetrics connects with various social media and streaming platforms to aggregate creator performance data. Built for livestreamers who want to understand their audience, track growth, and make data-driven content decisions — all from a single, clean dashboard."
+    additional_paragraphs:
+      - "Currently being built."
     hero_image: "projects/TwitchMetrics/Twitchmetrics_1.png"
     gallery:
       - "projects/TwitchMetrics/Twitchmetrics_1.png"
+      - "projects/TwitchMetrics/Twitchmetrics_2.png"
+      - "projects/TwitchMetrics/Twitchmetrics_3.png"
     theme_color: "#9146FF"
     theme_bg: "#0E0E10"
-    year: "2024"
+    year: "2025"
     role: "Full Stack Developer"
+    status: "in progress"
     features:
       - "Multi-platform account integration"
       - "Real-time viewer and follower analytics"
@@ -233,6 +256,39 @@ projects:
       - "ruby"
       - "api"
       - "firebase"
+      - "javascript"
+
+  - slug: "whitetigerdesign"
+    name: "White Tiger Design"
+    tagline: "Airport advertising & brand design"
+    description: "Digital and print advertising campaigns for Italian airport Wi-Fi networks — brands like Aperol, MSC Cruises, Visa, and more."
+    detailed_description: "As Product & Digital Designer at White Tiger, I led creation of advertising campaigns displayed across Italy's airport Wi-Fi networks. Each asset had to stop a traveler mid-scroll — bold visuals, tight copy, and brand guidelines all in harmony. From Aperol spritz to MSC Cruises, every campaign balanced client identity with airport-audience attention spans."
+    additional_paragraphs:
+      - "I was also part of the creation of the website whitetiger.io and its ad management platform built using react and next.js."
+    hero_image: "projects/WhiteTigerDesign/Asset 1 - Aperol.png"
+    gallery:
+      - "projects/WhiteTigerDesign/Asset 1 - Aperol.png"
+      - "projects/WhiteTigerDesign/Asset 2 - GranaPadano.png"
+      - "projects/WhiteTigerDesign/Asset 3 - Funko.png"
+      - "projects/WhiteTigerDesign/Asset 4 - Roamless.png"
+      - "projects/WhiteTigerDesign/Asset 5 - Fuji.png"
+      - "projects/WhiteTigerDesign/Asset 6 - Geneve Airport.png"
+      - "projects/WhiteTigerDesign/Asset 7 - Skycop.png"
+      - "projects/WhiteTigerDesign/Asset 8 - MSC Cruises.png"
+      - "projects/WhiteTigerDesign/Asset 9 - Visa.png"
+    theme_color: "#FF6B2C"
+    theme_bg: "#0A0A0A"
+    year: "2024"
+    role: "Product & Digital Designer"
+    status: "live"
+    features:
+      - "Airport Wi-Fi captive portal ad campaigns"
+      - "Multi-brand design system"
+      - "Print and digital format adaptation"
+      - "Cross-platform asset delivery"
+    technologies:
+      - "figma"
+      - "framer"
       - "javascript"
 
 resume:
@@ -255,12 +311,6 @@ resume:
         - "Co-founded various high-growth e-commerce brands and assembled a team of over 5 employees to manage them."
         - "Managed financial operations, fulfillment structure, and organizational processes across multiple e-commerce stores."
         - "Served as primary customer success lead, maintaining 4.8/5 average satisfaction for hundreds of US-based clients."
-    - title: "Project Manager at Galeria Shopping"
-      date_label: "May 2020 – December 2022"
-      bullets:
-        - "Directed site development for a new retail strip mall, coordinating contractors, sales team, and suppliers."
-        - "Managed web presence and social media design efforts while leading client and stakeholder meetings."
-        - "Adapted project plans in real-time amid pandemic-era supply-chain disruptions, preserving timelines and minimizing costs."
   education:
     - title: "Le Wagon Full-Stack Development Bootcamp"
       date_label: "April 2024 – July 2024"
