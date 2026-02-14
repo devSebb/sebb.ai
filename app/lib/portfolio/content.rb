@@ -6,11 +6,13 @@ module Portfolio
 
     class << self
       def data
-        @data ||= begin
-          loaded = YAML.safe_load_file(FILE_PATH, permitted_classes: [], aliases: false) || {}
-          Schema.validate!(loaded)
-          loaded.deep_symbolize_keys
-        end
+        return @data if !Rails.env.development? && @data
+
+        raw = YAML.safe_load_file(FILE_PATH, permitted_classes: [], aliases: false) || {}
+        Schema.validate!(raw)
+        symbolized = raw.deep_symbolize_keys
+        @data = symbolized unless Rails.env.development?
+        symbolized
       end
 
       def reload!

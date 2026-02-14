@@ -24,24 +24,24 @@
     <% end %>
   </div>
 
-  <%# Marquee rows %>
+  <%# Marquee rows — pill style, seamless infinite scroll (2 copies = -50% loop) %>
   <div class="mt-24 overflow-hidden">
     <%# Row 1 — left scroll %>
-    <div class="marquee-container mb-4">
-      <div class="flex whitespace-nowrap marquee-track-left">
+    <div class="marquee-container mb-4 overflow-hidden">
+      <div class="flex whitespace-nowrap marquee-track-left will-change-transform">
         <% 2.times do %>
           <% @tech_stack.each do |tech| %>
-            <span class="inline-block font-mono text-meta uppercase tracking-widest text-border px-8 py-3"><%= tech[:name] %></span>
+            <span class="inline-flex items-center font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-6 py-2 mx-1 shrink-0"><%= tech[:name] %></span>
           <% end %>
         <% end %>
       </div>
     </div>
     <%# Row 2 — right scroll %>
-    <div class="marquee-container">
-      <div class="flex whitespace-nowrap marquee-track-right">
+    <div class="marquee-container overflow-hidden">
+      <div class="flex whitespace-nowrap marquee-track-right will-change-transform">
         <% 2.times do %>
-          <% @tech_stack.reverse.each do |tech| %>
-            <span class="inline-block font-mono text-meta uppercase tracking-widest text-border px-8 py-3"><%= tech[:name] %></span>
+          <% @tech_stack.each do |tech| %>
+            <span class="inline-flex items-center font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-6 py-2 mx-1 shrink-0"><%= tech[:name] %></span>
           <% end %>
         <% end %>
       </div>
