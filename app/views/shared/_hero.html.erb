@@ -1,34 +1,33 @@
-<div class="flex flex-col min-h-screen relative" data-animate="hero">
-    <%# Intro Section - Sticky Top %>
-  <div class="sticky top-0 z-10 relative">
-    
-    <div class="absolute top-1/2 z-30" style="right: 10%;">
-      <%= link_to @links[:design_portfolio], class: "inline-flex text-white text-sm", target: "_blank", rel: "noopener" do %>
-        [design portfolio]
-      <% end %>
-    </div>
-    
-    <div class="flex items-center">
-      <h1 class="text-5xl tracking-wider leading-snug font-semibold mt-10"><%= @about[:intro_heading] %><br>
-        <span class="font-heading text-primary leading-snug text-6xl"><%= @identity[:nickname] %></span>
-      </h1>
-      
-      <%= image_tag "ithinkicode.svg", id:"animate-icon", alt: "text", class: "w-24 h-24 md:w-32 md:h-32 absolute top-0 right-0 animate-spin-slow z-1", data: { animate_path_icon: true } %>
-    </div>
-    <div class="flex-grow h-[60vh]"></div>
-    <div>
-      <p id="hero-text" class="text-2xl font-heading mt-10 mb-4" data-animate-hero-text="true"><%= @about[:hero_rotating_prefix] %> .....</p>
-      <p class="text-lg mb-20"><%= @about[:hero_description] %></p>
-    </div>
+<%# Exhibition Room 1 — Museum Entrance Performance %>
+<section class="section-room flex flex-col justify-between min-h-screen relative" id="hero" data-animate="hero">
+  <%# Top: Museum wall label %>
+  <div class="pt-28 md:pt-36">
+    <span class="meta-label hero-meta"><%= @about[:hero_description] %></span>
   </div>
 
-  <%# Spacer %>
-  <%# About Section %>
-  <div class="flex flex-col rounded-md border-2 px-4 md:px-9 py-5 md:py-7 space-y-3 border-gray-300 shadow-xl hover:shadow-2xl bg-background-primary backdrop-blur-lg z-30">
-    <h2 class="text-3xl font-bold mb-2">About</h2>
-    <% @about[:paragraphs].each do |paragraph| %>
-      <p class="text-lg"><%= paragraph %></p>
-      <div class="h-2"></div>
-    <% end %>
+  <%# Center: Massive name with depth parallax layers %>
+  <div class="flex-grow flex items-center relative">
+    <%# Back layer — parallax depth %>
+    <h1 class="heading-display hero-title-back absolute inset-0 flex items-center opacity-[0.08] select-none pointer-events-none" aria-hidden="true">
+      <%= @identity[:name] %>
+    </h1>
+    <%# Front layer — primary %>
+    <h1 class="heading-display hero-title-front relative" data-hero-title>
+      <%= @identity[:name] %>
+    </h1>
   </div>
-</div>
+
+  <%# Bottom row %>
+  <div class="flex items-end justify-between pb-12 md:pb-16">
+    <%# Tagline %>
+    <p class="text-muted text-body-lg max-w-md hero-tagline">
+      <%= @about[:hero_tagline] %>
+    </p>
+
+    <%# Scroll cue %>
+    <div class="flex flex-col items-center gap-3 hero-scroll-cue">
+      <span class="meta-label">Scroll</span>
+      <div class="w-[1px] h-12 bg-accent animate-scroll-line"></div>
+    </div>
+  </div>
+</section>

@@ -1,83 +1,82 @@
+import { splitByChars } from "utils/text_splitter";
+import { charStagger, prefersReducedMotion } from "utils/motion_library";
+
 function init(section) {
-  if (typeof gsap === "undefined") {
+  if (typeof gsap === "undefined" || prefersReducedMotion()) {
     return { destroy() {} };
   }
 
-  const title = section.querySelector("[data-animate-hero-text='true']");
-  const icon = section.querySelector("[data-animate-path-icon='true']");
-  if (!title) return { destroy() {} };
+  const ctx = gsap.context(() => {
+    const titleEl = section.querySelector("[data-hero-title]");
+    const meta = section.querySelector(".hero-meta");
+    const tagline = section.querySelector(".hero-tagline");
+    const scrollCue = section.querySelector(".hero-scroll-cue");
+    const titleFront = section.querySelector(".hero-title-front");
+    const titleBack = section.querySelector(".hero-title-back");
 
-  const texts = [
-    "software developer",
-    "web designer",
-    "mobile app designer",
-    "product manager",
-    "business developer",
-    "digital designer",
-    "project manager",
-    "product designer",
-    "advertising designer"
-  ];
-  let index = 0;
-  let timeoutId;
-  let activeTween;
-  let waitTween;
+    // Split title into characters
+    let chars = [];
+    if (titleEl) {
+      chars = splitByChars(titleEl);
+    }
 
-  function animateText() {
-    activeTween = gsap.to(title, {
-      duration: 2,
-      text: {
-        value: `I'm a ${texts[index]}`,
-        delimiter: "",
-        type: "diff"
-      },
-      ease: "power1.inOut",
-      onComplete: () => {
-        waitTween = gsap.to({}, {
-          duration: 2,
-          onComplete: () => {
-            index = (index + 1) % texts.length;
-            animateText();
-          }
-        });
+    // Entrance timeline — plays after preloader
+    const entranceTl = gsap.timeline({
+      delay: window.__preloaderComplete ? 0 : 1.8
+    });
+
+    if (meta) {
+      entranceTl.from(meta, {
+        y: 20, opacity: 0, duration: 0.8, ease: "power3.out"
+      });
+    }
+
+    if (chars.length) {
+      entranceTl.add(charStagger(chars), "-=0.4");
+    }
+
+    if (tagline) {
+      entranceTl.from(tagline, {
+        y: 20, opacity: 0, duration: 0.8, ease: "power3.out"
+      }, "-=0.3");
+    }
+
+    if (scrollCue) {
+      entranceTl.from(scrollCue, {
+        opacity: 0, duration: 0.6
+      });
+    }
+
+    // Scroll-driven parallax (pinned hero)
+    if (typeof ScrollTrigger !== "undefined") {
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          id: "HERO_PIN",
+          trigger: section,
+          start: "top top",
+          end: "+=150%",
+          pin: true,
+          scrub: 1
+        }
+      });
+
+      if (titleFront) {
+        scrollTl.to(titleFront, { yPercent: -20, ease: "none" }, 0);
       }
-    });
-  }
-
-  timeoutId = setTimeout(animateText, 1000);
-
-  let pathTimeline;
-  if (icon && typeof ScrollTrigger !== "undefined") {
-    gsap.set(icon, {
-      xPercent: 0,
-      yPercent: 0,
-      position: "fixed",
-      right: "5%",
-      top: 0
-    });
-
-    pathTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: "body",
-        start: "top center",
-        end: "bottom bottom",
-        scrub: true
+      if (titleBack) {
+        scrollTl.to(titleBack, { yPercent: -8, ease: "none" }, 0);
       }
-    });
 
-    pathTimeline
-      .to(icon, { top: "10%" })
-      .to(icon, { opacity: 0, duration: 0.2 }, "10%")
-      .to(icon, { top: "80%", opacity: 0 }, "+=0.6")
-      .to(icon, { opacity: 1, duration: 0.3 }, "90%");
-  }
+      // Fade out content as user scrolls past
+      scrollTl.to(section.children, {
+        opacity: 0, y: -60, ease: "none"
+      }, 0.7);
+    }
+  }, section);
 
   return {
     destroy() {
-      clearTimeout(timeoutId);
-      if (activeTween) activeTween.kill();
-      if (waitTween) waitTween.kill();
-      if (pathTimeline) pathTimeline.kill();
+      ctx.revert();
     }
   };
 }

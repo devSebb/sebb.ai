@@ -1,107 +1,125 @@
-<!-- Resume Page -->
-<div class="px-32 py-8 text-white font-sans" data-animate="resume">
-  <!-- Header -->
-  <div class="relative text-center my-10">
-    <%= link_to root_path, class: "absolute left-0 top-1/2 -translate-y-1/2 text-gray-100 hover:text-white" do %>
-      <%= image_tag "icons/back_arrow.svg", class: "w-8 h-8" %>
-    <% end %>
-    <h1 class="text-4xl font-bold"><%= @identity[:name] %></h1>
-  </div>
-
-  <!-- Contact Information -->
-  <%# <div class="flex flex-col items-center mb-8">
-    <p class="text-lg">Email: <a href="mailto:burke.sebastian1@gmail.com" class="text-gray-400 hover:underline">your.email@example.com</a></p>
-    <p class="text-lg">LinkedIn: <a href="https://www.linkedin.com/in/sebastian-burke/" class="text-blue-400 hover:underline">www.linkedin.com/in/sebastian-burke/</a></p>
-    <p class="text-lg">GitHub: <a href="https://github.com/devSebb" class="text-blue-400 hover:underline">github.com/devSebb</a></p>
-  </div> %>
-
-  <!-- Experience Section -->
-  <div class="my-8">
-    <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Experience</h2>
-    <% @resume[:experience].each do |item| %>
-      <div class="mb-6" data-animate-item="resume-timeline">
-        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
-        <p class="text-gray-400 italic"><%= item[:date_label] %></p>
-        <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-          <% item[:bullets].each do |bullet| %>
-            <li><%= bullet %></li>
-          <% end %>
-        </ul>
+<%# Resume Page — Editorial grid layout %>
+<div data-animate="resume">
+  <%# Header %>
+  <section class="section-room py-24 md:py-32">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <div>
+        <span class="meta-label block mb-6">Resume</span>
+        <h1 class="font-display font-extrabold text-display-xl text-surface-light resume-title">
+          <%= @identity[:name] %>
+        </h1>
       </div>
-    <% end %>
-  </div>
+      <a href="#" class="btn-magnetic self-start md:self-auto" data-magnetic>
+        Download PDF
+      </a>
+    </div>
+  </section>
 
-  <!-- Education Section -->
-  <div class="mb-8">
-    <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Education</h2>
-    <% @resume[:education].each do |item| %>
-      <div class="mb-6">
-        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
-        <% if item[:subtitle].present? %>
-          <p class="text-gray-400 italic"><%= item[:subtitle] %></p>
-        <% end %>
-        <p class="text-gray-400 italic"><%= item[:date_label] %></p>
-        <% if item[:bullets].present? %>
-          <ul class="list-disc list-inside mt-2 text-lg text-gray-200">
-            <% item[:bullets].each do |bullet| %>
-              <li><%= bullet %></li>
+  <%# Experience %>
+  <section class="section-room py-16 md:py-24 border-t border-border">
+    <span class="meta-label block mb-12">Experience</span>
+    <div class="space-y-0">
+      <% @resume[:experience].each_with_index do |item, index| %>
+        <div class="resume-item grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 <%= 'border-t border-border' unless index == 0 %>">
+          <div class="md:col-span-3">
+            <span class="meta-label"><%= item[:date_label] %></span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display font-bold text-display-md text-surface-light mb-4"><%= item[:title] %></h3>
+            <ul class="space-y-2">
+              <% item[:bullets].each do |bullet| %>
+                <li class="text-body text-muted leading-relaxed flex gap-3">
+                  <span class="text-accent mt-2 flex-shrink-0">&#8226;</span>
+                  <span><%= bullet %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# Education %>
+  <section class="section-room py-16 md:py-24 border-t border-border">
+    <span class="meta-label block mb-12">Education</span>
+    <div class="space-y-0">
+      <% @resume[:education].each_with_index do |item, index| %>
+        <div class="resume-item grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 <%= 'border-t border-border' unless index == 0 %>">
+          <div class="md:col-span-3">
+            <span class="meta-label"><%= item[:date_label] %></span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display font-bold text-display-md text-surface-light mb-2"><%= item[:title] %></h3>
+            <% if item[:subtitle] %>
+              <p class="text-body text-muted mb-4"><%= item[:subtitle] %></p>
             <% end %>
-          </ul>
-        <% end %>
-        <% if item[:details].present? %>
-          <% item[:details].each do |detail| %>
-            <p class="text-lg"><%= detail %></p>
+            <% if item[:bullets] %>
+              <ul class="space-y-2">
+                <% item[:bullets].each do |bullet| %>
+                  <li class="text-body text-muted leading-relaxed flex gap-3">
+                    <span class="text-accent mt-2 flex-shrink-0">&#8226;</span>
+                    <span><%= bullet %></span>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+            <% if item[:details] %>
+              <% item[:details].each do |detail| %>
+                <p class="text-body text-muted mt-2"><%= detail %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# Certifications %>
+  <section class="section-room py-16 md:py-24 border-t border-border">
+    <span class="meta-label block mb-12">Certifications</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @resume[:certifications].each do |item| %>
+        <div class="resume-item bg-surface-dark rounded-lg p-6">
+          <h3 class="font-display font-bold text-body-lg text-surface-light mb-2"><%= item[:title] %></h3>
+          <span class="meta-label block"><%= item[:provider] %></span>
+          <span class="meta-label block mt-1"><%= item[:date_label] %></span>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# Skills %>
+  <section class="section-room py-16 md:py-24 border-t border-border">
+    <span class="meta-label block mb-12">Skills</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="font-display font-bold text-display-md text-surface-light mb-6">Technical</h3>
+        <div class="flex flex-wrap gap-3">
+          <% @resume[:technical_skills].each do |skill| %>
+            <span class="resume-item px-4 py-2 bg-surface-dark rounded text-body text-surface-light"><%= skill %></span>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    <% end %>
-  </div>
-
-  <!-- Certifications Section -->
-<div class="mb-8">
-  <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">Certifications</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <% @resume[:certifications].each do |item| %>
-      <div class="bg-gray-800 rounded-lg p-4">
-        <h3 class="text-xl font-semibold"><%= item[:title] %></h3>
-        <p class="text-gray-400"><%= item[:provider] %></p>
-        <p class="text-sm text-gray-500"><%= item[:date_label] %></p>
-        <p class="text-sm text-gray-500">Credential ID <%= item[:credential_id] %></p>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-  <!-- Skills Section -->
- <div class="mb-8">
-  <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-6">Skills</h2>
-
-  <!-- Technical Skills -->
-  <h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
-    <% @resume[:technical_skills].each do |skill| %>
-      <div class="bg-gray-800 rounded-lg shadow-lg p-4 flex items-center justify-center">
-        <span class="text-white text-lg"><%= skill %></span>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- Additional Skills -->
-  <h3 class="text-2xl font-semibold mb-6 text-center">Additional Skills</h3>
-    <div class="flex justify-center">
-      <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-lg w-full md:w-2/3 hover:shadow-xl transition duration-300">
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg text-gray-200">
+      <div>
+        <h3 class="font-display font-bold text-display-md text-surface-light mb-6">Additional</h3>
+        <ul class="space-y-3">
           <% @resume[:additional_skills].each do |skill| %>
-            <li><%= skill %></li>
+            <li class="resume-item text-body text-muted flex gap-3">
+              <span class="text-accent flex-shrink-0">&#8226;</span>
+              <span><%= skill %></span>
+            </li>
           <% end %>
         </ul>
       </div>
     </div>
-</div>
+  </section>
 
-
-  <!-- Footer -->
-  <div class="text-center text-gray-500 text-sm mt-8">
-    <p>© <%= @identity[:footer_copyright_year] %> <%= @identity[:name] %>. All rights reserved.</p>
-  </div>
+  <%# Footer %>
+  <section class="section-room py-8 border-t border-border">
+    <div class="flex items-center justify-between">
+      <span class="meta-label">&copy; <%= @identity[:footer_copyright_year] %> <%= @identity[:name] %></span>
+      <span class="meta-label">Built with Rails, GSAP & too much coffee</span>
+    </div>
+  </section>
 </div>

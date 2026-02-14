@@ -1,17 +1,50 @@
-<div data-animate="projects">
-      <h2 class="text-3xl font-bold mb-8" data-animate-title="projects">Projects</h2>
-      <div class="grid grid-cols-2 gap-6 z-20" id="projects-container">
-        <% @projects.each_with_index do |project, index| %>
-          <div class="relative rounded-lg group overflow-hidden shadow-lg hover:shadow-xl transition-all project-item z-20" data-index="<%= index %>" data-animate-item="project">
-            <%= image_tag "projects/#{project[:image]}", alt: project[:name], class: "w-full h-64 object-cover transition-transform duration-00 ease-in-out group-hover:scale-105 hover:opacity-100", data: { animate_image: "project" } %>
-            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out" data-animate-overlay="project">
-              <%= link_to project[:url], target: "_blank", class: "text-white text-2xl font-bold mb-2 hover:text-primary transition-colors duration-200" do %>
-                <%= project[:name] %> <i class="fas fa-external-link-alt text-sm ml-1"></i>
-              <% end %>
-              <p class="text-white text-md text-center px-6 mb-4"><%= project[:description] %></p>
-              <%= link_to "See More", project_path(project[:slug]), class: "px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-200 font-semibold" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+<%# Exhibition Room 3 — Central Gallery Hall %>
+<section class="section-room py-24 md:py-32" id="projects" data-animate="projects">
+  <div class="flex items-baseline justify-between mb-16">
+    <span class="meta-label">02 / Projects</span>
+    <span class="meta-label"><%= @projects.length %> Selected Works</span>
+  </div>
+
+  <%# Project list — hover-reveal pattern %>
+  <div class="projects-list relative">
+    <% @projects.each_with_index do |project, index| %>
+      <%= link_to project_path(project[:slug]),
+            class: "project-row group block border-t border-border py-8 md:py-10 transition-colors hover:border-accent",
+            data: {
+              project_image: image_path(project[:hero_image]),
+              project_slug: project[:slug]
+            } do %>
+        <div class="grid grid-cols-12 items-center gap-4">
+          <%# Number %>
+          <span class="meta-label col-span-1 project-number">
+            <%= "%02d" % (index + 1) %>
+          </span>
+
+          <%# Name %>
+          <h3 class="col-span-5 md:col-span-6 font-display font-extrabold text-display-md text-surface-light opacity-20 group-hover:opacity-100 transition-opacity duration-300 project-name">
+            <%= project[:name] %>
+          </h3>
+
+          <%# Tagline %>
+          <span class="meta-label col-span-4 md:col-span-3 text-right hidden md:block project-tagline">
+            <%= project[:tagline] %>
+          </span>
+
+          <%# Year %>
+          <span class="meta-label col-span-2 text-right project-year">
+            <%= project[:year] %>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%# Bottom border %>
+    <div class="border-t border-border"></div>
+  </div>
+
+  <%# Floating cursor-follow image (desktop only) %>
+  <div class="project-float-img fixed top-0 left-0 w-[400px] h-[280px] pointer-events-none opacity-0 z-30 overflow-hidden rounded-lg hidden md:block"
+       style="will-change: transform;">
+    <img src="" alt="" class="w-full h-full object-cover" data-project-float-src />
+  </div>
+</section>

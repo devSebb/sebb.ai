@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     @tech_icons = Portfolio::Content.tech_icons
     @tech_stack = Portfolio::Content.tech_stack
     @experience = Portfolio::Content.experience
-    @specializations = Portfolio::Content.specializations
+    @skills_categories = Portfolio::Content.skills_categories
     @projects = Portfolio::Content.projects
     @contact_meta = Portfolio::Content.contact
   end
@@ -21,6 +21,7 @@ class PagesController < ApplicationController
     @projects = Portfolio::Content.projects
     @tech_icons = Portfolio::Content.tech_icons
     @project = Portfolio::Content.project_by_slug(params[:name])
+    @adjacent = Portfolio::Content.adjacent_projects(params[:name])
 
     return render "pages/project" if @project
 

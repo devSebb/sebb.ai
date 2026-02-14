@@ -1,25 +1,63 @@
-<div class="flex mb-20" id="contact">
-  <div class="w-1/2">
-    <h1 class="text-6xl text-center font-light text-primary mb-4 leading-snug font-heading"><%= @contact_meta[:section_heading].split.join("<br>").html_safe %></h1>
+<%# Exhibition Room 6 — Contact / Guestbook %>
+<section class="section-room py-24 md:py-32" id="contact" data-animate="contact">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-12">
+    <%# Left: heading + email + socials %>
+    <div>
+      <span class="meta-label mb-8 block">05 / Contact</span>
+
+      <h2 class="font-display font-extrabold text-display-xl text-surface-light mb-8 contact-heading">
+        <%= @contact_meta[:section_heading] %>
+      </h2>
+
+      <% if @contact_meta[:subheading] %>
+        <p class="text-body-lg text-muted mb-12"><%= @contact_meta[:subheading] %></p>
+      <% end %>
+
+      <a href="mailto:<%= @contact_meta[:email_to] %>"
+         class="font-mono text-accent text-body-lg hover-underline contact-email inline-block mb-12"
+         data-magnetic>
+        <%= @contact_meta[:email_to] %>
+      </a>
+
+      <div class="flex gap-8 contact-social">
+        <a href="<%= @links[:github] %>" target="_blank" rel="noopener" class="meta-label hover:text-accent transition-colors" data-magnetic>GitHub</a>
+        <a href="<%= @links[:linkedin] %>" target="_blank" rel="noopener" class="meta-label hover:text-accent transition-colors" data-magnetic>LinkedIn</a>
+        <a href="<%= @links[:x] %>" target="_blank" rel="noopener" class="meta-label hover:text-accent transition-colors" data-magnetic>X</a>
+      </div>
+    </div>
+
+    <%# Right: contact form %>
+    <div class="contact-form">
+      <%= form_for :contact, url: contact_path, local: true, html: { class: "space-y-8" } do |f| %>
+        <div>
+          <label class="meta-label block mb-3">Name</label>
+          <%= f.text_field :name, required: true,
+              class: "w-full bg-transparent border-0 border-b border-border text-surface-light text-body py-3 focus:border-accent focus:ring-0 focus:outline-none transition-colors placeholder:text-muted/40",
+              placeholder: "Your name" %>
+        </div>
+
+        <div>
+          <label class="meta-label block mb-3">Email</label>
+          <%= f.email_field :email, required: true,
+              class: "w-full bg-transparent border-0 border-b border-border text-surface-light text-body py-3 focus:border-accent focus:ring-0 focus:outline-none transition-colors placeholder:text-muted/40",
+              placeholder: "your@email.com" %>
+        </div>
+
+        <div>
+          <label class="meta-label block mb-3">Message</label>
+          <%= f.text_area :message, required: true, rows: 4,
+              class: "w-full bg-transparent border-0 border-b border-border text-surface-light text-body py-3 focus:border-accent focus:ring-0 focus:outline-none transition-colors resize-none placeholder:text-muted/40",
+              placeholder: "Tell me about your project..." %>
+        </div>
+
+        <%= f.submit "Send Message", class: "btn-magnetic cursor-pointer mt-4", data: { magnetic: true } %>
+      <% end %>
+    </div>
   </div>
-  <div class="z-30 w-1/2">
-    <%= form_for :contact, url: contact_path, local: true do |f| %>
-      <div class="mb-4">
-        <%= f.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= f.text_field :name, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "John Doe" %>
-      </div>
 
-      <div class="mb-4">
-        <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= f.email_field :email, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "john@example.com" %>
-      </div>
-
-      <div class="mb-4">
-        <%= f.label :message, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= f.text_area :message, required: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary", placeholder: "Your message here" %>
-      </div>
-
-      <%= f.submit 'Send Message', class: "text-white bg-gray-800 hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
-    <% end %>
+  <%# Footer %>
+  <div class="flex items-center justify-between mt-24 pt-8 border-t border-border contact-footer">
+    <span class="meta-label">&copy; <%= @identity[:footer_copyright_year] %> <%= @identity[:name] %></span>
+    <span class="meta-label">Built with Rails, GSAP & too much coffee</span>
   </div>
-</div>
+</section>

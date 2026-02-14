@@ -42,8 +42,8 @@ module Portfolio
         data.fetch(:experience)
       end
 
-      def specializations
-        data.fetch(:specializations)
+      def skills_categories
+        data.fetch(:skills_categories)
       end
 
       def projects
@@ -52,6 +52,17 @@ module Portfolio
 
       def project_by_slug(slug)
         projects.find { |project| project[:slug] == slug.to_s }
+      end
+
+      def adjacent_projects(slug)
+        all = projects
+        idx = all.index { |p| p[:slug] == slug.to_s }
+        return { prev: nil, next: nil } unless idx
+
+        {
+          prev: all[(idx - 1) % all.size],
+          next: all[(idx + 1) % all.size]
+        }
       end
 
       def resume

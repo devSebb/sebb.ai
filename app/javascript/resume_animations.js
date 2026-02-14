@@ -1,30 +1,35 @@
+import { splitByChars } from "utils/text_splitter";
+import { charStagger, prefersReducedMotion } from "utils/motion_library";
+
 function init(section) {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
     return { destroy() {} };
   }
 
-  const timelineItems = Array.from(section.querySelectorAll("[data-animate-item='resume-timeline']"));
-  const tweens = timelineItems.map((item) =>
-    gsap.fromTo(
-      item,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: item,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
+  const ctx = gsap.context(() => {
+    // Resume title character animation
+    const title = section.querySelector(".resume-title");
+    if (title) {
+      const chars = splitByChars(title);
+      charStagger(chars, 0.2);
+    }
+
+    // Staggered item entrance per section
+    const items = section.querySelectorAll(".resume-item");
+    gsap.from(items, {
+      y: 30, opacity: 0,
+      stagger: 0.05, duration: 0.6, ease: "power2.out",
+      scrollTrigger: {
+        id: "RESUME_SECTIONS",
+        trigger: section,
+        start: "top 75%"
       }
-    )
-  );
+    });
+  }, section);
 
   return {
     destroy() {
-      tweens.forEach((tween) => tween.kill());
+      ctx.revert();
     }
   };
 }

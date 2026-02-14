@@ -7,7 +7,7 @@ module Portfolio
       tech_icons
       tech_stack
       experience
-      specializations
+      skills_categories
       projects
       resume
       contact
@@ -16,10 +16,14 @@ module Portfolio
     REQUIRED_PROJECT_KEYS = %w[
       slug
       name
-      url
+      tagline
       description
-      image
       detailed_description
+      hero_image
+      gallery
+      theme_color
+      year
+      role
       features
       technologies
     ].freeze
