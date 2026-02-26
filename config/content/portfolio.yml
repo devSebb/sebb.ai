@@ -279,6 +279,37 @@ projects:
       - "firebase"
       - "javascript"
 
+  - slug: "showbox"
+    name: "Showbox"
+    tagline: "Ecuadorian promotional packaging"
+    description: "A complete web presence for Showbox Promotions — Ecuador's custom promotional box and branded packaging company."
+    detailed_description: "Showbox Promotions is an Ecuadorian company specializing in custom promotional boxes and branded packaging solutions. I designed and built their full website at showboxpromotions.com.ec — a clean, visually driven site that showcases their product catalog, reinforces brand identity, and drives customer inquiries."
+    additional_paragraphs:
+      - "The site features a fully responsive layout optimized for mobile users across Ecuador, with a strong emphasis on visual product presentation and lead generation."
+    hero_image: "projects/Showbox/showbox-1.png"
+    gallery:
+      - "projects/Showbox/showbox-1.png"
+      - "projects/Showbox/showbox-2.png"
+      - "projects/Showbox/showbox-3.png"
+      - "projects/Showbox/showbox-4.png"
+    theme_color: "#DC2626"
+    theme_bg: "#0A0A0A"
+    year: "2025"
+    role: "Web Designer & Developer"
+    status: "live"
+    domain: "showboxpromotions.com.ec"
+    link: "https://showboxpromotions.com.ec"
+    features:
+      - "Full brand identity and visual design"
+      - "Responsive product showcase"
+      - "Mobile-first layout for the Ecuadorian market"
+      - "Lead generation and contact integration"
+    technologies:
+      - "html5"
+      - "css"
+      - "javascript"
+      - "figma"
+
   - slug: "whitetigerdesign"
     name: "White Tiger Design"
     tagline: "Airport advertising & brand design"
