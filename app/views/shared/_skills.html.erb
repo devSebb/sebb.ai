@@ -2,16 +2,23 @@
 <section class="section-room py-24 md:py-32" id="skills" data-animate="skills">
   <div class="flex items-baseline justify-between mb-16">
     <span class="meta-label">03 / Skills</span>
-    <span class="meta-label">What I work with</span>
+    <span class="meta-label">Full-stack — design to deployment</span>
   </div>
+
+  <p class="text-muted text-body mb-12 max-w-xl">
+    From database to UI, strategy to shipping — here's the stack that makes it happen.
+  </p>
 
   <%# 4-column skill categories grid %>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
     <% @skills_categories.each do |category| %>
       <div class="skill-category">
-        <h3 class="font-display font-bold text-display-sm text-surface-light mb-8 skill-cat-heading">
+        <h3 class="font-display font-semibold text-display-sm text-surface-light mb-2 skill-cat-heading">
           <%= category[:name] %>
         </h3>
+        <span class="font-mono text-meta uppercase tracking-widest text-muted/40 mt-1 mb-6 block">
+          <%= category[:items].length.to_s.rjust(2, "0") %> <%= category[:name].downcase %>
+        </span>
         <ul class="space-y-4">
           <% category[:items].each do |item| %>
             <li class="skill-item group flex items-center gap-3 text-muted hover:text-surface-light transition-colors duration-200 cursor-default">

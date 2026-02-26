@@ -70,8 +70,9 @@ function init(section) {
     }
 
     if (rightTrack) {
+      gsap.set(rightTrack, { xPercent: -50 });
       const rightTween = gsap.to(rightTrack, {
-        xPercent: 50,
+        xPercent: 0,
         ease: "none",
         repeat: -1,
         duration: 35
