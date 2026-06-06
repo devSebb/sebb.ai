@@ -9,9 +9,13 @@
           <%= @identity[:name] %>
         </h1>
       </div>
-      <a href="#" class="btn-magnetic self-start md:self-auto" data-magnetic>
-        Download PDF
-      </a>
+      <button type="button"
+              class="btn-magnetic self-start md:self-auto print:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-black"
+              data-magnetic
+              data-controller="print"
+              data-action="print#now">
+        Save as PDF
+      </button>
     </div>
   </section>
 

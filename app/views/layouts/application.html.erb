@@ -79,13 +79,13 @@
       <a href="<%= root_path %>" class="font-display font-bold text-lg text-white hover-underline" data-magnetic>
         devSebb
       </a>
-      <button class="nav-menu-logo inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-black" data-nav-toggle data-magnetic aria-label="Toggle menu">
+      <button class="nav-menu-logo inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-black" data-nav-toggle data-magnetic aria-label="Toggle menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu-overlay">
         <%= render "shared/dev_sebb_logo" %>
       </button>
     </nav>
 
     <%# Menu Overlay %>
-    <div class="menu-overlay" data-menu-overlay>
+    <div class="menu-overlay" id="menu-overlay" data-menu-overlay role="dialog" aria-modal="true" aria-label="Site menu" inert>
       <div class="flex flex-col items-center gap-8">
         <a href="<%= root_path %>" class="font-display font-extrabold text-display-md text-white hover:text-accent transition-colors hover-underline" data-menu-link>Home</a>
         <a href="<%= root_path %>#projects" class="font-display font-extrabold text-display-md text-white hover:text-accent transition-colors hover-underline" data-menu-link>Projects</a>
@@ -103,6 +103,9 @@
 
     <%# Page Transition Overlay %>
     <div class="page-transition" data-page-transition></div>
+
+    <%# Flash notifications %>
+    <%= render "shared/flash" %>
 
     <%# Floating Geometry — persistent background depth layer %>
     <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 1;" data-geometry-layer>

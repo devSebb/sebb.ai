@@ -1,6 +1,8 @@
 // Smooth Scrolling with Lenis
 // This provides better performance and more control than CSS scroll-behavior
 
+import { prefersReducedMotion } from "utils/motion_library";
+
 // Initialize Lenis smooth scrolling
 let lenis;
 let rafId;
@@ -9,6 +11,9 @@ let anchorHandler;
 // Function to initialize smooth scrolling
 function initSmoothScroll() {
   if (lenis) return;
+
+  // Respect the user's reduced-motion preference — never hijack scrolling.
+  if (prefersReducedMotion()) return;
 
   // Check if Lenis is available (loaded via CDN)
   if (typeof Lenis !== 'undefined') {
@@ -61,11 +66,11 @@ function initAnchorSmoothScroll() {
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
           });
         } else {
-          // Fallback to native smooth scrolling
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          // No Lenis (reduced motion, or library unavailable): jump to the
+          // target with the same fixed-nav offset — instantly when the user
+          // prefers reduced motion, smoothly otherwise.
+          const top = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
         }
       }
     }

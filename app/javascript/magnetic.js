@@ -1,12 +1,14 @@
 // Magnetic buttons — all [data-magnetic] elements pull toward cursor
 
+import { registerInteraction } from "utils/lifecycle";
+
 function init() {
-  if (typeof gsap === "undefined") return;
-  if (window.matchMedia("(pointer: coarse)").matches) return;
+  if (typeof gsap === "undefined") return null;
+  if (window.matchMedia("(pointer: coarse)").matches) return null;
 
-  const elements = document.querySelectorAll("[data-magnetic]");
+  const cleanups = [];
 
-  elements.forEach((el) => {
+  document.querySelectorAll("[data-magnetic]").forEach((el) => {
     const strength = parseFloat(el.dataset.magneticStrength || "0.3");
     const textEl = el.querySelector("span, a") || el.firstElementChild;
 
@@ -53,18 +55,15 @@ function init() {
 
     el.addEventListener("mousemove", onMove);
     el.addEventListener("mouseleave", onLeave);
+    cleanups.push(() => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
+    });
   });
+
+  return () => cleanups.forEach((remove) => remove());
 }
 
-function setup() {
-  if (window.GSAP_READY) {
-    init();
-  } else {
-    window.addEventListener("gsapInitialized", init, { once: true });
-  }
-}
-
-document.addEventListener("turbo:load", setup);
-if (document.readyState !== "loading") setup();
+registerInteraction(init);
 
 export { init };

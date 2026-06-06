@@ -73,8 +73,17 @@ if (document.readyState === "loading") {
   setup();
 }
 
-// On every Turbo navigation, always hide preloader
-document.addEventListener("turbo:load", hidePreloader);
+// turbo:load also fires on the initial page load, which is already handled by
+// setup() above. Ignore that first event so it can't cut off the intro on a
+// first visit; only hide the (re-inserted) preloader on later navigations.
+let firstTurboLoadSeen = false;
+document.addEventListener("turbo:load", () => {
+  if (!firstTurboLoadSeen) {
+    firstTurboLoadSeen = true;
+    return;
+  }
+  hidePreloader();
+});
 
 // Before Turbo caches the page, hide preloader so cached HTML doesn't have it visible
 document.addEventListener("turbo:before-cache", hidePreloader);

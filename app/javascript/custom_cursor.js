@@ -1,14 +1,24 @@
 // Custom cursor — dot + ring + particle trail
 // Hidden on touch/mobile via CSS
 
+import { registerInteraction } from "utils/lifecycle";
+
 function init() {
-  if (typeof gsap === "undefined") return;
-  if (window.matchMedia("(pointer: coarse)").matches) return;
+  if (typeof gsap === "undefined") return null;
+  if (window.matchMedia("(pointer: coarse)").matches) return null;
 
   const dot = document.querySelector("[data-cursor='dot']");
   const ring = document.querySelector("[data-cursor='ring']");
   const particles = document.querySelectorAll("[data-cursor-particle]");
-  if (!dot || !ring) return;
+  if (!dot || !ring) return null;
+
+  // Track every listener we bind so teardown can remove them and nothing
+  // leaks across Turbo navigations.
+  const cleanups = [];
+  function on(target, type, handler) {
+    target.addEventListener(type, handler);
+    cleanups.push(() => target.removeEventListener(type, handler));
+  }
 
   // quickTo for smooth 60fps tracking
   const dotX = gsap.quickTo(dot, "x", { duration: 0.1, ease: "power3" });
@@ -42,54 +52,46 @@ function init() {
     }, 200);
   }
 
-  window.addEventListener("mousemove", onMouseMove);
+  on(window, "mousemove", onMouseMove);
 
   // Magnetic element hover — ring expands
-  const magnetics = document.querySelectorAll("[data-magnetic]");
-  magnetics.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
+  document.querySelectorAll("[data-magnetic]").forEach((el) => {
+    on(el, "mouseenter", () => {
       gsap.to(ring, { width: 60, height: 60, duration: 0.3, ease: "power2.out" });
       gsap.to(dot, { opacity: 0, duration: 0.2 });
     });
-    el.addEventListener("mouseleave", () => {
+    on(el, "mouseleave", () => {
       gsap.to(ring, { width: 40, height: 40, duration: 0.3, ease: "elastic.out(1, 0.3)" });
       gsap.to(dot, { opacity: 1, duration: 0.2 });
     });
   });
 
   // Project row hover — ring morphs
-  const projectRows = document.querySelectorAll(".project-row");
-  projectRows.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
+  document.querySelectorAll(".project-row").forEach((el) => {
+    on(el, "mouseenter", () => {
       gsap.to(ring, { width: 80, height: 40, borderRadius: "20px", duration: 0.3 });
     });
-    el.addEventListener("mouseleave", () => {
+    on(el, "mouseleave", () => {
       gsap.to(ring, { width: 40, height: 40, borderRadius: "50%", duration: 0.3, ease: "elastic.out(1, 0.3)" });
     });
   });
 
   // Gallery viewport hover — ring becomes wide pill for drag
-  const galleryViewports = document.querySelectorAll("[data-gallery-viewport]");
-  galleryViewports.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
+  document.querySelectorAll("[data-gallery-viewport]").forEach((el) => {
+    on(el, "mouseenter", () => {
       gsap.to(ring, { width: 80, height: 40, borderRadius: "20px", duration: 0.3 });
     });
-    el.addEventListener("mouseleave", () => {
+    on(el, "mouseleave", () => {
       gsap.to(ring, { width: 40, height: 40, borderRadius: "50%", duration: 0.3, ease: "elastic.out(1, 0.3)" });
     });
   });
+
+  return () => {
+    clearTimeout(idleTimeout);
+    cleanups.forEach((remove) => remove());
+  };
 }
 
-// Init on load and turbo navigate
-function setup() {
-  if (window.GSAP_READY) {
-    init();
-  } else {
-    window.addEventListener("gsapInitialized", init, { once: true });
-  }
-}
-
-document.addEventListener("turbo:load", setup);
-if (document.readyState !== "loading") setup();
+registerInteraction(init);
 
 export { init };

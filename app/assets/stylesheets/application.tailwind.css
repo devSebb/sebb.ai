@@ -239,3 +239,67 @@
     scroll-snap-align: center;
   }
 }
+
+/* Print — ink-friendly resume (Save as PDF). Neutralizes the dark exhibition
+   theme, hides interactive/decorative chrome, and reveals any scroll-animated
+   content that would otherwise print at opacity:0. */
+@media print {
+  html, body {
+    background: #fff !important;
+  }
+
+  body {
+    color: #111 !important;
+  }
+
+  /* Decorative + interactive chrome has no place on paper */
+  .nav-fixed,
+  .cursor-dot, .cursor-ring, .cursor-particle,
+  .preloader, .page-transition, .menu-overlay,
+  [data-geometry-layer] {
+    display: none !important;
+  }
+
+  /* Reveal scroll-revealed content and undo animation transforms/filters */
+  main, main * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  /* On screen each section is a full-height chapter; collapse that for print */
+  .section-room {
+    min-height: 0 !important;
+    padding: 0 1.5rem !important;
+  }
+
+  main {
+    z-index: auto !important;
+  }
+
+  /* Ink-friendly text + surfaces */
+  .text-surface-light, .text-surface-white {
+    color: #111 !important;
+  }
+  .text-muted {
+    color: #444 !important;
+  }
+  .meta-label {
+    color: #666 !important;
+  }
+  .text-accent {
+    color: #000 !important;
+  }
+  .bg-surface-dark {
+    background: #f2f2f2 !important;
+  }
+  .border-border, .border-t {
+    border-color: #ccc !important;
+  }
+
+  /* Keep entries from splitting across page boundaries */
+  .resume-item {
+    break-inside: avoid;
+  }
+}

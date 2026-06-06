@@ -12,6 +12,7 @@ pin_all_from "app/javascript/animations", under: "animations"
 # Utility modules
 pin "utils/text_splitter", to: "utils/text_splitter.js"
 pin "utils/motion_library", to: "utils/motion_library.js"
+pin "utils/lifecycle", to: "utils/lifecycle.js"
 
 # Animation modules
 pin "hero_animations", to: "hero_animations.js", preload: true

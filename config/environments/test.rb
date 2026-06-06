@@ -43,6 +43,10 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Enqueue jobs (incl. deliver_later) instead of running them, so the suite
+  # can assert on enqueued emails deterministically.
+  config.active_job.queue_adapter = :test
+
   # Unlike controllers, the mailer instance doesn't have any context about the
   # incoming request so you'll need to provide the :host parameter yourself.
   config.action_mailer.default_url_options = { host: "www.example.com" }

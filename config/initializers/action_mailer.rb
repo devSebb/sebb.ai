@@ -19,6 +19,10 @@ if ENV["SMTP_ADDRESS"].present?
     user_name: ENV["SMTP_USERNAME"],
     password: ENV["SMTP_PASSWORD"],
     authentication: ENV.fetch("SMTP_AUTHENTICATION", "plain"),
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    # Bound the SMTP handshake so a slow/hung server can't tie up a delivery
+    # thread indefinitely.
+    open_timeout: ENV.fetch("SMTP_OPEN_TIMEOUT", 10).to_i,
+    read_timeout: ENV.fetch("SMTP_READ_TIMEOUT", 10).to_i
   }
 end
