@@ -3,7 +3,7 @@
   <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
     <%# Left column: label + heading %>
     <div class="md:col-span-4">
-      <span class="meta-label about-label">01 / About</span>
+      <span class="meta-label about-label"><span class="text-accent">01</span> — About</span>
       <h2 class="font-display font-extrabold text-display-md text-surface-light mt-6 about-heading">Building things that feel alive
       </h2>
     </div>
@@ -17,8 +17,8 @@
       <% end %>
 
       <%# Profile hint %>
-      <div class="flex items-center gap-4 pt-8 about-profile">
-        <%= image_tag "profile.JPG", alt: @identity[:name], class: "w-16 h-16 rounded-full object-cover grayscale", loading: "lazy" %>
+      <div class="group flex items-center gap-4 pt-8 about-profile">
+        <%= image_tag "profile.JPG", alt: @identity[:name], class: "w-16 h-16 rounded-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105", loading: "lazy" %>
         <div>
           <span class="text-surface-light font-body font-medium"><%= @identity[:name] %></span>
           <span class="meta-label block mt-1">Developer & Designer</span>

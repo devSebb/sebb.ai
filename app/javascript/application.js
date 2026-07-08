@@ -11,13 +11,13 @@ import { init as initContact } from "contact_animations"
 import { init as initProjectDetail } from "project_detail_animations"
 import { init as initResume } from "resume_animations"
 import "smooth_scroll"
-import "gsap_setup"
 import "custom_cursor"
 import "magnetic"
 import "page_transitions"
 import "preloader"
 import "menu_animations"
-import "floating_geometry"
+import "spotlight"
+import "local_time"
 
 register("hero", { init: initHero })
 register("about", { init: initAbout })

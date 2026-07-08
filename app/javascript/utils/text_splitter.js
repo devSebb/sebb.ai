@@ -8,13 +8,18 @@ export function splitByChars(el) {
   const text = el.textContent;
   el.setAttribute("aria-label", text);
 
+  // Wrap each word so inline-block chars can never break mid-word,
+  // then split the word into chars inside that wrapper.
   el.innerHTML = text
-    .split("")
-    .map((char) =>
-      char === " "
-        ? " "
-        : `<span class="split-char" style="display:inline-block">${char}</span>`
-    )
+    .split(/(\s+)/)
+    .map((word) => {
+      if (word.match(/^\s+$/)) return word;
+      const chars = word
+        .split("")
+        .map((char) => `<span class="split-char" style="display:inline-block">${char}</span>`)
+        .join("");
+      return `<span class="split-word-wrap" style="display:inline-block;white-space:nowrap">${chars}</span>`;
+    })
     .join("");
 
   return el.querySelectorAll(".split-char");

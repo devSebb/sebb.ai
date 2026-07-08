@@ -1,8 +1,8 @@
 <%# Exhibition Room 4 — Skills Display Wall %>
 <section class="section-room py-24 md:py-32" id="skills" data-animate="skills">
   <div class="flex items-baseline justify-between mb-16">
-    <span class="meta-label">03 / Skills</span>
-    <span class="meta-label">Full-stack — design to deployment</span>
+    <span class="meta-label"><span class="text-accent">03</span> — Skills</span>
+    <span class="meta-label hidden sm:block">Full-stack — design to deployment</span>
   </div>
 
   <p class="text-muted text-body mb-12 max-w-xl">
@@ -16,7 +16,7 @@
         <h3 class="font-display font-semibold text-display-sm text-surface-light mb-2 skill-cat-heading">
           <%= category[:name] %>
         </h3>
-        <span class="font-mono text-meta uppercase tracking-widest text-muted/40 mt-1 mb-6 block">
+        <span class="font-mono text-meta uppercase tracking-widest text-muted mt-1 mb-6 block">
           <%= category[:items].length.to_s.rjust(2, "0") %> <%= category[:name].downcase %>
         </span>
         <ul class="space-y-4">
@@ -38,7 +38,12 @@
       <div class="flex whitespace-nowrap marquee-track-left will-change-transform">
         <% 2.times do %>
           <% @tech_stack.each do |tech| %>
-            <span class="inline-flex items-center font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-6 py-2 mx-1 shrink-0"><%= tech[:name] %></span>
+            <span class="group inline-flex items-center gap-2.5 font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-5 py-2 mx-1 shrink-0 transition-colors duration-300 hover:text-surface-light hover:border-accent/50">
+              <% if (icon = @tech_icons[tech[:icon_key]&.to_sym]) %>
+                <%= image_tag icon, alt: "", class: "w-4 h-4 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100", loading: "lazy" %>
+              <% end %>
+              <%= tech[:name] %>
+            </span>
           <% end %>
         <% end %>
       </div>
@@ -48,7 +53,12 @@
       <div class="flex whitespace-nowrap marquee-track-right will-change-transform">
         <% 2.times do %>
           <% @tech_stack.each do |tech| %>
-            <span class="inline-flex items-center font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-6 py-2 mx-1 shrink-0"><%= tech[:name] %></span>
+            <span class="group inline-flex items-center gap-2.5 font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-5 py-2 mx-1 shrink-0 transition-colors duration-300 hover:text-surface-light hover:border-accent/50">
+              <% if (icon = @tech_icons[tech[:icon_key]&.to_sym]) %>
+                <%= image_tag icon, alt: "", class: "w-4 h-4 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100", loading: "lazy" %>
+              <% end %>
+              <%= tech[:name] %>
+            </span>
           <% end %>
         <% end %>
       </div>

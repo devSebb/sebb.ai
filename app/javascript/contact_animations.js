@@ -1,9 +1,23 @@
 import { splitByChars } from "utils/text_splitter";
-import { prefersReducedMotion } from "utils/motion_library";
+import { charStagger, EASE, DUR, prefersReducedMotion } from "utils/motion_library";
 
 function init(section) {
+  // Submit micro-state — button acknowledges the send while the POST runs.
+  // Not motion: bind it even under reduced-motion / missing GSAP.
+  const formEl = section.querySelector("[data-contact-form]");
+  const submitBtn = section.querySelector("[data-contact-submit]");
+  const onSubmit = () => {
+    if (!submitBtn) return;
+    submitBtn.value = "Sending…";
+    submitBtn.disabled = true;
+  };
+  if (formEl) formEl.addEventListener("submit", onSubmit);
+  const destroyForm = () => {
+    if (formEl) formEl.removeEventListener("submit", onSubmit);
+  };
+
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
-    return { destroy() {} };
+    return { destroy: destroyForm };
   }
 
   const ctx = gsap.context(() => {
@@ -13,53 +27,50 @@ function init(section) {
     const form = section.querySelector(".contact-form");
     const footer = section.querySelector(".contact-footer");
 
-    // Split heading chars
     let chars = [];
     if (heading) {
       chars = splitByChars(heading);
     }
 
-    // Pinned chapter reveal
+    // Fire-once room reveal — fast, no pin
     const tl = gsap.timeline({
+      defaults: { ease: EASE },
       scrollTrigger: {
-        id: "CONTACT_PIN",
+        id: "CONTACT_REVEAL",
         trigger: section,
-        start: "top top",
-        end: "+=100%",
-        pin: true,
-        scrub: 1
+        start: "top 70%",
+        once: true
       }
     });
 
     if (chars.length) {
-      tl.from(chars, {
-        y: 80, opacity: 0, stagger: 0.02, duration: 0.6
-      });
+      tl.add(charStagger(chars));
     }
 
     if (email) {
-      tl.from(email, { y: 20, opacity: 0, duration: 0.4 });
+      tl.from(email, { y: 20, opacity: 0, duration: DUR.normal }, "-=0.5");
     }
 
     if (socialLinks.length) {
       tl.from(socialLinks, {
-        x: -10, opacity: 0, stagger: 0.08, duration: 0.3
-      });
+        x: -10, opacity: 0, stagger: 0.06, duration: DUR.fast
+      }, "-=0.4");
     }
 
     if (form) {
       tl.from(form, {
-        y: 40, opacity: 0, duration: 0.5
-      }, "<+=0.2");
+        y: 40, opacity: 0, duration: DUR.normal
+      }, "-=0.5");
     }
 
     if (footer) {
-      tl.from(footer, { opacity: 0, duration: 0.3 });
+      tl.from(footer, { opacity: 0, duration: DUR.normal }, "-=0.3");
     }
   }, section);
 
   return {
     destroy() {
+      destroyForm();
       ctx.revert();
     }
   };

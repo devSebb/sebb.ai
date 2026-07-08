@@ -53,10 +53,12 @@ function init(section) {
     // Marquee animations (always run — essential content, not decorative)
     const leftTrack = section.querySelector(".marquee-track-left");
     const rightTrack = section.querySelector(".marquee-track-right");
+    let leftTween = null;
+    let rightTween = null;
 
     // Seamless infinite scroll: 2 identical copies, move by 50% (one full copy) per loop
     if (leftTrack) {
-      const leftTween = gsap.to(leftTrack, {
+      leftTween = gsap.to(leftTrack, {
         xPercent: -50,
         ease: "none",
         repeat: -1,
@@ -71,7 +73,7 @@ function init(section) {
 
     if (rightTrack) {
       gsap.set(rightTrack, { xPercent: -50 });
-      const rightTween = gsap.to(rightTrack, {
+      rightTween = gsap.to(rightTrack, {
         xPercent: 0,
         ease: "none",
         repeat: -1,
@@ -82,6 +84,31 @@ function init(section) {
         container.addEventListener("mouseenter", () => rightTween.pause());
         container.addEventListener("mouseleave", () => rightTween.resume());
       }
+    }
+
+    // Live marquee — direction follows scroll direction, speed rides velocity
+    if (!reducedMotion && typeof ScrollTrigger !== "undefined" && (leftTween || rightTween)) {
+      const tweens = [leftTween, rightTween].filter(Boolean);
+      ScrollTrigger.create({
+        id: "SKILLS_MARQUEE_VELOCITY",
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate(self) {
+          const boost = gsap.utils.clamp(1, 4, 1 + Math.abs(self.getVelocity()) / 1200);
+          tweens.forEach((tween) => {
+            if (tween.paused()) return;
+            gsap.to(tween, {
+              timeScale: self.direction * boost,
+              duration: 0.3,
+              overwrite: true,
+              onComplete: () => {
+                gsap.to(tween, { timeScale: self.direction, duration: 1.2, ease: "power2.out" });
+              }
+            });
+          });
+        }
+      });
     }
   }, section);
 

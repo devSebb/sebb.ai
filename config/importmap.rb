@@ -24,7 +24,7 @@ pin "contact_animations", to: "contact_animations.js", preload: true
 pin "project_detail_animations", to: "project_detail_animations.js", preload: true
 pin "resume_animations", to: "resume_animations.js", preload: true
 pin "smooth_scroll", to: "smooth_scroll.js", preload: true
-pin "gsap_setup", to: "gsap_setup.js", preload: true
+pin "hero_grid", to: "hero_grid.js", preload: true
 
 # Advanced interaction modules
 pin "custom_cursor", to: "custom_cursor.js"
@@ -32,4 +32,5 @@ pin "magnetic", to: "magnetic.js"
 pin "page_transitions", to: "page_transitions.js"
 pin "preloader", to: "preloader.js"
 pin "menu_animations", to: "menu_animations.js"
-pin "floating_geometry", to: "floating_geometry.js"
+pin "spotlight", to: "spotlight.js"
+pin "local_time", to: "local_time.js"

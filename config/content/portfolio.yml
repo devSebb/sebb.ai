@@ -4,6 +4,11 @@ identity:
   nickname: "Sebb"
   role_line: "Software Developer & Designer"
   footer_copyright_year: "2025"
+  # Footer clock — set both to pin the time to your city, e.g.
+  # location_label: "Monterrey, MX" / timezone: "America/Monterrey".
+  # Left blank, the footer shows the visitor's own local time.
+  location_label: ""
+  timezone: ""
 
 links:
   design_portfolio: "https://simple-way-402038.framer.app/"
@@ -14,6 +19,10 @@ links:
 about:
   intro_heading: "Hello and welcome, people call me"
   hero_rotating_prefix: "I'm a"
+  hero_rotating_titles:
+    - "Software Developer"
+    - "Product Designer"
+    - "Digital Craftsman"
   hero_tagline: "I design and build digital products that feel alive."
   hero_description: "Software Developer & Designer based in the real world, building for the digital one."
   paragraphs:

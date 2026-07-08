@@ -1,5 +1,5 @@
 import { splitByChars } from "utils/text_splitter";
-import { charStagger, prefersReducedMotion } from "utils/motion_library";
+import { charStagger, EASE, DUR, prefersReducedMotion } from "utils/motion_library";
 
 function init(section) {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
@@ -16,7 +16,7 @@ function init(section) {
     const heroOverlay = section.querySelector(".project-hero-overlay");
     const title = section.querySelector(".project-detail-title");
     const metaCols = section.querySelectorAll(".project-meta-col");
-    const description = section.querySelector(".project-description");
+    const descriptions = section.querySelectorAll(".project-description");
     const features = section.querySelectorAll(".project-feature");
     const navLinks = section.querySelectorAll(".project-nav-link");
 
@@ -45,7 +45,7 @@ function init(section) {
     if (metaCols.length) {
       gsap.from(metaCols, {
         y: 20, opacity: 0, scale: 0.95,
-        stagger: 0.1, duration: 0.6, ease: "power2.out",
+        stagger: 0.1, duration: DUR.normal, ease: EASE,
         scrollTrigger: {
           trigger: ".project-metadata",
           start: "top 85%"
@@ -53,12 +53,12 @@ function init(section) {
       });
     }
 
-    // Description fade in
-    if (description) {
-      gsap.from(description, {
-        y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
+    // Description paragraphs — staggered house reveal
+    if (descriptions.length) {
+      gsap.from(descriptions, {
+        y: 30, opacity: 0, stagger: 0.12, duration: DUR.slow, ease: EASE,
         scrollTrigger: {
-          trigger: description,
+          trigger: descriptions[0],
           start: "top 80%"
         }
       });
@@ -67,7 +67,7 @@ function init(section) {
     // Features stagger
     if (features.length) {
       gsap.from(features, {
-        y: 30, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out",
+        y: 30, opacity: 0, stagger: 0.1, duration: DUR.normal, ease: EASE,
         scrollTrigger: {
           trigger: features[0],
           start: "top 85%"
@@ -134,9 +134,19 @@ function init(section) {
         updateUI();
       }
 
-      // Staggered depth
+      // Staggered depth + gentle counter-parallax as the strip crosses the viewport
       slides.forEach((slide, i) => {
-        gsap.set(slide, { y: i % 2 === 0 ? -10 : 10 });
+        gsap.set(slide, { y: i % 2 === 0 ? -12 : 12 });
+      });
+      gsap.to(slides, {
+        y: (i) => (i % 2 === 0 ? 12 : -12),
+        ease: "none",
+        scrollTrigger: {
+          trigger: viewport,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
       });
 
       // Entrance animation

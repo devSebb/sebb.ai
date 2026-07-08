@@ -1,7 +1,7 @@
 <%# Exhibition Room 3 — Central Gallery Hall %>
 <section class="section-room py-24 md:py-32" id="projects" data-animate="projects">
   <div class="flex items-baseline justify-between mb-16">
-    <span class="meta-label">02 / Projects</span>
+    <span class="meta-label"><span class="text-accent">02</span> — Projects</span>
     <span class="meta-label"><%= @projects.length %> Selected Works</span>
   </div>
 
@@ -9,15 +9,16 @@
   <div class="projects-list relative">
     <% @projects.each_with_index do |project, index| %>
       <%= link_to project_path(project[:slug]),
-            class: "project-row group block border-t border-border py-8 md:py-10 transition-colors hover:border-accent",
+            class: "project-row group block border-t border-border py-8 md:py-10 transition-colors duration-300 hover:border-accent hover:bg-surface-dark/40",
             data: {
               project_image: image_path(project[:hero_image]),
-              project_slug: project[:slug]
+              project_slug: project[:slug],
+              cursor_text: "View"
             } do %>
-        <div class="grid grid-cols-12 items-center gap-4">
-          <%# Number %>
-          <span class="meta-label col-span-1 project-number">
-            <%= "%02d" % (index + 1) %>
+        <div class="grid grid-cols-12 items-center gap-4 transition-transform duration-motion-normal ease-expo-out md:group-hover:translate-x-3">
+          <%# Catalogue number %>
+          <span class="meta-label col-span-1 whitespace-nowrap project-number">
+            <span class="hidden md:inline">Nº </span><%= "%03d" % (index + 1) %>
           </span>
 
           <%# Name %>
@@ -42,9 +43,10 @@
     <div class="border-t border-border"></div>
   </div>
 
-  <%# Floating cursor-follow image (desktop only) %>
-  <div class="project-float-img fixed top-0 left-0 w-[400px] h-[280px] pointer-events-none opacity-0 z-30 overflow-hidden rounded-lg hidden md:block"
+  <%# Floating cursor-follow image (desktop only) — framed like a hung work %>
+  <div class="project-float-img fixed top-0 left-0 w-[400px] h-[280px] pointer-events-none opacity-0 z-30 overflow-hidden rounded-lg hidden md:block border border-accent/60"
        style="will-change: transform;">
     <img src="" alt="" class="w-full h-full object-cover" data-project-float-src />
+    <span class="absolute bottom-2 left-2 meta-label text-surface-light bg-surface-black/70 px-2 py-1 rounded" data-project-float-caption></span>
   </div>
 </section>

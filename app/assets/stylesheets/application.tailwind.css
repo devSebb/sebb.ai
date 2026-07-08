@@ -22,6 +22,20 @@
   .split-word {
     display: inline-block;
   }
+
+  /* Variable-weight cursor wave on the hero name. Scoped behind
+     .hero-wave-ready (set after the entrance finishes) so the transform
+     transition can never fight GSAP's per-frame entrance tweens. */
+  .split-char {
+    transition: font-variation-settings 0.25s ease-out;
+  }
+
+  .hero-wave-ready .split-char {
+    transition:
+      font-variation-settings 0.25s ease-out,
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.3s ease-out;
+  }
 }
 
 @layer components {
@@ -80,10 +94,72 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Floating geometry — background depth layer */
-  .floating-geo {
-    @apply absolute pointer-events-none;
+  /* Contextual cursor label — "View" / "Drag" pill (no blend mode: must stay legible) */
+  .cursor-label {
+    @apply fixed top-0 left-0 items-center justify-center pointer-events-none opacity-0
+           bg-accent text-surface-black font-mono text-meta-sm uppercase tracking-widest
+           rounded-full px-4 py-2;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  /* Atmosphere — gallery lighting behind the content */
+  .atmosphere-layer {
+    @apply fixed inset-0 pointer-events-none overflow-hidden;
+    z-index: 0;
+  }
+
+  .aurora-blob {
+    @apply absolute rounded-full;
     will-change: transform;
+  }
+
+  .aurora-blob-a {
+    width: 65vmax;
+    height: 65vmax;
+    top: -22vmax;
+    right: -18vmax;
+    background: radial-gradient(circle at center, rgba(14, 215, 98, 0.055), transparent 62%);
+    animation: aurora-drift-a 50s ease-in-out infinite alternate;
+  }
+
+  .aurora-blob-b {
+    width: 55vmax;
+    height: 55vmax;
+    bottom: -18vmax;
+    left: -14vmax;
+    background: radial-gradient(circle at center, rgba(232, 232, 232, 0.035), transparent 62%);
+    animation: aurora-drift-b 65s ease-in-out infinite alternate;
+  }
+
+  /* Cursor spotlight — soft light that follows the pointer (JS-driven) */
+  .cursor-spotlight {
+    @apply fixed top-0 left-0 pointer-events-none rounded-full opacity-0;
+    width: 55vmax;
+    height: 55vmax;
+    z-index: 40;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, rgba(245, 245, 240, 0.08), transparent 60%);
+    mix-blend-mode: soft-light;
+    will-change: transform;
+  }
+
+  /* Film grain — feTurbulence texture, oversized for the jitter loop */
+  .grain-overlay {
+    @apply fixed pointer-events-none;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 90;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain-jitter 8s steps(10) infinite;
+  }
+
+  /* Footer availability dot */
+  .availability-dot {
+    @apply inline-block w-2 h-2 rounded-full bg-accent animate-pulse-slow;
+    box-shadow: 0 0 8px rgba(14, 215, 98, 0.7);
   }
 
   /* Nav */
@@ -114,6 +190,29 @@
     transform: scale(1.05);
   }
 
+  /* Menu link roll-text — duplicate label rolls up on hover */
+  .menu-roll-mask {
+    @apply inline-block overflow-hidden;
+    height: 1.15em;
+  }
+
+  .menu-roll {
+    @apply flex flex-col transition-transform;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .menu-roll-item {
+    @apply block;
+    line-height: 1.15;
+  }
+
+  @media (hover: hover) {
+    .group:hover .menu-roll {
+      transform: translateY(-50%);
+    }
+  }
+
   /* Menu overlay */
   .menu-overlay {
     @apply fixed inset-0 z-50 bg-surface-dark flex items-center justify-center;
@@ -133,26 +232,32 @@
     transform-origin: left;
   }
 
+  /* Destination room label — sits above the curtain, never distorted by its scale */
+  .page-transition-label {
+    @apply fixed inset-0 flex items-center justify-center pointer-events-none opacity-0
+           font-mono text-meta uppercase tracking-widest text-surface-black;
+    z-index: 61;
+  }
+
   /* Preloader */
   .preloader {
     @apply fixed inset-0 bg-surface-black flex items-center justify-center;
     z-index: 100;
   }
 
-  /* Hover underline animation */
+  /* Hover underline — draws in from the left, exits through the right */
   .hover-underline {
-    @apply relative;
+    background-image: linear-gradient(theme('colors.accent.DEFAULT'), theme('colors.accent.DEFAULT'));
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .hover-underline::after {
-    @apply content-[''] absolute bottom-0 left-0 w-full h-[1px] bg-accent;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-  }
-
-  .hover-underline:hover::after {
-    transform: scaleX(1);
+  .hover-underline:hover,
+  .hover-underline:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
   }
 
   /* Corridor spacer between exhibition rooms */
@@ -162,8 +267,7 @@
 
   /* Gallery strip — cinematic horizontal scroll */
   .gallery-strip {
-    @apply relative w-full;
-    background-color: #111111;
+    @apply relative w-full bg-surface-dark;
   }
 
   .gallery-viewport {
@@ -185,12 +289,12 @@
 
   .gallery-viewport::before {
     left: 0;
-    background: linear-gradient(to right, #111111, transparent);
+    background: linear-gradient(to right, theme('colors.surface.dark'), transparent);
   }
 
   .gallery-viewport::after {
     right: 0;
-    background: linear-gradient(to left, #111111, transparent);
+    background: linear-gradient(to left, theme('colors.surface.dark'), transparent);
   }
 
   .gallery-slide {
@@ -212,6 +316,30 @@
     user-select: none;
     -webkit-user-drag: none;
   }
+}
+
+/* Atmosphere keyframes */
+@keyframes aurora-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-12vw, 10vh, 0) scale(1.15); }
+}
+
+@keyframes aurora-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(10vw, -8vh, 0) scale(1.1); }
+}
+
+@keyframes grain-jitter {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -8%); }
+  20% { transform: translate(-12%, 3%); }
+  30% { transform: translate(6%, -14%); }
+  40% { transform: translate(-3%, 12%); }
+  50% { transform: translate(-9%, 6%); }
+  60% { transform: translate(12%, 0%); }
+  70% { transform: translate(0%, 8%); }
+  80% { transform: translate(3%, 14%); }
+  90% { transform: translate(-8%, 5%); }
 }
 
 /* Reduced motion */
@@ -256,7 +384,7 @@
   .nav-fixed,
   .cursor-dot, .cursor-ring, .cursor-particle,
   .preloader, .page-transition, .menu-overlay,
-  [data-geometry-layer] {
+  .atmosphere-layer, .cursor-spotlight, .grain-overlay {
     display: none !important;
   }
 

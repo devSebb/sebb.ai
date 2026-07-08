@@ -4,7 +4,9 @@ function init() {
   if (typeof gsap === "undefined") return;
 
   const preloader = document.querySelector("[data-preloader]");
-  const preloaderText = document.querySelector("[data-preloader-text]");
+  const text = document.querySelector("[data-preloader-text]");
+  const sub = document.querySelector("[data-preloader-sub]");
+  const counter = document.querySelector("[data-preloader-counter]");
   if (!preloader) return;
 
   // Skip on return visits — hide immediately
@@ -24,24 +26,31 @@ function init() {
     }
   });
 
-  // Letters fade in
-  if (preloaderText) {
-    tl.from(preloaderText, {
-      opacity: 0, scale: 0.8,
-      duration: 0.6, ease: "power3.out"
-    });
+  // Ticket stamps in
+  if (text) {
+    tl.from(text, { y: 24, opacity: 0, duration: 0.5, ease: "expo.out" });
+  }
+  if (sub) {
+    tl.from(sub, { y: 12, opacity: 0, duration: 0.4, ease: "expo.out" }, "-=0.3");
   }
 
-  // Hold
-  tl.to({}, { duration: 0.5 });
-
-  // Letters spread and fade
-  if (preloaderText) {
-    tl.to(preloaderText, {
-      letterSpacing: "0.5em", opacity: 0,
-      duration: 0.6, ease: "power3.inOut"
-    });
+  // Catalogue counter — eased steps like a museum entry stamp
+  if (counter) {
+    const num = { value: 0 };
+    const render = () => {
+      counter.textContent = `Nº ${String(Math.round(num.value)).padStart(3, "0")}`;
+    };
+    tl.from(counter, { opacity: 0, duration: 0.3 }, "-=0.2")
+      .to(num, { value: 47, duration: 0.45, ease: "power2.out", onUpdate: render }, "<")
+      .to({}, { duration: 0.12 })
+      .to(num, { value: 100, duration: 0.45, ease: "power3.inOut", onUpdate: render });
   }
+
+  // Ticket clears
+  tl.to([text, sub, counter].filter(Boolean), {
+    y: -16, opacity: 0, stagger: 0.05,
+    duration: 0.4, ease: "power3.inOut"
+  }, "+=0.15");
 
   // Preloader wipes away
   tl.to(preloader, {

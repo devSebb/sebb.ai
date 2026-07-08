@@ -1,7 +1,7 @@
 <%# Exhibition Room 5 — Experience %>
 <section class="section-room py-24 md:py-32" id="experience" data-animate="experience">
   <div class="flex items-baseline justify-between mb-16">
-    <span class="meta-label exp-label">04 / Experience</span>
+    <span class="meta-label exp-label"><span class="text-accent">04</span> — Experience</span>
     <%= link_to resume_path, class: "btn-magnetic", data: { magnetic: true } do %>
       Full Resume
     <% end %>
@@ -10,7 +10,7 @@
   <%# Experience rows %>
   <div class="space-y-0">
     <% @experience.each_with_index do |item, index| %>
-      <div class="exp-item grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 border-t border-border exp-border">
+      <div class="exp-item grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 border-t border-border exp-border transition-colors duration-300 hover:border-accent hover:bg-surface-dark/40">
         <%# Left: number + date %>
         <div class="md:col-span-3 flex md:flex-col gap-4 md:gap-2">
           <span class="meta-label text-accent exp-number"><%= "%02d" % (index + 1) %></span>

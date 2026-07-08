@@ -34,6 +34,7 @@ function init(section) {
 
     // Hover system — floating cursor-follow image (desktop only)
     if (floatImg && floatSrc && window.matchMedia("(pointer: fine)").matches) {
+      const floatCaption = floatImg.querySelector("[data-project-float-caption]");
       const xTo = gsap.quickTo(floatImg, "x", { duration: 0.4, ease: "power3" });
       const yTo = gsap.quickTo(floatImg, "y", { duration: 0.4, ease: "power3" });
 
@@ -43,6 +44,10 @@ function init(section) {
 
         row.addEventListener("mouseenter", () => {
           if (imgUrl) floatSrc.src = imgUrl;
+          if (floatCaption && nameEl) {
+            const number = row.querySelector(".project-number")?.textContent.trim();
+            floatCaption.textContent = number ? `${number} — ${nameEl.textContent.trim()}` : nameEl.textContent.trim();
+          }
           gsap.to(floatImg, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
           if (nameEl) {
             gsap.to(nameEl, { filter: "blur(2px)", opacity: 0.4, duration: 0.3 });

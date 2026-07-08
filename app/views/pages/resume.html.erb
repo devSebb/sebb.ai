@@ -84,7 +84,7 @@
     <span class="meta-label block mb-12">Certifications</span>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <% @resume[:certifications].each do |item| %>
-        <div class="resume-item bg-surface-dark rounded-lg p-6">
+        <div class="resume-item bg-surface-dark rounded-lg p-6 border border-transparent transition-all duration-300 hover:border-accent/40 hover:-translate-y-0.5">
           <h3 class="font-display font-bold text-body-lg text-surface-light mb-2"><%= item[:title] %></h3>
           <span class="meta-label block"><%= item[:provider] %></span>
           <span class="meta-label block mt-1"><%= item[:date_label] %></span>
@@ -101,7 +101,7 @@
         <h3 class="font-display font-bold text-display-md text-surface-light mb-6">Technical</h3>
         <div class="flex flex-wrap gap-3">
           <% @resume[:technical_skills].each do |skill| %>
-            <span class="resume-item px-4 py-2 bg-surface-dark rounded text-body text-surface-light"><%= skill %></span>
+            <span class="resume-item px-4 py-2 bg-surface-dark rounded text-body text-surface-light border border-transparent transition-colors duration-300 hover:border-accent/40 cursor-default"><%= skill %></span>
           <% end %>
         </div>
       </div>

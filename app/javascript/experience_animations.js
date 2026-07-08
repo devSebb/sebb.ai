@@ -1,4 +1,4 @@
-import { prefersReducedMotion } from "utils/motion_library";
+import { EASE, EASE_INOUT, DUR, prefersReducedMotion } from "utils/motion_library";
 
 function init(section) {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
@@ -12,54 +12,45 @@ function init(section) {
     const numbers = section.querySelectorAll(".exp-number");
     const titles = section.querySelectorAll(".exp-title");
 
-    // Pinned chapter with sequential row reveals
+    // Fire-once room reveal — fast, no pin
     const tl = gsap.timeline({
+      defaults: { ease: EASE },
       scrollTrigger: {
-        id: "EXPERIENCE_PIN",
+        id: "EXPERIENCE_REVEAL",
         trigger: section,
-        start: "top top",
-        end: "+=150%",
-        pin: true,
-        scrub: 1
+        start: "top 75%",
+        once: true
       }
     });
 
     if (label) {
-      tl.from(label, { y: 20, opacity: 0, duration: 0.2 });
+      tl.from(label, { y: 20, opacity: 0, duration: DUR.fast });
     }
 
-    // Items entrance
     if (items.length) {
       tl.from(items, {
-        y: 50, opacity: 0, stagger: 0.15, duration: 0.4
-      });
+        y: 40, opacity: 0, stagger: 0.1, duration: DUR.normal
+      }, "-=0.1");
     }
 
-    // Border draw
     if (borders.length) {
       tl.from(borders, {
         scaleX: 0, transformOrigin: "left center",
-        stagger: 0.15, duration: 0.3
+        stagger: 0.1, duration: DUR.normal, ease: EASE_INOUT
       }, "<");
     }
 
-    // Number accent pulse
     if (numbers.length) {
-      numbers.forEach((num, i) => {
-        tl.fromTo(num,
-          { scale: 1.3, color: "#0ED762" },
-          { scale: 1, color: "#0ED762", duration: 0.2 },
-          `>-=${0.1 * i}`
-        );
-      });
+      tl.from(numbers, {
+        x: -10, opacity: 0, stagger: 0.1, duration: DUR.fast
+      }, "-=0.4");
     }
 
-    // Title masked reveals
     if (titles.length) {
       tl.from(titles, {
         clipPath: "inset(0 100% 0 0)",
-        stagger: 0.15, duration: 0.4, ease: "power2.inOut"
-      }, "<+=0.1");
+        stagger: 0.1, duration: DUR.normal, ease: EASE_INOUT
+      }, "<");
     }
   }, section);
 

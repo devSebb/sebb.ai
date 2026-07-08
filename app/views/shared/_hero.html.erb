@@ -1,24 +1,44 @@
 <%# Exhibition Room 1 — Museum Entrance Performance %>
 <section class="section-room flex flex-col justify-between min-h-screen relative" id="hero" data-animate="hero">
-  <%# Top: Museum wall label %>
-  <div class="pt-28 md:pt-36">
-    <span class="meta-label hero-meta"><%= @about[:hero_description] %></span>
+  <%# Architectural floor grid — canvas dot field behind the hero content %>
+  <canvas class="absolute inset-0 w-full h-full pointer-events-none" data-hero-grid aria-hidden="true"></canvas>
+
+  <%# Top: wall label %>
+  <div class="relative pt-28 md:pt-36 hero-meta">
+    <span class="meta-label block"><%= @about[:hero_description] %></span>
   </div>
 
-  <%# Center: Massive name with depth parallax layers %>
-  <div class="flex-grow flex items-center relative">
-    <%# Back layer — parallax depth %>
-    <h1 class="heading-display hero-title-back absolute inset-0 flex items-center opacity-[0.08] select-none pointer-events-none" aria-hidden="true">
-      <%= @identity[:name] %>
-    </h1>
-    <%# Front layer — primary %>
-    <h1 class="heading-display hero-title-front relative" data-hero-title>
-      <%= @identity[:name] %>
-    </h1>
+  <%# Center: Massive name with depth parallax layers + rotating role %>
+  <div class="flex-grow flex flex-col justify-center relative">
+    <div class="relative">
+      <%# Back layer — parallax depth %>
+      <h1 class="heading-display hero-title-back absolute inset-0 flex items-center opacity-[0.08] select-none pointer-events-none" aria-hidden="true">
+        <%= @identity[:name] %>
+      </h1>
+      <%# Front layer — primary %>
+      <h1 class="heading-display hero-title-front relative" data-hero-title>
+        <%= @identity[:name] %>
+      </h1>
+    </div>
+
+    <%# Rotating role line — masked roll %>
+    <% titles = @about[:hero_rotating_titles] || [] %>
+    <% if titles.any? %>
+      <div class="hero-role relative mt-6 flex items-baseline gap-3">
+        <span class="text-muted text-body-lg"><%= @about[:hero_rotating_prefix] %></span>
+        <span class="inline-block overflow-hidden h-[1.5em] text-body-lg align-bottom">
+          <span class="flex flex-col" data-role-track>
+            <% (titles + titles.first(1)).each do |title| %>
+              <span class="block leading-[1.5] font-mono uppercase tracking-wide text-accent"><%= title %></span>
+            <% end %>
+          </span>
+        </span>
+      </div>
+    <% end %>
   </div>
 
   <%# Bottom row %>
-  <div class="flex items-end justify-between pb-12 md:pb-16">
+  <div class="relative flex items-end justify-between pb-12 md:pb-16">
     <%# Tagline %>
     <p class="text-muted text-body-lg max-w-md hero-tagline">
       <%= @about[:hero_tagline] %>

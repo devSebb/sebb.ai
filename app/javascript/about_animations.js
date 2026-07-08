@@ -1,5 +1,5 @@
 import { splitByWords } from "utils/text_splitter";
-import { wordStagger, fadeInUp, prefersReducedMotion } from "utils/motion_library";
+import { wordStagger, EASE, DUR, prefersReducedMotion } from "utils/motion_library";
 
 function init(section) {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
@@ -12,42 +12,40 @@ function init(section) {
     const paragraphs = section.querySelectorAll(".about-paragraph");
     const profile = section.querySelector(".about-profile");
 
-    // Split heading into words
     let words = [];
     if (heading) {
       words = splitByWords(heading);
     }
 
-    // Pinned chapter reveal
+    // Fire-once room reveal — fast, no pin
     const tl = gsap.timeline({
+      defaults: { ease: EASE },
       scrollTrigger: {
-        id: "ABOUT_PIN",
+        id: "ABOUT_REVEAL",
         trigger: section,
-        start: "top top",
-        end: "+=130%",
-        pin: true,
-        scrub: 1
+        start: "top 75%",
+        once: true
       }
     });
 
     if (label) {
-      tl.from(label, { y: 30, opacity: 0, duration: 0.3 });
+      tl.from(label, { y: 24, opacity: 0, duration: DUR.fast });
     }
 
     if (words.length) {
-      tl.add(wordStagger(words), "-=0.1");
+      tl.add(wordStagger(words), "-=0.15");
     }
 
     if (paragraphs.length) {
       tl.from(paragraphs, {
-        y: 30, opacity: 0, stagger: 0.2, duration: 0.6
-      }, "-=0.2");
+        y: 30, opacity: 0, stagger: 0.12, duration: DUR.normal
+      }, "-=0.45");
     }
 
     if (profile) {
       tl.from(profile, {
-        opacity: 0, scale: 0.95, duration: 0.4
-      });
+        opacity: 0, y: 20, duration: DUR.normal
+      }, "-=0.4");
     }
   }, section);
 
