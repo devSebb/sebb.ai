@@ -114,15 +114,12 @@
       <%# Gallery header %>
       <div class="section-room flex items-baseline justify-between mb-8">
         <span class="meta-label">Gallery</span>
-        <span class="meta-label gallery-counter" data-gallery-counter>
-          01 / <%= "%02d" % @project[:gallery].length %>
-        </span>
+        <span class="meta-label"><%= "%02d" % @project[:gallery].length %> Images</span>
       </div>
 
-      <%# Horizontal scroll track with edge fade masks %>
+      <%# Auto-rotating strip — hold to pause, drag to scrub %>
       <div class="gallery-viewport" data-gallery-viewport data-cursor-text="Drag" aria-label="Project image gallery">
-        <div class="gallery-track flex items-center gap-8 md:gap-12" data-gallery-track
-             style="padding-left: clamp(1.5rem, 4vw, 6rem); padding-right: clamp(1.5rem, 4vw, 6rem);">
+        <div class="gallery-track flex items-center gap-8 md:gap-12" data-gallery-track>
           <% @project[:gallery].each_with_index do |img, index| %>
             <div class="gallery-slide flex-shrink-0"
                  data-gallery-slide="<%= index %>">
@@ -131,22 +128,12 @@
                 <%= image_tag img,
                     alt: "#{@project[:name]} — #{index + 1}",
                     class: "gallery-img h-full w-auto block",
-                    loading: index < 2 ? "eager" : "lazy",
+                    loading: "eager",
                     decoding: "async",
                     style: "min-width: 280px; max-width: none; user-select: none; -webkit-user-drag: none;" %>
               </div>
             </div>
           <% end %>
-        </div>
-      </div>
-
-      <%# Progress bar %>
-      <div class="section-room mt-6">
-        <div class="w-full h-[2px] bg-border rounded-full overflow-hidden">
-          <div class="gallery-progress h-full rounded-full transition-none"
-               data-gallery-progress
-               style="width: 0%; background-color: var(--gallery-theme-color);">
-          </div>
         </div>
       </div>
     </section>

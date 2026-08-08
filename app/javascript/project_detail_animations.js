@@ -6,10 +6,8 @@ function init(section) {
     return { destroy() {} };
   }
 
-  // Non-GSAP cleanup refs (Observer, resize, keydown)
-  let galleryObserver = null;
-  let galleryResizeHandler = null;
-  let galleryKeyHandler = null;
+  // Non-GSAP cleanup refs (marquee listeners, resize, cloned slides)
+  let galleryCleanup = null;
 
   const ctx = gsap.context(() => {
     const heroImg = section.querySelector(".project-hero-img");
@@ -75,175 +73,197 @@ function init(section) {
       });
     }
 
-    // ─── Gallery: Cinematic horizontal scroll ───
+    // ─── Gallery: auto-rotating marquee with 1:1 drag ───
+    // One position value drives the strip: it advances on its own at a slow drift,
+    // follows the pointer exactly while dragging, then coasts that momentum back
+    // into the drift. Slides are cloned so the position can wrap seamlessly —
+    // there is no end to hit, so no image is ever left half-cut.
     const viewport = section.querySelector("[data-gallery-viewport]");
     const track = section.querySelector("[data-gallery-track]");
-    const slides = section.querySelectorAll("[data-gallery-slide]");
-    const frames = section.querySelectorAll(".gallery-frame");
-    const counter = section.querySelector("[data-gallery-counter]");
-    const progressBar = section.querySelector("[data-gallery-progress]");
-    const totalSlides = slides.length;
+    const slides = Array.from(section.querySelectorAll("[data-gallery-slide]"));
 
-    if (viewport && track && totalSlides > 0) {
-      let maxScroll = 0;
-      let slideCenters = [];
+    if (viewport && track && slides.length > 0) {
+      const DRIFT = 40;        // px/sec — ambient auto-rotation
+      const FRICTION = 3.5;    // how fast flung momentum decays back to the drift
+      const MAX_FLING = 2500;  // px/sec cap, so a violent swipe stays readable
 
-      function updateBounds() {
-        maxScroll = Math.max(0, track.scrollWidth - viewport.clientWidth);
-        slideCenters = [];
-        const trackRect = track.getBoundingClientRect();
+      let clones = [];
+      let distance = 0;    // width of one full set — the wrap period
+      let pos = 0;         // px travelled; larger = further left
+      let momentum = 0;    // px/sec carried over from a drag release
+      let held = false;    // pointer down on the strip
+      let visible = true;  // strip inside the viewport
+      let wrapPos = (v) => v;
+
+      function addCloneSet() {
         slides.forEach((slide) => {
-          const rect = slide.getBoundingClientRect();
-          const center = rect.left - trackRect.left + rect.width / 2;
-          slideCenters.push(center);
+          const clone = slide.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          clone.dataset.galleryClone = "true";
+          track.appendChild(clone);
+          clones.push(clone);
         });
       }
-      updateBounds();
 
-      let scrollPos = 0;
-      const xTo = gsap.quickTo(track, "x", { duration: 0.6, ease: "power3.out" });
-
-      function clamp(val, min, max) {
-        return Math.max(min, Math.min(max, val));
+      function render() {
+        gsap.set(track, { x: -wrapPos(pos) });
       }
 
-      // Find nearest slide to viewport center
-      function getNearestSlideIndex() {
-        const viewportCenter = viewport.clientWidth / 2;
-        const currentOffset = Math.abs(scrollPos);
-        let nearest = 0;
-        let minDist = Infinity;
-        slideCenters.forEach((center, i) => {
-          const dist = Math.abs(center - currentOffset - viewportCenter);
-          if (dist < minDist) {
-            minDist = dist;
-            nearest = i;
-          }
+      function build() {
+        clones.forEach((c) => c.remove());
+        clones = [];
+
+        // Always duplicate at least one full set (that's what makes the wrap
+        // seamless), then keep adding until the strip covers 2× the viewport so
+        // there is never a visible gap at the trailing edge.
+        addCloneSet();
+        let guard = 0;
+        while (track.scrollWidth < viewport.clientWidth * 2 && guard < 8) {
+          addCloneSet();
+          guard += 1;
+        }
+
+        // One set-width = distance from the first slide to its first clone.
+        distance = clones[0].offsetLeft - slides[0].offsetLeft;
+        if (distance <= 0) {
+          wrapPos = (v) => v;
+          pos = 0;
+        } else {
+          wrapPos = gsap.utils.wrap(0, distance);
+          pos = wrapPos(pos);
+        }
+        render();
+      }
+
+      // Batch rebuilds — image loads and resizes arrive in bursts.
+      let buildFrame = null;
+      function scheduleBuild() {
+        if (buildFrame) cancelAnimationFrame(buildFrame);
+        buildFrame = requestAnimationFrame(() => {
+          buildFrame = null;
+          build();
         });
-        return nearest;
       }
 
-      // Snap to nearest slide center
-      function snapToNearest() {
-        if (maxScroll === 0) return;
-        const idx = getNearestSlideIndex();
-        const viewportCenter = viewport.clientWidth / 2;
-        const target = clamp(-(slideCenters[idx] - viewportCenter), -maxScroll, 0);
-        scrollPos = target;
-        gsap.to(track, { x: target, duration: 0.5, ease: "power3.out" });
-        updateUI();
+      // Image widths drive the wrap period — rebuild as they resolve so a slow
+      // image can't leave the loop measured short (the old cut-off last frame).
+      const imageHandlers = [];
+      Array.from(track.querySelectorAll("img"))
+        .filter((img) => !img.complete)
+        .forEach((img) => {
+          img.addEventListener("load", scheduleBuild);
+          img.addEventListener("error", scheduleBuild);
+          imageHandlers.push(img);
+        });
+
+      build();
+
+      // Ticker: while held the pointer owns the position outright; otherwise the
+      // strip drifts, plus whatever fling momentum is still decaying.
+      function tick(time, deltaMs) {
+        if (held || distance <= 0) return;
+        if (!visible && Math.abs(momentum) < 1) return;
+
+        const dt = Math.min(deltaMs, 50) / 1000; // clamp tab-switch spikes
+        if (momentum !== 0) {
+          pos += momentum * dt;
+          momentum *= Math.exp(-FRICTION * dt);
+          if (Math.abs(momentum) < 1) momentum = 0;
+        }
+        pos += DRIFT * dt;
+        pos = wrapPos(pos);
+        render();
+      }
+      gsap.ticker.add(tick);
+
+      // ── Drag: 1:1 with the pointer, with velocity carried into the release ──
+      let pointerId = null;
+      let lastX = 0;
+      let lastMoveTime = 0;
+      let dragged = false;
+
+      function onPointerDown(e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        held = true;
+        dragged = false;
+        momentum = 0;
+        pointerId = e.pointerId;
+        lastX = e.clientX;
+        lastMoveTime = e.timeStamp;
+        viewport.classList.add("is-dragging");
+        if (viewport.setPointerCapture) {
+          try { viewport.setPointerCapture(e.pointerId); } catch (_) { /* no-op */ }
+        }
       }
 
-      // Staggered depth + gentle counter-parallax as the strip crosses the viewport
-      slides.forEach((slide, i) => {
-        gsap.set(slide, { y: i % 2 === 0 ? -12 : 12 });
-      });
-      gsap.to(slides, {
-        y: (i) => (i % 2 === 0 ? 12 : -12),
-        ease: "none",
-        scrollTrigger: {
-          trigger: viewport,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      });
+      function onPointerMove(e) {
+        if (!held || e.pointerId !== pointerId || distance <= 0) return;
 
-      // Entrance animation
-      gsap.from(slides, {
-        x: 100, opacity: 0,
-        stagger: 0.08, duration: 0.8, ease: "power3.out",
-        scrollTrigger: {
-          trigger: viewport,
-          start: "top 80%"
-        }
-      });
+        const dx = e.clientX - lastX;
+        if (dx === 0) return;
+        if (Math.abs(dx) > 2) dragged = true;
 
-      // Update counter + progress + active glow
-      function updateUI() {
-        const progress = maxScroll > 0 ? Math.abs(scrollPos) / maxScroll : 0;
-        if (progressBar) {
-          gsap.set(progressBar, { width: `${clamp(progress * 100, 0, 100)}%` });
+        // Dragging left (negative dx) pulls the strip forward.
+        pos = wrapPos(pos - dx);
+        render();
+
+        // Instantaneous velocity, smoothed so a single jittery frame can't
+        // dominate the fling.
+        const dt = (e.timeStamp - lastMoveTime) / 1000;
+        if (dt > 0) {
+          const velocity = gsap.utils.clamp(-MAX_FLING, MAX_FLING, -dx / dt);
+          momentum = momentum * 0.7 + velocity * 0.3;
         }
-        const activeIdx = getNearestSlideIndex();
-        if (counter) {
-          counter.textContent =
-            `${String(activeIdx + 1).padStart(2, "0")} / ${String(totalSlides).padStart(2, "0")}`;
-        }
-        frames.forEach((f, i) => f.classList.toggle("is-active", i === activeIdx));
+        lastX = e.clientX;
+        lastMoveTime = e.timeStamp;
       }
 
-      // Observer: wheel, drag, touch
-      galleryObserver = Observer.create({
-        target: viewport,
-        type: "wheel,touch,pointer",
-        onPress: () => { viewport.style.cursor = "grabbing"; },
-        onRelease: () => {
-          viewport.style.cursor = "grab";
-          snapToNearest();
-        },
-        onChange: (self) => {
-          const delta = self.deltaX || self.deltaY;
+      function onPointerUp(e) {
+        if (!held || (pointerId !== null && e.pointerId !== pointerId)) return;
+        held = false;
+        pointerId = null;
+        viewport.classList.remove("is-dragging");
 
-          // Wheel passthrough at boundaries
-          if (self.event?.type?.includes("wheel")) {
-            const atStart = scrollPos >= 0 && delta < 0;
-            const atEnd = scrollPos <= -maxScroll && delta > 0;
-            if (atStart || atEnd) return;
-          }
+        // A press with no movement is a deliberate hold-to-pause, not a fling.
+        if (!dragged) momentum = 0;
+        // Stale velocity from a drag that stopped before release shouldn't fling.
+        else if (e.timeStamp - lastMoveTime > 120) momentum = 0;
+      }
 
-          scrollPos = clamp(scrollPos - delta, -maxScroll, 0);
-          xTo(scrollPos);
-          updateUI();
-        },
-        tolerance: 10,
-        preventDefault: true,
-        lockAxis: false
+      viewport.addEventListener("pointerdown", onPointerDown);
+      viewport.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
+      window.addEventListener("pointercancel", onPointerUp);
+
+      // Don't burn frames while the strip is off-screen.
+      const visibilityTrigger = ScrollTrigger.create({
+        trigger: viewport,
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => { visible = self.isActive; }
       });
+      visible = visibilityTrigger.isActive;
 
-      // Keyboard navigation
-      galleryKeyHandler = function onKey(e) {
-        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-        const rect = viewport.getBoundingClientRect();
-        if (rect.top > window.innerHeight || rect.bottom < 0) return;
+      const resizeHandler = scheduleBuild;
+      window.addEventListener("resize", resizeHandler);
 
-        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-          const dir = e.key === "ArrowRight" ? 1 : -1;
-          const currentIdx = getNearestSlideIndex();
-          const targetIdx = clamp(currentIdx + dir, 0, totalSlides - 1);
-          const viewportCenter = viewport.clientWidth / 2;
-          scrollPos = clamp(-(slideCenters[targetIdx] - viewportCenter), -maxScroll, 0);
-          gsap.to(track, { x: scrollPos, duration: 0.5, ease: "power3.out" });
-          updateUI();
-          e.preventDefault();
-        }
+      galleryCleanup = function cleanup() {
+        gsap.ticker.remove(tick);
+        viewport.removeEventListener("pointerdown", onPointerDown);
+        viewport.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerup", onPointerUp);
+        window.removeEventListener("pointercancel", onPointerUp);
+        window.removeEventListener("resize", resizeHandler);
+        imageHandlers.forEach((img) => {
+          img.removeEventListener("load", scheduleBuild);
+          img.removeEventListener("error", scheduleBuild);
+        });
+        if (buildFrame) cancelAnimationFrame(buildFrame);
+        clones.forEach((c) => c.remove());
+        clones = [];
+        viewport.classList.remove("is-dragging");
+        gsap.set(track, { x: 0 });
       };
-      document.addEventListener("keydown", galleryKeyHandler);
-
-      // Hover effects
-      slides.forEach((slide, i) => {
-        const frame = frames[i];
-        if (!frame) return;
-        slide.addEventListener("mouseenter", () => {
-          gsap.to(frame, { scale: 1.03, duration: 0.4, ease: "back.out(1.7)" });
-          frames.forEach((f, j) => {
-            if (j !== i) gsap.to(f, { opacity: 0.7, duration: 0.3 });
-          });
-        });
-        slide.addEventListener("mouseleave", () => {
-          gsap.to(frame, { scale: 1, duration: 0.3 });
-          frames.forEach((f) => gsap.to(f, { opacity: 1, duration: 0.3 }));
-        });
-      });
-
-      // Resize handler
-      galleryResizeHandler = function onResize() {
-        updateBounds();
-        scrollPos = clamp(scrollPos, -maxScroll, 0);
-        gsap.set(track, { x: scrollPos });
-        updateUI();
-      };
-      window.addEventListener("resize", galleryResizeHandler);
     }
 
     // Prev/next fade up
@@ -260,10 +280,8 @@ function init(section) {
 
   return {
     destroy() {
-      // Kill non-GSAP listeners first
-      if (galleryObserver) galleryObserver.kill();
-      if (galleryResizeHandler) window.removeEventListener("resize", galleryResizeHandler);
-      if (galleryKeyHandler) document.removeEventListener("keydown", galleryKeyHandler);
+      // Kill non-GSAP listeners and remove cloned slides first
+      if (galleryCleanup) galleryCleanup();
       // ctx.revert() kills all GSAP tweens + ScrollTriggers
       ctx.revert();
     }

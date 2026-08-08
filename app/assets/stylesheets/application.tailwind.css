@@ -273,9 +273,12 @@
   .gallery-viewport {
     @apply relative overflow-hidden;
     cursor: grab;
+    /* We own horizontal drags; vertical page scrolling still passes through. */
+    touch-action: pan-y;
+    user-select: none;
   }
 
-  .gallery-viewport:active {
+  .gallery-viewport.is-dragging {
     cursor: grabbing;
   }
 
@@ -297,17 +300,12 @@
     background: linear-gradient(to left, theme('colors.surface.dark'), transparent);
   }
 
-  .gallery-slide {
+  .gallery-track {
     will-change: transform;
   }
 
   .gallery-frame {
     transition: box-shadow 0.3s ease;
-  }
-
-  .gallery-frame.is-active {
-    box-shadow: 0 0 0 1px var(--gallery-theme-color, #0ED762),
-                0 0 30px -10px var(--gallery-theme-color, #0ED762);
   }
 
   .gallery-img {

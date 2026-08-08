@@ -26,10 +26,10 @@ about:
     - "Product Designer"
     - "Digital Craftsman"
   hero_tagline: "I design and build digital products that feel alive."
-  hero_description: "Forward Deployed Engineer & full-stack builder — shipping AI systems that reach production, not pilots."
+  hero_description: "Forward Deployed Engineer & Business Designer — shipping rugged AI powered systems."
   paragraphs:
     - "I build digital experiences that don't just work — they pull you in. Part engineer, part designer, part product thinker who embeds with clients to ship AI systems that reach production and tie to measured outcomes — not pilots or slideware."
-    - "I founded Noria, an AI implementation studio that has shipped production systems for factories, public companies, and luxury groups. At StreamHatchet I'm leading the rebuild of a streaming-analytics platform tracking 32K+ creators. Before that: consumer apps for travelers and freelancers, airport Wi-Fi ads worth stopping for, dashboards that make complexity feel effortless, and 4 e-commerce stores doing $500K+ in revenue. My work lives at the intersection of design, strategy, and execution — where pixels meet purpose and code becomes experience."
+    - "I founded Noria, an AI implementation studio that has shipped production systems for factories, public companies, and luxury groups. At Hatchet I'm leading the rebuild of a streaming-analytics platform tracking 32K+ creators, plus the rebuild and redesign of hatchet.gg. Before that: consumer apps for travelers and freelancers, airport Wi-Fi ads worth stopping for, dashboards that make complexity feel effortless, and 4 e-commerce stores doing $500K+ in revenue. My work lives at the intersection of design, strategy, and execution — where pixels meet purpose and code becomes experience."
     - "My stack: TypeScript, Next.js, Ruby, React, Python — plus agent orchestration, RAG, and voice agents with Claude, GPT, and friends — Figma, Framer, and an unhealthy obsession with craft. My approach: treat every project like it deserves to feel alive, not just functional. I lead teams, shape user journeys, and solve problems that sit somewhere between \"this should be simple\" and \"nobody's figured this out yet.\""
     - "If you need someone who designs, codes, and ships — and actually cares whether people love using it — let's talk. Bilingual, English / Spanish."
 
@@ -119,10 +119,10 @@ experience:
     date_label: "January 2026"
     title: "Founder & Principal AI Engineer at Noria"
     summary: "Founded an engineering-led AI implementation studio (noria-tech.com) that installs measurable automation inside client operations — validating ROI before building, then shipping instrumented, production-owned systems on fixed timelines. Shipped production systems for manufacturing, luxury goods, public-company finance, and financial services — from factory-floor planning that replaced a 4-person coordination team to an AI voice agent running thousands of outbound calls."
-  - id: "streamhatchet"
+  - id: "hatchet"
     date_label: "November 2025"
-    title: "Forward Deployed Engineer at StreamHatchet"
-    summary: "Leading the complete rebuild of twitchmetrics.net, a multi-platform streaming-analytics product. Built the data pipeline that ingests and enriches creator metrics across Twitch, YouTube, TikTok, X, and Kick — background jobs on Inngest, BullMQ, and Redis tracking 32K+ channels. TypeScript monorepo with Next.js 15, tRPC, Prisma, and PostgreSQL."
+    title: "Forward Deployed Engineer at Hatchet"
+    summary: "Leading the complete rebuild of twitchmetrics.net, a multi-platform streaming-analytics product, alongside the rebuild and redesign of hatchet.gg — the company's flagship site — from information architecture and visual identity through to front-end delivery. Built the data pipeline that ingests and enriches creator metrics across Twitch, YouTube, TikTok, X, and Kick — background jobs on Inngest, BullMQ, and Redis tracking 32K+ channels. TypeScript monorepo with Next.js 15, tRPC, Prisma, and PostgreSQL."
   - id: "co-founder"
     date_label: "October 2024"
     title: "Founder & Operator — Independent E-Commerce"
@@ -131,10 +131,6 @@ experience:
     date_label: "August 2024"
     title: "Software & Product Engineer at White Tiger"
     summary: "Architected and co-developed a React-based analytics dashboard that parsed airport Wi-Fi user-activity data to compute impressions, click-through, and conversion KPIs across campaigns. Led creation of digital and print ads across Italian airport Wi-Fi networks using Figma, Canva, and Framer."
-  - id: "galeria"
-    date_label: "May 2020"
-    title: "Project Manager at Galeria Shopping"
-    summary: "Directed site development for a new retail strip mall, coordinating contractors, sales team, and suppliers. Managed web presence and social media design efforts while leading client and stakeholder meetings. Adapted project plans in real-time amid pandemic-era supply-chain disruptions, preserving timelines and minimizing costs."
 
 skills_categories:
   - name: "AI & Agents"
@@ -398,10 +394,11 @@ projects:
 
 resume:
   experience:
-    - title: "Forward Deployed Engineer at StreamHatchet"
+    - title: "Forward Deployed Engineer at Hatchet"
       date_label: "November 2025 – Present"
       bullets:
         - "Leading the complete rebuild of twitchmetrics.net, a multi-platform streaming-analytics product — re-architecting a legacy site into a redesigned, performant, and genuinely usable analytics tool."
+        - "Leading the rebuild and redesign of hatchet.gg, the company's flagship site — information architecture, visual identity, motion, and front-end delivery, shipped as a modern, performance-budgeted Next.js build."
         - "Built the data pipeline that ingests and enriches creator metrics across Twitch, YouTube, TikTok, X, and Kick — snapshots, growth rollups, and discovery run as Inngest and BullMQ background jobs on Redis, tracking 32K+ channels."
         - "Stack: TypeScript monorepo (Turborepo / pnpm), Next.js 15 + React 19, tRPC, Prisma + PostgreSQL (Supabase), Upstash Redis, Cloudflare R2, Auth.js, Stripe; deployed on Vercel / Docker."
     - title: "Founder & Principal AI Engineer at Noria"
