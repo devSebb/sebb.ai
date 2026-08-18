@@ -3,7 +3,6 @@ class PagesController < ApplicationController
     @identity = Portfolio::Content.identity
     @links = Portfolio::Content.links
     @about = Portfolio::Content.about
-    @tech_icons = Portfolio::Content.tech_icons
     @tech_stack = Portfolio::Content.tech_stack
     @experience = Portfolio::Content.experience
     @skills_categories = Portfolio::Content.skills_categories
@@ -19,7 +18,6 @@ class PagesController < ApplicationController
   def project
     @identity = Portfolio::Content.identity
     @projects = Portfolio::Content.projects
-    @tech_icons = Portfolio::Content.tech_icons
     @project = Portfolio::Content.project_by_slug(params[:name])
     @adjacent = Portfolio::Content.adjacent_projects(params[:name])
 

@@ -31,37 +31,44 @@
     <% end %>
   </div>
 
-  <%# Marquee rows — pill style, seamless infinite scroll (2 copies = -50% loop) %>
-  <div class="mt-24 overflow-hidden">
-    <%# Row 1 — left scroll %>
-    <div class="marquee-container mb-4 overflow-hidden">
-      <div class="flex whitespace-nowrap marquee-track-left will-change-transform">
-        <% 2.times do %>
-          <% @tech_stack.each do |tech| %>
-            <span class="group inline-flex items-center gap-2.5 font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-5 py-2 mx-1 shrink-0 transition-colors duration-300 hover:text-surface-light hover:border-accent/50">
-              <% if (icon = @tech_icons[tech[:icon_key]&.to_sym]) %>
-                <%= image_tag icon, alt: "", class: "w-4 h-4 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100", loading: "lazy" %>
-              <% end %>
-              <%= tech[:name] %>
-            </span>
-          <% end %>
-        <% end %>
-      </div>
+  <%# ── The Toolwall — every instrument, catalogued and filterable ── %>
+  <%
+    tool_groups = @tech_stack
+    all_tools = tool_groups.flat_map { |group| group[:items].map { |tool| tool.merge(group_id: group[:id]) } }
+  %>
+  <%= tech_logo_sprite(all_tools.map { |tool| tool[:logo] }) %>
+
+  <div class="toolwall mt-24 md:mt-32 border-t border-border pt-12" data-toolwall>
+    <div class="flex items-baseline justify-between gap-6 flex-wrap mb-8">
+      <h3 class="font-display font-semibold text-display-sm text-surface-light">
+        The Instruments
+      </h3>
+      <span class="meta-label">
+        <%= all_tools.length %> Tools — <%= tool_groups.length %> Disciplines
+      </span>
     </div>
-    <%# Row 2 — right scroll %>
-    <div class="marquee-container overflow-hidden">
-      <div class="flex whitespace-nowrap marquee-track-right will-change-transform">
-        <% 2.times do %>
-          <% @tech_stack.each do |tech| %>
-            <span class="group inline-flex items-center gap-2.5 font-mono text-meta uppercase tracking-widest text-muted border border-border rounded-full px-5 py-2 mx-1 shrink-0 transition-colors duration-300 hover:text-surface-light hover:border-accent/50">
-              <% if (icon = @tech_icons[tech[:icon_key]&.to_sym]) %>
-                <%= image_tag icon, alt: "", class: "w-4 h-4 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100", loading: "lazy" %>
-              <% end %>
-              <%= tech[:name] %>
-            </span>
-          <% end %>
-        <% end %>
-      </div>
+
+    <%# Filter rail — the catalogue's index tabs %>
+    <div class="flex flex-wrap gap-x-7 gap-y-3 mb-10" role="group" aria-label="Filter tools by discipline">
+      <button type="button" class="toolwall-chip is-active" data-toolwall-filter="all" aria-pressed="true">
+        All<span class="toolwall-chip-count"><%= all_tools.length %></span>
+      </button>
+      <% tool_groups.each do |group| %>
+        <button type="button" class="toolwall-chip" data-toolwall-filter="<%= group[:id] %>" aria-pressed="false">
+          <%= group[:name] %><span class="toolwall-chip-count"><%= group[:items].length %></span>
+        </button>
+      <% end %>
+    </div>
+
+    <%# Specimen lattice — shared hairlines, one cell per tool %>
+    <div class="toolwall-grid" data-toolwall-grid>
+      <% all_tools.each_with_index do |tool, index| %>
+        <div class="toolwall-cell" data-toolwall-item data-group="<%= tool[:group_id] %>">
+          <span class="toolwall-index"><%= "%02d" % (index + 1) %></span>
+          <span class="toolwall-mark"><%= tech_logo(tool[:logo]) %></span>
+          <span class="toolwall-name"><%= tool[:name] %></span>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>

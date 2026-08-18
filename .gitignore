@@ -39,3 +39,6 @@
 !/app/assets/builds/.keep
 
 /config/credentials/production.key
+
+# Node modules (not used by the Rails build; importmap + tailwindcss-rails)
+/node_modules

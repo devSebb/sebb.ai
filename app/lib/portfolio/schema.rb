@@ -4,7 +4,6 @@ module Portfolio
       identity
       links
       about
-      tech_icons
       tech_stack
       experience
       skills_categories

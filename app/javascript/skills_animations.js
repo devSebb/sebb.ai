@@ -50,66 +50,88 @@ function init(section) {
     });
     }
 
-    // Marquee animations (always run — essential content, not decorative)
-    const leftTrack = section.querySelector(".marquee-track-left");
-    const rightTrack = section.querySelector(".marquee-track-right");
-    let leftTween = null;
-    let rightTween = null;
+    // ── Toolwall: entrance wave + discipline filter ──
+    const grid = section.querySelector("[data-toolwall-grid]");
+    const cells = Array.from(section.querySelectorAll("[data-toolwall-item]"));
+    const chips = Array.from(section.querySelectorAll("[data-toolwall-filter]"));
 
-    // Seamless infinite scroll: 2 identical copies, move by 50% (one full copy) per loop
-    if (leftTrack) {
-      leftTween = gsap.to(leftTrack, {
-        xPercent: -50,
-        ease: "none",
-        repeat: -1,
-        duration: 30
-      });
-      const container = leftTrack.closest(".marquee-container");
-      if (container) {
-        container.addEventListener("mouseenter", () => leftTween.pause());
-        container.addEventListener("mouseleave", () => leftTween.resume());
+    if (grid && cells.length) {
+      // Entrance — a wave rolling out from the centre of the lattice.
+      if (!reducedMotion && typeof ScrollTrigger !== "undefined") {
+        gsap.from(cells, {
+          opacity: 0, scale: 0.9, y: 12,
+          duration: 0.5, ease: "power2.out",
+          stagger: { each: 0.012, grid: "auto", from: "center" },
+          scrollTrigger: {
+            id: "SKILLS_TOOLWALL",
+            trigger: grid,
+            start: "top 85%"
+          }
+        });
       }
-    }
 
-    if (rightTrack) {
-      gsap.set(rightTrack, { xPercent: -50 });
-      rightTween = gsap.to(rightTrack, {
-        xPercent: 0,
-        ease: "none",
-        repeat: -1,
-        duration: 35
-      });
-      const container = rightTrack.closest(".marquee-container");
-      if (container) {
-        container.addEventListener("mouseenter", () => rightTween.pause());
-        container.addEventListener("mouseleave", () => rightTween.resume());
+      let activeFilter = "all";
+
+      function matches(cell, filter) {
+        return filter === "all" || cell.dataset.group === filter;
       }
-    }
 
-    // Live marquee — direction follows scroll direction, speed rides velocity
-    if (!reducedMotion && typeof ScrollTrigger !== "undefined" && (leftTween || rightTween)) {
-      const tweens = [leftTween, rightTween].filter(Boolean);
-      ScrollTrigger.create({
-        id: "SKILLS_MARQUEE_VELOCITY",
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate(self) {
-          const boost = gsap.utils.clamp(1, 4, 1 + Math.abs(self.getVelocity()) / 1200);
-          tweens.forEach((tween) => {
-            if (tween.paused()) return;
-            gsap.to(tween, {
-              timeScale: self.direction * boost,
-              duration: 0.3,
-              overwrite: true,
-              onComplete: () => {
-                gsap.to(tween, { timeScale: self.direction, duration: 1.2, ease: "power2.out" });
-              }
-            });
-          });
+      function applyFilter(filter) {
+        if (filter === activeFilter) return;
+        activeFilter = filter;
+
+        chips.forEach((chip) => {
+          const on = chip.dataset.toolwallFilter === filter;
+          chip.classList.toggle("is-active", on);
+          chip.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+
+        const show = cells.filter((c) => matches(c, filter));
+        const hide = cells.filter((c) => !matches(c, filter));
+
+        if (reducedMotion) {
+          hide.forEach((c) => c.classList.add("is-hidden"));
+          show.forEach((c) => c.classList.remove("is-hidden"));
+          return;
         }
+
+        gsap.killTweensOf(cells);
+
+        // Reveal has to wait for the outgoing cells to leave the flow, or the
+        // lattice re-knits underneath the incoming stagger and everything jumps.
+        const reveal = () => {
+          show.forEach((c) => c.classList.remove("is-hidden"));
+          gsap.fromTo(
+            show,
+            { opacity: 0, scale: 0.92 },
+            {
+              opacity: 1, scale: 1,
+              duration: 0.35, ease: "power2.out",
+              stagger: { each: 0.015, grid: "auto", from: "start" },
+              clearProps: "transform"
+            }
+          );
+        };
+
+        if (hide.length) {
+          gsap.to(hide, {
+            opacity: 0, scale: 0.92,
+            duration: 0.18, ease: "power2.in",
+            onComplete: () => {
+              hide.forEach((c) => c.classList.add("is-hidden"));
+              reveal();
+            }
+          });
+        } else {
+          reveal();
+        }
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => applyFilter(chip.dataset.toolwallFilter));
       });
     }
+
   }, section);
 
   return {

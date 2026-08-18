@@ -32,10 +32,6 @@ module Portfolio
         data.fetch(:about)
       end
 
-      def tech_icons
-        data.fetch(:tech_icons)
-      end
-
       def tech_stack
         data.fetch(:tech_stack)
       end
