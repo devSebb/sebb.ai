@@ -36,12 +36,12 @@ module Portfolio
         data.fetch(:tech_stack)
       end
 
-      def experience
-        data.fetch(:experience)
+      def practice
+        data.fetch(:practice)
       end
 
-      def skills_categories
-        data.fetch(:skills_categories)
+      def experience
+        data.fetch(:experience)
       end
 
       def projects

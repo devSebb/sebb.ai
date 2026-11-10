@@ -1,0 +1,80 @@
+/* The Working Exhibition — shared shell. Rooms must NOT edit this file.
+   Layout: a dark gallery corridor; each .room is a full-width band that repaints in its product's palette. */
+:root{color-scheme:dark;--wall:#0A0A0A;--wall-2:#111111;--wall-3:#1A1A1A;--ink:#E8E8E8;--dim:#8A8A86;--rule:#2A2A2A;--lamp:#0ED762;
+  --f-display:"Syne",system-ui,sans-serif;--f-body:"Instrument Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{background:var(--wall);color:var(--ink);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:inherit}h1,h2,h3,h4,p,dl,dd,ul{margin:0}h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:2px solid var(--xa,var(--lamp));outline-offset:3px}
+.label{font:500 11px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- room chrome (rooms set --b --t --m --l --xa and fonts on their own #id) ---------- */
+.room{background:var(--b);color:var(--t);padding-block:clamp(64px,9vw,128px);position:relative;overflow:hidden}
+.room .label{color:var(--m)}
+.room-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px 64px;align-items:start;margin-bottom:40px}
+.kicker{font:500 11px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--xa)}
+.room-name{font-size:clamp(3rem,9vw,7.5rem);line-height:.9;margin-top:14px}
+.standfirst{font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.5;max-width:52ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:22px;border-top:1px solid var(--l)}
+.facts div{padding:12px 14px 0 0;min-width:0}
+.facts dt{font:500 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--m)}
+.facts dd{margin-top:4px;font-weight:600;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.chips span{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--l);border-radius:99px;padding:5px 10px;color:var(--m)}
+@media(max-width:860px){.room-head{grid-template-columns:1fr}}
+
+/* ---------- film: rooms write .stage > .scene[data-title][data-cap]; core.js builds the controls ---------- */
+.film{container-type:inline-size}
+.stage{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:1.1cqw;font-size:1.5cqw;line-height:1.3;max-width:100%;
+  box-shadow:0 0 0 1px var(--l),0 3cqw 7cqw -3cqw rgba(0,0,0,.6)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;overflow:hidden;transition:opacity .6s ease,visibility 0s .6s}
+.scene.on{opacity:1;visibility:visible;transition:opacity .6s ease}
+.film-ui{display:flex;gap:10px;align-items:stretch;margin-top:14px}
+.film-pp{flex:none;width:44px;min-height:40px;border-radius:10px;border:1px solid var(--l);background:transparent;color:var(--t);font:500 13px var(--f-mono);cursor:pointer}
+.film-pp:hover{border-color:var(--xa)}
+.film-chaps{flex:1;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px;min-width:0}
+.film-chap{position:relative;text-align:left;border:0;border-top:2px solid var(--l);background:transparent;color:var(--m);padding:10px 2px 4px;
+  font:500 11px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.film-chap i{position:absolute;left:0;top:-2px;height:2px;width:0;background:var(--xa)}
+.film-chap.on{color:var(--t)}.film-chap.done i{width:100%}
+.film-chap.on i{width:100%;animation:film-fill var(--dur,7s) linear both}
+.film:not(.run) .film-chap.on i{animation-play-state:paused}
+@keyframes film-fill{from{width:0}}
+.film-cap{margin-top:14px;min-height:3.3em;font-size:1.05rem;line-height:1.5;max-width:74ch}
+.film-cap b{font-weight:600;color:var(--xa)}
+@media(max-width:620px){.film-chap{font-size:0;padding-top:8px}.film-chap.on{font-size:9.5px;letter-spacing:.05em}}
+
+/* ---------- story: three short columns of prose ---------- */
+.story{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--l);border:1px solid var(--l);margin-top:44px}
+.story>div{background:var(--b);padding:24px}
+.story h3{font:500 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--xa);margin-bottom:10px}
+.story p{font-size:.98rem;line-height:1.6}
+.story p+p{margin-top:.7em}
+
+/* ---------- specimens: live interactive components with placards ---------- */
+.block-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin:64px 0 18px}
+.block-title h3{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1}
+.specimens{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.spec{grid-column:span var(--span,6);display:flex;flex-direction:column;border:1px solid var(--l);border-radius:14px;overflow:hidden;min-width:0}
+.spec-live{position:relative;min-height:300px;flex:1;container-type:inline-size;overflow:hidden}
+.spec-note{padding:16px 18px 18px;border-top:1px solid var(--l)}
+.spec-note h4{font-size:1rem;font-weight:600}
+.spec-note p{font-size:.92rem;line-height:1.5;color:var(--m);margin-top:4px}
+.spec-hint{position:absolute;right:10px;top:10px;z-index:5;font:500 9.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:99px;border:1px solid var(--l);color:var(--m);background:color-mix(in srgb,var(--b) 70%,transparent);pointer-events:none}
+@media(max-width:900px){.spec{grid-column:span 12}}
+
+/* ---------- engineering: diagram + notes ---------- */
+.eng{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px}
+.eng-diagram{border:1px solid var(--l);border-radius:14px;min-height:340px;position:relative;overflow:hidden;container-type:inline-size}
+.eng-notes{display:grid;gap:1px;background:var(--l);border:1px solid var(--l);border-radius:14px;overflow:hidden;align-content:start}
+.eng-notes div{background:var(--b);padding:16px 18px}
+.eng-notes h4{font-size:.98rem;font-weight:600}
+.eng-notes p{font-size:.92rem;line-height:1.5;color:var(--m);margin-top:4px}
+@media(max-width:900px){.eng{grid-template-columns:1fr}}
+
+.room-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--l);font:500 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--m)}
+.room-foot a{color:var(--t);text-decoration:none;border-bottom:1px solid var(--xa)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+html.still *,html.still *::before,html.still *::after{animation:none!important;transition:none!important}

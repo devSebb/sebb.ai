@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<%# One room's film with nothing around it. Embedded by the home page reel. %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title><%= @project[:name] %> film · devSebb</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="<%= canonical_url(project_path(@project[:slug])) %>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="<%= google_fonts_url(["IBM+Plex+Mono:wght@400;500"] + @project[:fonts]) %>">
+    <%= stylesheet_link_tag "exhibition/base", "exhibition/chrome", "exhibition/rooms/#{@project[:slug]}" %>
+  </head>
+  <body class="film-page" style="--b:<%= @project[:theme_bg] %>;--t:<%= @project[:theme_fg] %>;--m:<%= @project[:theme_muted] %>;--l:transparent;--xa:<%= @project[:theme_color] %>">
+    <%= yield %>
+    <%= javascript_include_tag "exhibition/core", defer: true %>
+    <%= javascript_include_tag "exhibition/rooms/#{@project[:slug]}", defer: true %>
+  </body>
+</html>

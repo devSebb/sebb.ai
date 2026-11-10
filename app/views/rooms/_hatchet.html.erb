@@ -1,0 +1,382 @@
+<section class="room" id="hatchet">
+ <svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+   <linearGradient id="hatchet-gv" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e23c42"/><stop offset=".55" stop-color="#c4262c"/><stop offset="1" stop-color="#911b20"/></linearGradient>
+   <linearGradient id="hatchet-gh" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#911b20"/><stop offset=".5" stop-color="#c4262c"/><stop offset="1" stop-color="#e23c42"/></linearGradient>
+   <linearGradient id="hatchet-ghex" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#e23c42"/><stop offset=".6" stop-color="#c4262c"/><stop offset="1" stop-color="#911b20"/></linearGradient>
+   <radialGradient id="hatchet-glow"><stop offset="0" stop-color="#c4262c" stop-opacity=".85"/><stop offset=".65" stop-color="#c4262c" stop-opacity=".22"/><stop offset="1" stop-color="#c4262c" stop-opacity="0"/></radialGradient>
+   <symbol id="hatchet-hex" viewBox="0 0 24 24"><path fill="url(#hatchet-ghex)" d="M12 1.5 21.2 6.8v10.4L12 22.5 2.8 17.2V6.8z"/><path fill="#fff" fill-opacity=".16" d="M12 1.5 21.2 6.8 12 12 2.8 6.8z"/></symbol>
+   <symbol id="hatchet-i-find" viewBox="0 0 24 24"><ellipse cx="10.5" cy="9.5" rx="6.6" ry="5.4" fill="currentColor" fill-opacity=".28" stroke="currentColor" stroke-width="2"/><path d="M15.4 13.6 20.6 19.6" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M7.2 8.4c.8-1.4 2.2-2 3.6-2" stroke="currentColor" stroke-opacity=".7" stroke-width="1.1" stroke-linecap="round" fill="none"/></symbol>
+   <symbol id="hatchet-i-chart" viewBox="0 0 24 24"><g fill="currentColor"><path d="M6 11.5 9 13 6 14.5 3 13z"/><path fill-opacity=".5" d="M3 13l3 1.5v6L3 19z"/><path fill-opacity=".75" d="M9 13l-3 1.5v6L9 19z"/><path d="M12 6.5 15 8 12 9.5 9 8z"/><path fill-opacity=".5" d="M9 8l3 1.5v11L9 19z"/><path fill-opacity=".75" d="M15 8l-3 1.5v11l3-1.5z"/><path d="M18 2.5 21 4 18 5.5 15 4z"/><path fill-opacity=".5" d="M15 4l3 1.5v15L15 19z"/><path fill-opacity=".75" d="M21 4l-3 1.5v15l3-1.5z"/></g></symbol>
+   <symbol id="hatchet-i-flow" viewBox="0 0 24 24"><path d="M6 8v8h12" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" fill="none" stroke-dasharray="2 1.6"/><g fill="currentColor"><path d="M6 3 10 5 6 7 2 5z"/><path fill-opacity=".55" d="M2 5l4 2v3L2 8z"/><path fill-opacity=".8" d="M10 5 6 7v3l4-2z"/><path d="M6 13l4 2-4 2-4-2z"/><path fill-opacity=".55" d="M2 15l4 2v3l-4-2z"/><path fill-opacity=".8" d="M10 15l-4 2v3l4-2z"/><path d="M18 13l4 2-4 2-4-2z"/><path fill-opacity=".55" d="M14 15l4 2v3l-4-2z"/><path fill-opacity=".8" d="M22 15l-4 2v3l4-2z"/></g></symbol>
+   <symbol id="hatchet-i-doc" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 3 21.5 7.8 12 12.6 2.5 7.8z"/><path fill-opacity=".6" d="M2.5 11.2 12 16l9.5-4.8v1.8L12 17.8 2.5 13z"/><path fill-opacity=".4" d="M2.5 15.2 12 20l9.5-4.8V17L12 21.8 2.5 17z"/></g><path d="M8 7.8 12 9.8 16 7.8M10 6.6l4 2" stroke="#fff" stroke-opacity=".75" stroke-width=".9" fill="none"/></symbol>
+  </defs>
+ </svg>
+
+ <div class="wrap">
+  <header class="room-head">
+    <div><span class="kicker">Nº 002 · Rebuild and redesign lead</span><h2 class="room-name">Hatchet</h2></div>
+    <div>
+      <p class="standfirst">Hatchet is a creator-marketing and live-streaming analytics platform for gaming. Its marketing site has to explain a four-stage product to brands, game publishers, agencies and esports organisers, then get them to book a demo. I led the rebuild and the redesign: a new visual language, a static site with no server to maintain, and guardrails that let the marketing team edit it safely.</p>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Rebuild and redesign lead</dd></div>
+        <div><dt>Type</dt><dd>Client marketing site</dd></div>
+        <div><dt>Audience</dt><dd>Brands, publishers, agencies</dd></div>
+        <div><dt>Hosting</dt><dd>S3 and CloudFront, two environments</dd></div>
+        <div><dt>Migration</dt><dd>2,935 legacy URLs audited</dd></div>
+      </dl>
+      <div class="chips"><span>Next 16 static export</span><span>React 19</span><span>TypeScript strict</span><span>Tailwind v4</span><span>shadcn / Radix</span><span>framer-motion 12</span><span>Embla</span><span>Mux</span><span>CloudFront Functions</span><span>GitHub Actions</span></div>
+    </div>
+  </header>
+
+  <div class="film" data-film>
+    <div class="stage">
+
+      <!-- 1 · homepage hero -->
+      <div class="scene on s1" data-title="Homepage" data-cap="The homepage hero. A dark navy circuit board carries red pulses behind the headline, and three white data cards put the proof up front: <b>30+ platforms, 10+ years of data, 50M+ creators</b>. The navy fades through blue into the white of the page below, so the product video sits in the transition.">
+        <svg class="board" data-board="7" aria-hidden="true"></svg>
+        <div class="grain"></div>
+        <div class="nav"><span class="logo"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg>hatchet</span><span class="links"><i>Solutions ▾</i><i>Who We Serve ▾</i><i>Resources ▾</i><i>About ▾</i><i>Pricing</i><i>Why Hatchet</i></span><span class="navcta"><b class="btn red">Book a Demo</b><b class="btn white">Log in</b></span></div>
+        <div class="hero">
+          <p class="disp">Complete Gaming<br>Intelligence <span>Across<br>Socials and Streaming</span></p>
+          <p class="sub">Creator Marketing Analytics built for gaming: Creator discovery, campaign tracking, and ROI measurement across every social network.</p>
+          <div class="statcards">
+            <div class="sc"><span class="eb">Platforms</span><span class="num"><b data-to="30">30</b><i>+</i></span><div class="hsv" data-chart="bars"></div></div>
+            <div class="sc"><span class="eb">Years of data</span><span class="num"><b data-to="10">10</b><i>+</i></span><div class="hsv" data-chart="line"></div></div>
+            <div class="sc"><span class="eb">Creators</span><span class="num"><b data-to="50">50</b><i>M+</i></span><div class="hsv" data-chart="dots"></div></div>
+          </div>
+          <div class="ctas"><b class="btn red lg">Book a Demo</b><b class="btn white lg">See It In Action</b></div>
+        </div>
+        <div class="media">
+          <div class="dash" data-dash>
+            <div class="d-side"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg><i class="on"></i><i></i><i></i><i></i><i></i></div>
+            <div class="d-main">
+              <div class="d-top"><b>Creator Discovery</b><span class="d-search">Search 50M+ creators, games, tags</span><span class="d-chip on">Twitch</span><span class="d-chip">YouTube Gaming</span><span class="d-chip">Kick</span><span class="d-chip">+29</span><span class="d-live"><u></u>Live</span></div>
+              <div class="d-kpis">
+                <div><span>Unique creators</span><b>50.2M</b><em>of 52.4M</em><s style="--w:96%"></s></div>
+                <div><span>Hours watched</span><b>6.7B</b><em>last 90 days</em><s style="--w:72%"></s></div>
+                <div><span>Peak CCV</span><b>2.8M</b><em>cross-platform</em><s style="--w:58%"></s></div>
+                <div><span>Avg. authenticity</span><b>94</b><em>of 100</em><s style="--w:94%"></s></div>
+              </div>
+              <div class="d-body">
+                <div class="d-chart"><span class="d-lab">Hours watched · weekly</span><div class="d-bars" data-bars="30"></div></div>
+                <div class="d-list"><span class="d-lab">Top channels</span>
+                  <p><u></u>Novastrike<em>2.4M</em></p><p><u></u>Pixelhollow<em>1.9M</em></p><p><u></u>Kaijukendra<em>1.6M</em></p><p><u></u>Forgeplays<em>1.2M</em></p><p><u></u>Lumenquill<em>980K</em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · lifecycle orbital -->
+      <div class="scene s2" data-dur="13s" data-title="Lifecycle" data-cap="The product is sold as one loop with four stages: <b>find and verify, analyze, build, report</b>. A red core routes a live trace to each station in turn every 4.2 seconds, and the card on the right explains that stage in one paragraph with a link to its solution page.">
+        <svg class="board quiet" data-board="4" aria-hidden="true"></svg>
+        <div class="grain"></div>
+        <div class="nav"><span class="logo"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg>hatchet</span><span class="links"><i>Solutions ▾</i><i>Who We Serve ▾</i><i>Resources ▾</i><i>About ▾</i><i>Pricing</i><i>Why Hatchet</i></span><span class="navcta"><b class="btn red">Book a Demo</b><b class="btn white">Log in</b></span></div>
+        <div class="s2-head"><span class="eb">One platform, full lifecycle</span><p class="h1">How Hatchet Works</p><p class="s2-lede">Find creators. Run campaigns. Prove ROI.</p></div>
+        <div class="orb auto" data-orb="scene">
+          <div class="orb-canvas">
+            <div class="sweep"></div>
+            <svg viewBox="0 0 160 100" fill="none" aria-hidden="true">
+              <path class="ring" pathLength="1" d="M80 8 123.1 20.3 141 50 123.1 79.7 80 92 36.9 79.7 19 50 36.9 20.3Z"/>
+              <g class="idle"><line x1="80" y1="36" x2="80" y2="20"/><line x1="94" y1="50" x2="128" y2="50"/><line x1="80" y1="64" x2="80" y2="80"/><line x1="66" y1="50" x2="32" y2="50"/></g>
+              <circle class="glow" cx="80" cy="50" r="18" fill="url(#hatchet-glow)"/>
+              <g class="lv on" style="--dx:0px;--dy:-16px"><line x1="80" y1="36" x2="80" y2="20"/><circle cx="80" cy="36" r="1.4"/></g>
+              <g class="lv" style="--dx:34px;--dy:0px"><line x1="94" y1="50" x2="128" y2="50"/><circle cx="94" cy="50" r="1.4"/></g>
+              <g class="lv" style="--dx:0px;--dy:16px"><line x1="80" y1="64" x2="80" y2="80"/><circle cx="80" cy="64" r="1.4"/></g>
+              <g class="lv" style="--dx:-34px;--dy:0px"><line x1="66" y1="50" x2="32" y2="50"/><circle cx="66" cy="50" r="1.4"/></g>
+            </svg>
+            <div class="core"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg></div>
+            <button type="button" class="st on" style="left:50%;top:12%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-find"/></svg></span><span class="tx"><i>01</i><b>Find &amp; Verify</b></span></button>
+            <button type="button" class="st" style="left:85%;top:50%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-chart"/></svg></span><span class="tx"><i>02</i><b>Analyze</b></span></button>
+            <button type="button" class="st" style="left:50%;top:88%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-flow"/></svg></span><span class="tx"><i>03</i><b>Build</b></span></button>
+            <button type="button" class="st" style="left:15%;top:50%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-doc"/></svg></span><span class="tx"><i>04</i><b>Report</b></span></button>
+          </div>
+          <div class="orb-detail">
+            <div class="dp on"><p class="eb"><em>01</em> · Find &amp; Verify</p><p class="tag">Describe the creator you need and get a match. AI-powered search surfaces the right fit fast, and fake audience scoring flags suspicious channels before you commit.</p><ul><li>AI Smart Search<i>plain language</i></li><li>Fake audience scoring<i>0–100</i></li><li>Game leaderboards<i>weekly</i></li></ul><b class="btn red">Creator Discovery</b></div>
+            <div class="dp"><p class="eb"><em>02</em> · Analyze</p><p class="tag">Streaming and social in one view. Track performance across every platform your campaign touches, without switching tools or stitching spreadsheets together.</p><ul><li>Brand mention tracking<i>chat + titles</i></li><li>Groups<i>roster compare</i></li><li>YouTube VOD analytics<i>by minute</i></li></ul><b class="btn red">Intelligence</b></div>
+            <div class="dp"><p class="eb"><em>03</em> · Build</p><p class="tag">Manage your entire creator roster from one place. Brief, track, and coordinate campaigns end-to-end via a single, customizable hub.</p><ul><li>My Creators<i>roster</i></li><li>Messaging<i>1:1 + broadcast</i></li><li>Code Management<i>promo codes</i></li></ul><b class="btn red">Creator Community</b></div>
+            <div class="dp"><p class="eb"><em>04</em> · Report</p><p class="tag">Every campaign metric in one dashboard. Per-creator breakdowns, engagement, and export-ready reports your clients or stakeholders can easily understand.</p><ul><li>Earned media value<i>per campaign</i></li><li>Per-creator results<i>breakdowns</i></li><li>Custom reports<i>analyst-built</i></li></ul><b class="btn red">Reporting</b></div>
+            <div class="pips"><span class="pip on"><i></i></span><span class="pip"><i></i></span><span class="pip"><i></i></span><span class="pip"><i></i></span></div>
+          </div>
+        </div>
+        <div class="rail-row">
+          <div class="rail"></div><span class="rail-dot"></span>
+          <div class="rc"><i>01</i><b>Creator Discovery</b><span>AI Smart Search · fake audience scoring</span></div>
+          <div class="rc"><i>02</i><b>Intelligence</b><span>Streaming and social in one view</span></div>
+          <div class="rc"><i>03</i><b>Creator Community</b><span>Roster · messaging · promo codes</span></div>
+          <div class="rc"><i>04</i><b>Reporting</b><span>Earned media value · per-creator results</span></div>
+        </div>
+      </div>
+
+      <!-- 3 · solutions page product visuals -->
+      <div class="scene s3" data-title="Solutions page" data-cap="A solutions page on the white “paper” surface. The product team could not share real customer screens, so I rebuilt the key ones as <b>coded mock-ups with invented data</b>: a channel leaderboard, the AI search that turns a sentence into filters, and the fake-audience score that removes a suspicious channel from the shortlist.">
+        <div class="nav"><span class="logo"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg>hatchet</span><span class="links"><i class="cur">Solutions ▾</i><i>Who We Serve ▾</i><i>Resources ▾</i><i>About ▾</i><i>Pricing</i><i>Why Hatchet</i></span><span class="navcta"><b class="btn red">Book a Demo</b><b class="btn white">Log in</b></span></div>
+        <div class="s3-grid">
+          <div class="s3-l">
+            <p class="eb"><em>01</em> — Creator Discovery</p>
+            <p class="h1">Every creator across every platform.</p>
+            <p class="body">Discover creators worth knowing about, ranked and ready to compare. Sort by hours watched, concurrent viewers, followers, chat activity, or social reach, then narrow by platform, game, language, and country.</p>
+            <div class="vs ss">
+              <div class="vs-bar"><span><u></u>AI Smart Search</span><i>Combined</i></div>
+              <div class="vs-pad">
+                <p class="ai"><b>AI</b>Describe the creators you’re looking for and I’ll build the search for you.</p>
+                <p class="ask"><span>Spanish-speaking FPS streamers with high chat engagement</span></p>
+                <p class="cnt">3 filters active</p>
+                <div class="grp"><em>who streams on…</em><span><i>Twitch ×</i><i>YouTube Gaming ×</i></span></div>
+                <div class="grp"><em>by creator language</em><span><i>Spanish ×</i><i>English ×</i></span></div>
+                <div class="grp"><em>by engagement rate</em><span><i>Over 5% ×</i></span></div>
+                <p class="foot"><i>Reset</i><b>Create</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="s3-r">
+            <div class="vs lb">
+              <div class="vs-bar"><span><u></u>Channel leaderboard</span><i>32 platforms</i></div>
+              <div class="tot">
+                <div><span>Unique creators</span><p><b>50.2M</b><em>of 52.4M</em></p><s></s></div>
+                <div><span>Hours watched</span><p><b>6.7B</b><em>last 90 days</em></p></div>
+                <div><span>Peak CCV</span><p><b>2.8M</b><em>cross-platform</em></p></div>
+              </div>
+              <div class="fl"><i>Last 90 days</i><i class="on">Twitch</i><i>YouTube Gaming</i><i>Kick</i><i>+13 platforms</i><i class="on">FPS</i><i>Lang: EN</i><i>VTuber</i><i>Hours watched ▾</i></div>
+              <div class="tr th"><span>Channel</span><span>Hours watched</span><span>Peak CCV</span><span>Followers</span><span>Chat</span></div>
+              <div class="tr"><span><u></u><b>Novastrike</b><i>FPS</i></span><span class="hw">2.4M</span><span>41.2K</span><span>1.8M</span><span>312K</span></div>
+              <div class="tr"><span><u></u><b>Pixelhollow</b><i>RPG</i></span><span class="hw">1.9M</span><span>28.7K</span><span>1.1M</span><span>198K</span></div>
+              <div class="tr"><span><u></u><b>Kaijukendra</b><i>VTuber</i></span><span class="hw">1.6M</span><span>22.4K</span><span>940K</span><span>271K</span></div>
+              <div class="tr"><span><u></u><b>Forgeplays</b><i>FPS</i></span><span class="hw">1.2M</span><span>19.9K</span><span>712K</span><span>148K</span></div>
+            </div>
+            <div class="vs fa">
+              <div class="vs-bar"><span><u></u>Fake audience scoring</span><i>Auto-flagged</i></div>
+              <div class="vs-pad">
+                <p class="tg"><i class="on">Exclude suspicious channels</i><i>Include all</i></p>
+                <div class="sr"><b>Pixelhollow</b><span><s style="--w:98%"></s></span><em>98</em><i></i></div>
+                <div class="sr"><b>Novastrike</b><span><s style="--w:96%"></s></span><em>96</em><i></i></div>
+                <div class="sr"><b>Kaijukendra</b><span><s style="--w:91%"></s></span><em>91</em><i></i></div>
+                <div class="sr bad"><b>Vexholt</b><span><s style="--w:34%"></s></span><em>34</em><i>Flagged</i></div>
+                <p class="note">Flagged channels never reach your shortlist.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · plans + ember CTA -->
+      <div class="scene s4" data-title="Plans and call to action" data-cap="No prices appear anywhere. Three plans are described by which lifecycle stages they cover, and every route ends at <b>Book a Demo</b>. The closing panel uses the “ember” gradient, black through deep red to bright red, with a grid, film grain and a slow bloom so a flat call to action feels lit from inside.">
+        <svg class="board quiet" data-board="4" aria-hidden="true"></svg>
+        <div class="nav"><span class="logo"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg>hatchet</span><span class="links"><i>Solutions ▾</i><i>Who We Serve ▾</i><i>Resources ▾</i><i>About ▾</i><i class="cur">Pricing</i><i>Why Hatchet</i></span><span class="navcta"><b class="btn red">Book a Demo</b><b class="btn white">Log in</b></span></div>
+        <div class="s4-head"><div><span class="eb">Plans</span><p class="h1">Find your <span>fit.</span></p></div><p class="s4-sub">Our data adapts to brands, studios, and agencies of all sizes. From creator discovery to full campaign execution, pick the plan that matches how your team runs a program.</p></div>
+        <div class="plans">
+          <div class="plan"><p class="pn">Hatchet Community</p><p class="pt">Build and manage your creator roster, start to finish.</p><div class="lc"><i>Find</i><i>Analyze</i><i class="on">Build</i><i>Report</i></div><ul><li>My Creators<span>full roster, custom labels</span></li><li>Messaging<span>1:1 or broadcast</span></li><li>Code Management<span>promo codes and redemptions</span></li></ul><b class="btn ghost">Book a Demo</b></div>
+          <div class="plan"><p class="pn">Hatchet Data License</p><p class="pt">Every creator. Every game. Every number, verified.</p><div class="lc"><i class="on">Find</i><i class="on">Analyze</i><i>Build</i><i class="on">Report</i></div><ul><li>Creator &amp; Game Discovery<span>AI Smart Search</span></li><li>Brand &amp; Audience Intelligence<span>mentions, groups</span></li><li>Reporting &amp; Custom Reports<span>auto-tracked dashboards</span></li></ul><b class="btn ghost">Book a Demo</b></div>
+          <div class="plan hot"><span class="badge">Full lifecycle</span><p class="pn">Hatchet Full License</p><p class="pt">Everything Hatchet does. Every step of the lifecycle. One platform.</p><div class="lc"><i class="on">Find</i><i class="on">Analyze</i><i class="on">Build</i><i class="on">Report</i></div><ul><li>Discovery<span>search, fake audience scoring</span></li><li>Intelligence<span>VOD analytics, benchmarking</span></li><li>Community and Reporting<span>roster, codes, custom reports</span></li></ul><b class="btn red">Book a Demo</b></div>
+        </div>
+        <div class="ember">
+          <div class="e-grid"></div><div class="e-bloom"></div><div class="e-grain"></div>
+          <div class="monitor"><div class="m-screen" data-clone="dash"></div><div class="m-neck"></div><div class="m-foot"></div></div>
+          <div class="e-copy"><span class="eb">Book a demo</span><p class="h2">Full picture. Verified data. Gaming expertise.</p><p class="e-body">Book a demo and see how Hatchet runs your entire creator program, from first search to final report.</p><div class="e-row"><b class="btn white lg">Book a Demo</b><span class="e-proof"><i>30+ platforms</i><i>10+ years</i><i>50M+ creators</i></span></div></div>
+        </div>
+      </div>
+
+      <!-- 5 · the rebuild -->
+      <div class="scene s5" data-title="The rebuild" data-cap="What sits behind the design. The site is plain HTML files on a storage bucket, a <b>10 KB function at the network edge</b> answers old addresses with permanent redirects, and marketing editors publish through commands that run five checks before anything reaches the staging site for my review.">
+        <svg class="board quiet" data-board="6" aria-hidden="true"></svg>
+        <div class="grain"></div>
+        <div class="s5-head">
+          <div><span class="eb"><u></u>Rebuild log · June to November 2026</span><p class="h1">A marketing site with <span>no server left to break.</span></p></div>
+          <div class="kp"><div><b data-to="2935" data-sep="1">2,935</b><span>legacy URLs audited</span></div><div><b data-to="24">24</b><span>edge test cases</span></div><div><b data-to="5">5</b><span>checks per publish</span></div><div><b>0</b><span>servers to run</span></div></div>
+        </div>
+        <div class="s5-cols">
+          <div class="pn5">
+            <div class="vs-bar"><span><u></u>Edge function · viewer-request</span><i>ES5.1</i></div>
+            <ol class="steps"><li><i>1</i><b>Basic auth</b><span>staging host only</span></li><li class="on"><i>2</i><b>301 redirects</b><span>exact table + prefix rules</span></li><li><i>3</i><b>Trailing-slash rewrite</b><span>/pricing/ → index.html</span></li></ol>
+            <div class="log"><div class="log-in">
+              <p><i>301</i><span>/solutions/web-dashboard</span><b>/solutions/intelligence/</b></p>
+              <p><i>301</i><span>/reports/q3-live-streaming/</span><b>/resources/reports/</b></p>
+              <p><i>200</i><span>/pricing/</span><b>/pricing/index.html</b></p>
+              <p><i>301</i><span>/creator-discovery-tool/</span><b>/solutions/discovery/</b></p>
+              <p><i>301</i><span>/pricing</span><b>/pricing/</b></p>
+              <p><i>301</i><span>/reports/esports-yearly/</span><b>/resources/reports/</b></p>
+              <p><i>200</i><span>/</span><b>/index.html</b></p>
+              <p><i>301</i><span>/who-we-serve/publishers/</span><b>/who-we-serve/games-publishers/</b></p>
+              <p><i>301</i><span>/solutions/web-dashboard</span><b>/solutions/intelligence/</b></p>
+              <p><i>301</i><span>/reports/q3-live-streaming/</span><b>/resources/reports/</b></p>
+              <p><i>200</i><span>/pricing/</span><b>/pricing/index.html</b></p>
+              <p><i>301</i><span>/creator-discovery-tool/</span><b>/solutions/discovery/</b></p>
+              <p><i>301</i><span>/pricing</span><b>/pricing/</b></p>
+              <p><i>301</i><span>/reports/esports-yearly/</span><b>/resources/reports/</b></p>
+              <p><i>200</i><span>/</span><b>/index.html</b></p>
+              <p><i>301</i><span>/who-we-serve/publishers/</span><b>/who-we-serve/games-publishers/</b></p>
+            </div></div>
+            <div class="meter"><p><span>Function source</span><b>9.6 KB of 10 KB</b></p><s><u></u></s><p class="mm"><span>one hop per redirect</span><span>~1 ms CPU budget</span></p></div>
+          </div>
+          <div class="pn5">
+            <div class="vs-bar"><span><u></u>Static export · build</span><i>next build</i></div>
+            <div class="term">
+              <p><i>✓</i>pnpm typecheck<em>strict</em></p>
+              <p><i>✓</i>pnpm lint<em>0 problems</em></p>
+              <p><i>✓</i>design-lint.mjs<em>tokens only</em></p>
+              <p><i>✓</i>check-format.sh<em>clean</em></p>
+              <p><i>✓</i>pnpm build<em>static HTML</em></p>
+              <p class="ok">✓ export assertions passed<br>0 /_next/image references<span class="caret"></span></p>
+            </div>
+            <div class="pages"><p><b>Every route pre-rendered</b><i>136 HTML pages</i></p><div class="tiles" data-tiles="136"></div></div>
+            <div class="img5"><span class="d-lab">Image pipeline · hero poster</span>
+              <p><i>PNG</i><s style="--w:100%"></s><b>597 KB</b></p>
+              <p class="w"><i>WebP</i><s style="--w:31%"></s><b>184 KB</b></p>
+              <span class="d-lab sm">Pre-generated at build time, served by a custom loader</span>
+            </div>
+          </div>
+          <div class="pn5">
+            <div class="vs-bar"><span><u></u>Editor guardrails</span><i>Claude Code</i></div>
+            <div class="cmds"><i>/start</i><i>/status</i><i>/new-page</i><i>/add-report</i><i class="on">/publish</i><i>/undo</i><i>/reset</i><i>/help</i></div>
+            <div class="flow5">
+              <span class="f-line"></span><span class="f-dot"></span>
+              <div><i></i><b>Editor changes copy</b><span>plain-English request</span></div>
+              <div><i></i><b>Five checks run</b><span>stop on the first failure</span></div>
+              <div><i></i><b>Staging site</b><span>private, password-gated</span></div>
+              <div><i></i><b>I review the diff</b><span>approval required</span></div>
+              <div class="end"><i></i><b>Production</b><span>GitHub Actions deploy</span></div>
+            </div>
+            <p class="rule5">Never publish past a failing check, and never disable one to get past it.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="story">
+    <div><h3>The problem</h3><p>The old site ran on WordPress under the company’s previous name, with thousands of indexed pages and a design that looked like any other analytics vendor. The product had grown into a full creator-marketing lifecycle, and the site did not explain it.</p><p>The team also needed to keep editing copy every week without a developer in the loop, and without breaking a design they had just paid for.</p></div>
+    <div><h3>What I built</h3><p>I designed a new visual language around a printed circuit board: navy substrate, copper-like traces, red signal pulses, white “paper” bands for reading. Then I built every page in it, including the lifecycle orbital, the animated data cards and the coded product mock-ups.</p><p>The site compiles to static HTML, deploys through GitHub Actions to a staging and a production environment, and reads its blog from a WordPress snapshot committed to the repository.</p></div>
+    <div><h3>What made it hard</h3><p>Dropping the server meant every redirect, the staging password and the trailing-slash routing had to fit in one edge function with a 10 KB limit and an old JavaScript dialect. I audited 2,935 legacy URLs and collapsed whole groups into prefix rules to make the table fit.</p><p>The second hard part was people. Non-technical editors now change the site through an AI assistant, so I wrote the commands, permissions and a design lint that keep those changes inside the system.</p></div>
+  </div>
+
+  <div class="block-title"><h3>Specimens</h3><span class="label">Live components. Touch them.</span></div>
+  <div class="specimens">
+
+    <article class="spec" style="--span:7">
+      <div class="spec-live sp-circuit"><span class="spec-hint">Move · click</span>
+        <svg class="board live" data-board="0" data-live aria-hidden="true"></svg>
+        <div class="grain"></div>
+        <div class="cf-ui"><span class="cf-read"><u></u><b data-cf-count>0</b> pulses routed</span><button type="button" class="cf-btn" data-cf-fire>Fire a surge</button></div>
+      </div>
+      <div class="spec-note"><h4>Circuit field</h4><p>The site’s background. Traces come in three copper widths and bend only at 45 degrees, like a real board. Move the pointer and the nearest trace carries a pulse, and each via blooms as the pulse passes through it.</p></div>
+    </article>
+
+    <article class="spec" style="--span:5">
+      <div class="spec-live sp-stats"><span class="spec-hint">Hover · click</span>
+        <p class="sp-eb">Hero data cards</p>
+        <p class="sp-line">Ten years of verified data from streaming and social, across 30+ platforms.</p>
+        <div class="statcards px">
+          <button type="button" class="sc"><span class="eb">Platforms</span><span class="num"><b data-to="30">30</b><i>+</i></span><div class="hsv" data-chart="bars"></div></button>
+          <button type="button" class="sc"><span class="eb">Years of data</span><span class="num"><b data-to="10">10</b><i>+</i></span><div class="hsv" data-chart="line"></div></button>
+          <button type="button" class="sc"><span class="eb">Creators</span><span class="num"><b data-to="50">50</b><i>M+</i></span><div class="hsv" data-chart="dots"></div></button>
+        </div>
+      </div>
+      <div class="spec-note"><h4>Data cards</h4><p>Three white cards on navy, each with its own chart: bars for breadth, a rising line for history, a dot field for scale. The number counts up while the chart draws, and both replay when you touch a card.</p></div>
+    </article>
+
+    <article class="spec" style="--span:5">
+      <div class="spec-live sp-orb"><span class="spec-hint">Click a station</span>
+        <div class="orb auto compact" data-orb="spec">
+          <div class="orb-canvas">
+            <div class="sweep"></div>
+            <svg viewBox="0 0 160 100" fill="none" aria-hidden="true">
+              <path class="ring" pathLength="1" d="M80 8 123.1 20.3 141 50 123.1 79.7 80 92 36.9 79.7 19 50 36.9 20.3Z"/>
+              <g class="idle"><line x1="80" y1="36" x2="80" y2="20"/><line x1="94" y1="50" x2="128" y2="50"/><line x1="80" y1="64" x2="80" y2="80"/><line x1="66" y1="50" x2="32" y2="50"/></g>
+              <circle class="glow" cx="80" cy="50" r="18" fill="url(#hatchet-glow)"/>
+              <g class="lv on" style="--dx:0px;--dy:-16px"><line x1="80" y1="36" x2="80" y2="20"/><circle cx="80" cy="36" r="1.4"/></g>
+              <g class="lv" style="--dx:34px;--dy:0px"><line x1="94" y1="50" x2="128" y2="50"/><circle cx="94" cy="50" r="1.4"/></g>
+              <g class="lv" style="--dx:0px;--dy:16px"><line x1="80" y1="64" x2="80" y2="80"/><circle cx="80" cy="64" r="1.4"/></g>
+              <g class="lv" style="--dx:-34px;--dy:0px"><line x1="66" y1="50" x2="32" y2="50"/><circle cx="66" cy="50" r="1.4"/></g>
+            </svg>
+            <div class="core"><svg viewBox="0 0 24 24"><use href="#hatchet-hex"/></svg></div>
+            <button type="button" class="st on" style="left:50%;top:12%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-find"/></svg></span><span class="tx"><i>01</i><b>Find &amp; Verify</b></span></button>
+            <button type="button" class="st" style="left:83%;top:50%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-chart"/></svg></span><span class="tx"><i>02</i><b>Analyze</b></span></button>
+            <button type="button" class="st" style="left:50%;top:88%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-flow"/></svg></span><span class="tx"><i>03</i><b>Build</b></span></button>
+            <button type="button" class="st" style="left:17%;top:50%"><span class="ic"><svg viewBox="0 0 24 24"><use href="#hatchet-i-doc"/></svg></span><span class="tx"><i>04</i><b>Report</b></span></button>
+          </div>
+          <div class="orb-detail">
+            <div class="dp on"><p class="eb"><em>01</em> · Find &amp; Verify</p><p class="tag">Describe the creator you need and get a match. AI-powered search surfaces the right fit fast, and fake audience scoring flags suspicious channels before you commit.</p><ul><li>AI Smart Search<i>plain language</i></li><li>Fake audience scoring<i>0–100</i></li><li>Game leaderboards<i>weekly</i></li></ul></div>
+            <div class="dp"><p class="eb"><em>02</em> · Analyze</p><p class="tag">Streaming and social in one view. Track performance across every platform your campaign touches, without switching tools or stitching spreadsheets together.</p><ul><li>Brand mention tracking<i>chat + titles</i></li><li>Groups<i>roster compare</i></li><li>YouTube VOD analytics<i>by minute</i></li></ul></div>
+            <div class="dp"><p class="eb"><em>03</em> · Build</p><p class="tag">Manage your entire creator roster from one place. Brief, track, and coordinate campaigns end-to-end via a single, customizable hub.</p><ul><li>My Creators<i>roster</i></li><li>Messaging<i>1:1 + broadcast</i></li><li>Code Management<i>promo codes</i></li></ul></div>
+            <div class="dp"><p class="eb"><em>04</em> · Report</p><p class="tag">Every campaign metric in one dashboard. Per-creator breakdowns, engagement, and export-ready reports your clients or stakeholders can easily understand.</p><ul><li>Earned media value<i>per campaign</i></li><li>Per-creator results<i>breakdowns</i></li><li>Custom reports<i>analyst-built</i></li></ul></div>
+            <div class="pips"><span class="pip on"><i></i></span><span class="pip"><i></i></span><span class="pip"><i></i></span><span class="pip"><i></i></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-note"><h4>Lifecycle orbital</h4><p>An octagonal ring with a red core and four stations. It demonstrates itself every 4.2 seconds until you touch it, then hands over control and never advances on its own again.</p></div>
+    </article>
+
+    <article class="spec" style="--span:7">
+      <div class="spec-live sp-search"><span class="spec-hint">Pick a prompt · toggle</span>
+        <div class="vsp" data-search>
+          <div class="vsp-bar"><span><u></u>AI Smart Search</span><i data-ss-meta>Combined</i></div>
+          <div class="vsp-body">
+            <div class="vsp-l">
+              <p class="ai"><b>AI</b>Describe the creators you’re looking for and I’ll build the search for you.</p>
+              <p class="ask"><span data-ss-ask></span><i class="caret"></i></p>
+              <div class="presets" data-ss-presets>
+                <button type="button" class="on">Spanish FPS, high chat</button><button type="button">VTubers on YouTube</button><button type="button">English RPG, Twitch or Kick</button>
+              </div>
+              <p class="cnt" data-ss-cnt>3 filters active</p>
+              <div class="groups" data-ss-groups></div>
+            </div>
+            <div class="vsp-r">
+              <div class="tgl" data-ss-toggle><button type="button" class="on" data-v="1">Exclude suspicious channels</button><button type="button" data-v="0">Include all</button></div>
+              <div class="res" data-ss-res></div>
+              <div class="sum" data-ss-sum></div>
+              <p class="note" data-ss-note>Flagged channels never reach your shortlist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-note"><h4>Smart search and fake-audience score</h4><p>The two discovery features as one working mock-up with invented channels. A sentence becomes filter groups, the list re-ranks by authenticity score, and the toggle shows what a flagged channel looks like before it is dropped.</p></div>
+    </article>
+  </div>
+
+  <div class="block-title"><h3>Under the floor</h3><span class="label">How it works</span></div>
+  <div class="eng">
+    <div class="eng-diagram">
+      <div class="lanes">
+        <div class="lane"><span class="ln">Content</span>
+          <div class="nd"><b>WordPress</b><i>blog and reports</i></div><span class="wr"></span>
+          <div class="nd"><b>Sync script</b><i>sync-wordpress.mjs</i></div><span class="wr"></span>
+          <div class="nd"><b>Committed snapshot</b><i>JSON + images in git</i></div><span class="wr"></span>
+          <div class="nd"><b>Image optimiser</b><i>WebP at fixed widths</i></div>
+        </div>
+        <div class="jn"><i></i><span>Committed files are the only input the build reads</span></div>
+        <div class="lane"><span class="ln">Build</span>
+          <div class="nd"><b>Git push</b><i>staging or main</i></div><span class="wr"></span>
+          <div class="nd"><b>GitHub Actions</b><i>type, lint, design, format</i></div><span class="wr"></span>
+          <div class="nd hot"><b>Static export</b><i>next build → HTML</i></div><span class="wr"></span>
+          <div class="nd"><b>Storage bucket</b><i>one per environment</i></div>
+        </div>
+        <div class="jn"><i></i><span>Deploy syncs the bucket, then clears the CDN cache</span></div>
+        <div class="lane"><span class="ln">Request</span>
+          <div class="nd"><b>Visitor</b><i>old or new URL</i></div><span class="wr"></span>
+          <div class="nd hot"><b>Edge function</b><i>auth · 301 · rewrite</i></div><span class="wr"></span>
+          <div class="nd"><b>CDN cache</b><i>CloudFront</i></div><span class="wr"></span>
+          <div class="nd"><b>HTML file</b><i>/pricing/index.html</i></div>
+        </div>
+        <div class="jn"><i></i><span>The page arrives complete; scripts are extras</span></div>
+        <div class="lane"><span class="ln">Browser</span>
+          <div class="nd"><b>Consent banner</b><i>default: denied</i></div><span class="wr"></span>
+          <div class="nd"><b>Analytics</b><i>loads after accept</i></div><span class="wr off"></span>
+          <div class="nd"><b>Demo form</b><i>posts to the CRM</i></div><span class="wr off"></span>
+          <div class="nd"><b>Hero video</b><i>Mux, poster first</i></div>
+        </div>
+      </div>
+    </div>
+    <div class="eng-notes">
+      <div><h4>Redirects that fit in 10 KB</h4><p>CloudFront Functions allow 10 KB of source, about one millisecond of CPU, and only the 2009 version of JavaScript. Listing every old address would not fit, so whole groups became prefix rules. One rule covers all 27 old report URLs. A test file parses the function in the old dialect and runs 24 cases before it is uploaded.</p></div>
+      <div><h4>No image server</h4><p>A static export cannot resize images on request. A script generates WebP versions at fixed widths during the build and a custom loader points each image at the right file. The hero poster dropped from 597 KB to 184 KB, and the build fails if any page still references the on-demand image route.</p></div>
+      <div><h4>Content as a snapshot</h4><p>There is no database. A script pulls the blog and reports from WordPress into files committed to the repository, so every deploy is reproducible and the live site keeps working if WordPress is down. A GitHub workflow refreshes the snapshot when the team asks for it.</p></div>
+      <div><h4>Guardrails for editors</h4><p>Marketing editors work through Claude Code with eleven commands such as /start, /publish and /undo. Publishing runs five checks, including a design lint that reports problems in plain English, and stops at the first failure. Passing work goes to a password-gated staging site, and production needs my approval.</p></div>
+    </div>
+  </div>
+
+  <div class="room-foot"><span>Rebuild and redesign lead · client work · 2026</span><a href="https://hatchet.gg" target="_blank" rel="noopener">hatchet.gg ↗</a></div>
+ </div>
+</section>

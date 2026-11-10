@@ -1,0 +1,3 @@
+<%# The room itself: app/views/rooms/_<slug>.html.erb. The slug comes from the
+    content file, never from the request, so this lookup is safe. %>
+<%= render "rooms/#{@project[:slug]}" %>

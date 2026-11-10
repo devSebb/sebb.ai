@@ -1,5 +1,5 @@
-<%# Exhibition Room 5 — Experience %>
-<section class="section-room py-24 md:py-32" id="experience" data-animate="experience">
+<%# Experience — where the rooms came from %>
+<section class="section-room py-24 md:py-32 !min-h-0" id="experience" data-animate="experience">
   <div class="flex items-baseline justify-between mb-16">
     <span class="meta-label exp-label"><span class="text-accent">04</span> — Experience</span>
     <%= link_to resume_path, class: "btn-magnetic", data: { magnetic: true } do %>
@@ -7,28 +7,36 @@
     <% end %>
   </div>
 
-  <%# Experience rows %>
   <div class="space-y-0">
     <% @experience.each_with_index do |item, index| %>
       <div class="exp-item grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 border-t border-border exp-border transition-colors duration-300 hover:border-accent hover:bg-surface-dark/40">
-        <%# Left: number + date %>
         <div class="md:col-span-3 flex md:flex-col gap-4 md:gap-2">
           <span class="meta-label text-accent exp-number"><%= "%02d" % (index + 1) %></span>
           <span class="meta-label"><%= item[:date_label] %></span>
         </div>
 
-        <%# Right: title + summary %>
         <div class="md:col-span-9">
-          <h3 class="font-display font-bold text-display-md text-surface-light mb-4 exp-title">
+          <h3 class="font-display font-bold text-display-sm text-surface-light mb-4 exp-title">
             <%= item[:title] %>
           </h3>
-          <p class="text-body text-muted leading-relaxed">
+          <p class="text-body text-[#A3A3A0] leading-relaxed max-w-3xl">
             <%= item[:summary] %>
           </p>
+          <% rooms = Array(item[:rooms]).filter_map { |slug| @projects.find { |project| project[:slug] == slug } } %>
+          <% if rooms.any? %>
+            <div class="flex flex-wrap items-center gap-2 mt-6">
+              <span class="meta-label mr-2">Rooms</span>
+              <% rooms.each do |room| %>
+                <a href="<%= project_path(room[:slug]) %>" data-door data-turbo="false" data-door-color="<%= room[:theme_bg] %>"
+                   class="font-mono text-meta uppercase tracking-widest border border-border rounded-full px-3 py-1.5 text-surface-light hover:border-accent hover:text-accent transition-colors">
+                  <%= room[:name] %> →
+                </a>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
-    <%# Bottom border %>
     <div class="border-t border-border"></div>
   </div>
 </section>

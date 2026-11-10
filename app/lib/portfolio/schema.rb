@@ -5,8 +5,8 @@ module Portfolio
       links
       about
       tech_stack
+      practice
       experience
-      skills_categories
       projects
       resume
       contact
@@ -17,14 +17,16 @@ module Portfolio
       name
       tagline
       description
-      detailed_description
-      hero_image
-      gallery
+      blurb
       theme_color
+      theme_bg
+      theme_fg
+      theme_muted
       year
       role
-      features
-      technologies
+      status
+      facts
+      fonts
     ].freeze
 
     module_function

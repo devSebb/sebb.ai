@@ -527,3 +527,108 @@
     break-inside: avoid;
   }
 }
+
+/* ── Home: the six lit windows in the entrance ─────────────────────────── */
+.hero-windows { display: flex; gap: 10px; max-width: 760px; }
+.hero-window {
+  position: relative; flex: 1 1 0; min-width: 0; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 4px;
+  border: 1px solid #2A2A2A; opacity: .62;
+  transition: opacity .4s ease, border-color .4s ease, box-shadow .4s ease, transform .6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-window img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.hero-window:hover, .hero-window:focus-visible {
+  opacity: 1; border-color: var(--c); transform: translateY(-6px);
+  box-shadow: 0 18px 50px -14px var(--c);
+}
+.hero-window-label {
+  position: absolute; left: 6px; bottom: 5px; font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .12em;
+  color: #fff; mix-blend-mode: difference;
+}
+@media (max-width: 640px) {
+  .hero-windows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .hero-window { opacity: .9; }
+}
+
+/* ── Home: the collection reel ──────────────────────────────────────────
+   The section's four colours are custom properties that the script swaps as
+   each product reaches the middle of the screen; everything inside reads them. */
+.reel {
+  --rb: #0A0A0A; --rt: #E8E8E8; --rm: #8A8A86; --ra: #0ED762;
+  position: relative; z-index: 3; background-color: var(--rb); color: var(--rt);
+  padding: 6rem clamp(1.5rem, 4vw, 6rem) 2rem;
+  transition: background-color .8s cubic-bezier(0.33, 1, 0.68, 1), color .8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.reel-label {
+  font-family: "IBM Plex Mono", monospace; font-size: 0.6875rem; line-height: 1.4; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--rm); transition: color .8s;
+}
+.reel-accent { color: var(--ra); }
+.reel-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+.reel-item { padding: 4rem 0; border-top: 1px solid color-mix(in srgb, var(--rt) 16%, transparent); }
+.reel-item:first-child { border-top: 0; }
+.reel-name { font-size: clamp(3rem, 11vw, 6.5rem); line-height: .92; margin: 1rem 0 1.25rem; }
+.reel-name a { color: inherit; text-decoration: none; }
+.reel-blurb { font-size: 1.2rem; line-height: 1.5; max-width: 34ch; }
+.reel-poster { display: block; margin-top: 2rem; border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px color-mix(in srgb, var(--rt) 16%, transparent); }
+.reel-poster img { width: 100%; height: auto; display: block; }
+.reel-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 1rem; margin-top: 2rem; border-top: 1px solid color-mix(in srgb, var(--rt) 16%, transparent); }
+.reel-facts div { padding-top: .75rem; min-width: 0; }
+.reel-facts dt { font-family: "IBM Plex Mono", monospace; font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; color: var(--rm); }
+.reel-facts dd { margin-top: .25rem; font-weight: 600; font-size: .95rem; }
+.reel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+.reel-door {
+  display: inline-flex; align-items: center; gap: .6em; padding: .95rem 1.6rem; border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.6875rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  background: var(--rt); color: var(--rb); transition: background-color .8s, color .8s, transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reel-door span { transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1); }
+.reel-door:hover span { transform: translateX(.35em); }
+.reel-stage-col { display: none; }
+
+@media (min-width: 1024px) {
+  .reel { padding-top: 8rem; padding-bottom: 0; }
+  .reel-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 6rem); }
+  .reel-item { min-height: 92vh; padding: 0; border: 0; display: flex; flex-direction: column; justify-content: center; opacity: .28; transition: opacity .6s ease; }
+  .reel-item.is-active { opacity: 1; }
+  .reel-poster { display: none; }
+  .reel-stage-col { display: block; }
+  .reel-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
+  .reel-screen {
+    position: relative; display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 10px;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--rt) 18%, transparent), 0 40px 90px -40px rgba(0, 0, 0, .7);
+    background: color-mix(in srgb, var(--rt) 6%, var(--rb));
+  }
+  .reel-still, .reel-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .reel-still { object-fit: cover; object-position: top center; transition: opacity .5s ease; }
+  .reel-frame { opacity: 0; pointer-events: none; transition: opacity .6s ease; }
+  .reel-frame.is-live { opacity: 1; }
+  .reel-tag {
+    position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; border-radius: 4px;
+    font-family: "IBM Plex Mono", monospace; font-size: .625rem; letter-spacing: .14em; text-transform: uppercase;
+    background: rgba(10, 10, 10, .72); color: #E8E8E8; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+}
+
+/* The door: the product's colour floods the screen before its room opens */
+.door-flood { position: fixed; inset: 0; z-index: 10000; pointer-events: none; clip-path: circle(0 at var(--x, 50%) var(--y, 50%)); transition: clip-path .65s cubic-bezier(0.83, 0, 0.17, 1); }
+.door-flood.is-open { clip-path: circle(150vmax at var(--x, 50%) var(--y, 50%)); }
+
+/* ── Home: the tools as one moving line ───────────────────────────────── */
+.tool-line { margin-top: 4rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.tool-line-track { display: flex; width: max-content; animation: tool-line 70s linear infinite; }
+.tool-line:hover .tool-line-track { animation-play-state: paused; }
+.tool-line ul { display: flex; gap: 2.75rem; padding-right: 2.75rem; margin: 0; list-style: none; }
+.tool-line li { display: flex; align-items: center; gap: .6rem; white-space: nowrap; color: #6B6B6B; font-family: "IBM Plex Mono", monospace; font-size: 0.6875rem; letter-spacing: .12em; text-transform: uppercase; transition: color .3s; }
+.tool-line li:hover { color: #E8E8E8; }
+.tool-line .tech-logo { width: 18px; height: 18px; color: currentColor; opacity: 1; }
+@keyframes tool-line { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .tool-line-track { animation: none; }
+  .reel, .reel-label, .reel-door, .door-flood { transition: none; }
+}
+
+/* Failsafe: the preloader is cleared by script, but if the animation library
+   is blocked or slow the site must not stay behind a black screen. */
+.preloader { animation: preloader-failsafe 0s linear 4.5s forwards; }
+@keyframes preloader-failsafe { to { visibility: hidden; pointer-events: none; } }

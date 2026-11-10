@@ -9,14 +9,16 @@ module Portfolio
         "name" => "Demo",
         "tagline" => "A demo project",
         "description" => "Short description",
-        "detailed_description" => "Longer description",
-        "hero_image" => "projects/demo/hero.png",
-        "gallery" => [ "projects/demo/hero.png" ],
+        "blurb" => "One or two sentences for the home page reel",
         "theme_color" => "#0ED762",
+        "theme_bg" => "#0A0A0A",
+        "theme_fg" => "#E8E8E8",
+        "theme_muted" => "#8A8A86",
         "year" => "2026",
         "role" => "Developer",
-        "features" => [ "Feature one" ],
-        "technologies" => [ "ruby" ]
+        "status" => "live",
+        "facts" => [ [ "Stack", "Rails" ] ],
+        "fonts" => []
       }
     end
 
@@ -26,10 +28,9 @@ module Portfolio
         "identity" => {},
         "links" => {},
         "about" => {},
-        "tech_icons" => {},
         "tech_stack" => [],
         "experience" => [],
-        "skills_categories" => [],
+        "practice" => {},
         "projects" => projects,
         "resume" => {},
         "contact" => {}
@@ -46,7 +47,7 @@ module Portfolio
     end
 
     test "raises when a required project key is missing" do
-      payload = valid_payload(projects: [ valid_project.except("hero_image") ])
+      payload = valid_payload(projects: [ valid_project.except("blurb") ])
       error = assert_raises(ArgumentError) { Schema.validate!(payload) }
       assert_match("project missing required keys", error.message)
     end

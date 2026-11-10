@@ -50,6 +50,59 @@ module ApplicationHelper
     slug.to_s.match?(LOGO_SLUG) && LOGO_DIR.join("#{slug}.svg").file?
   end
 
+  # ── Page metadata ───────────────────────────────────────────────────────
+  # Controllers set @meta; anything missing falls back to the site defaults.
+  SITE_URL = "https://sebb.ai".freeze
+  DEFAULT_META = {
+    title: "devSebb — Sebastian Burke, product engineer and designer",
+    description: "devSebb is Sebastian Burke: I design, build and ship products end to end. " \
+                 "Six live products, shown as working rooms you can touch.",
+    path: "/",
+    image: "og/home.jpg",
+    type: "website"
+  }.freeze
+
+  def page_meta
+    DEFAULT_META.merge((@meta || {}).compact)
+  end
+
+  def canonical_url(path = page_meta[:path])
+    "#{SITE_URL}#{path}"
+  end
+
+  def person_structured_data(links = {})
+    {
+      "@context" => "https://schema.org",
+      "@type" => "Person",
+      "name" => "Sebastian Burke",
+      "alternateName" => "devSebb",
+      "url" => SITE_URL,
+      "jobTitle" => "Forward Deployed Engineer",
+      "knowsLanguage" => %w[en es],
+      "sameAs" => links.values_at(:github, :linkedin, :x).compact
+    }
+  end
+
+  def project_structured_data(project)
+    data = {
+      "@context" => "https://schema.org",
+      "@type" => "CreativeWork",
+      "name" => project[:name],
+      "headline" => project[:tagline],
+      "description" => project[:description],
+      "url" => canonical_url("/projects/#{project[:slug]}"),
+      "dateCreated" => project[:year],
+      "creator" => { "@type" => "Person", "name" => "Sebastian Burke", "alternateName" => "devSebb", "url" => SITE_URL }
+    }
+    data["sameAs"] = project[:link] if project[:link].present?
+    data
+  end
+
+  # Google Fonts stylesheet for a list of css2 family strings.
+  def google_fonts_url(families)
+    "https://fonts.googleapis.com/css2?" + Array(families).map { |family| "family=#{family}" }.join("&") + "&display=swap"
+  end
+
   private
 
   def logo_symbol_id(slug)

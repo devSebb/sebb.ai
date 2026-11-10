@@ -1,29 +1,26 @@
-<%# Exhibition Room 2 — About %>
-<section class="section-room py-24 md:py-32" id="about" data-animate="about">
+<%# About — short on purpose %>
+<section class="section-room py-24 md:py-32 !min-h-0" id="about" data-animate="about">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-    <%# Left column: label + heading %>
-    <div class="md:col-span-4">
-      <span class="meta-label about-label"><span class="text-accent">01</span> — About</span>
-      <h2 class="font-display font-extrabold text-display-md text-surface-light mt-6 about-heading">Building things that feel alive
-      </h2>
+    <div class="md:col-span-5">
+      <span class="meta-label about-label"><span class="text-accent">03</span> — About</span>
+      <h2 class="font-display font-extrabold text-display-md text-surface-light mt-6 about-heading"><%= @about[:heading] %></h2>
+
+      <div class="group flex items-center gap-4 pt-10 about-profile">
+        <%= image_tag "profile.JPG", alt: "Sebastian Burke", class: "w-20 h-20 rounded-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105", loading: "lazy", width: 80, height: 80 %>
+        <div>
+          <span class="text-surface-light font-body font-medium">Sebastian Burke</span>
+          <span class="meta-label block mt-1">devSebb · English / Spanish</span>
+        </div>
+      </div>
     </div>
 
-    <%# Right column: paragraphs %>
-    <div class="md:col-span-7 md:col-start-6 space-y-6">
-      <% @about[:paragraphs].each do |paragraph| %>
-        <p class="text-body-lg text-muted leading-relaxed about-paragraph">
+    <div class="md:col-span-6 md:col-start-7 space-y-6">
+      <% @about[:paragraphs].each_with_index do |paragraph, index| %>
+        <p class="<%= index.zero? ? "text-[1.5rem] leading-snug text-surface-light" : "text-body-lg text-[#A3A3A0] leading-relaxed" %> about-paragraph">
           <%= paragraph %>
         </p>
       <% end %>
-
-      <%# Profile hint %>
-      <div class="group flex items-center gap-4 pt-8 about-profile">
-        <%= image_tag "profile.JPG", alt: @identity[:name], class: "w-16 h-16 rounded-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105", loading: "lazy" %>
-        <div>
-          <span class="text-surface-light font-body font-medium"><%= @identity[:name] %></span>
-          <span class="meta-label block mt-1">Developer & Designer</span>
-        </div>
-      </div>
+      <a href="#contact" class="btn-magnetic about-paragraph !mt-10" data-magnetic>Write to me</a>
     </div>
   </div>
 </section>

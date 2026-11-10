@@ -1,4 +1,4 @@
-<%# Exhibition Room 1 — Museum Entrance Performance %>
+<%# Entrance — the lobby. Quiet and dark; the only colour is the six lit windows. %>
 <section class="section-room flex flex-col justify-between min-h-screen relative" id="hero" data-animate="hero">
   <%# Architectural floor grid — canvas dot field behind the hero content %>
   <canvas class="absolute inset-0 w-full h-full pointer-events-none" data-hero-grid aria-hidden="true"></canvas>
@@ -8,44 +8,40 @@
     <span class="meta-label block"><%= @about[:hero_description] %></span>
   </div>
 
-  <%# Center: Massive name with depth parallax layers + rotating role %>
+  <%# Center: the name, with a ghost layer for depth, and one fixed line %>
   <div class="flex-grow flex flex-col justify-center relative">
     <div class="relative">
-      <%# Back layer — parallax depth %>
-      <h1 class="heading-display hero-title-back absolute inset-0 flex items-center opacity-[0.08] select-none pointer-events-none" aria-hidden="true">
+      <div class="heading-display hero-title-back absolute inset-0 flex items-center opacity-[0.08] select-none pointer-events-none" aria-hidden="true">
         <%= @identity[:name] %>
-      </h1>
-      <%# Front layer — primary %>
+      </div>
       <h1 class="heading-display hero-title-front relative" data-hero-title>
         <%= @identity[:name] %>
       </h1>
     </div>
 
-    <%# Rotating role line — masked roll %>
-    <% titles = @about[:hero_rotating_titles] || [] %>
-    <% if titles.any? %>
-      <div class="hero-role relative mt-6 flex items-baseline gap-3">
-        <span class="text-muted text-body-lg"><%= @about[:hero_rotating_prefix] %></span>
-        <span class="inline-block overflow-hidden h-[1.5em] text-body-lg align-bottom">
-          <span class="flex flex-col" data-role-track>
-            <% (titles + titles.first(1)).each do |title| %>
-              <span class="block leading-[1.5] font-mono uppercase tracking-wide text-accent"><%= title %></span>
-            <% end %>
-          </span>
-        </span>
-      </div>
-    <% end %>
+    <p class="hero-role relative mt-6 text-body-lg md:text-[1.6rem] md:leading-snug text-surface-light max-w-2xl">
+      <%= @about[:hero_line] %>
+    </p>
   </div>
 
-  <%# Bottom row %>
-  <div class="relative flex items-end justify-between pb-12 md:pb-16">
-    <%# Tagline %>
-    <p class="text-muted text-body-lg max-w-md hero-tagline">
-      <%= @about[:hero_tagline] %>
-    </p>
+  <%# Bottom row: six lit windows into the rooms, and the scroll cue %>
+  <div class="relative flex items-end justify-between gap-8 pb-10 md:pb-14">
+    <div class="hero-tagline min-w-0 flex-1">
+      <span class="meta-label block mb-3">Now showing</span>
+      <div class="hero-windows">
+        <% @projects.each_with_index do |project, index| %>
+          <a href="<%= project_path(project[:slug]) %>" class="hero-window" data-door data-turbo="false"
+             data-door-color="<%= project[:theme_bg] %>" data-cursor-text="Enter"
+             style="--c:<%= project[:theme_color] == "#FFFFFF" ? project[:theme_bg] : project[:theme_color] %>"
+             aria-label="<%= project[:name] %>: <%= project[:tagline] %>">
+            <%= image_tag "rooms/#{project[:slug]}.jpg", alt: "", width: 320, height: 200, loading: "eager", decoding: "async" %>
+            <span class="hero-window-label"><%= "%03d" % (index + 1) %></span>
+          </a>
+        <% end %>
+      </div>
+    </div>
 
-    <%# Scroll cue %>
-    <div class="flex flex-col items-center gap-3 hero-scroll-cue">
+    <div class="hidden sm:flex flex-col items-center gap-3 hero-scroll-cue">
       <span class="meta-label">Scroll</span>
       <div class="w-[1px] h-12 bg-accent animate-scroll-line"></div>
     </div>

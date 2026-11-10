@@ -1,0 +1,56 @@
+<%# The collection — a reel. As each product reaches the middle of the screen
+    the corridor floods with its colours and the stage plays its film. %>
+<section class="reel" id="projects" data-animate="collection">
+  <div class="reel-head">
+    <span class="reel-label"><span class="reel-accent">01</span> — The collection</span>
+    <span class="reel-label"><%= @projects.length %> rooms · scroll to walk through</span>
+  </div>
+
+  <div class="reel-grid">
+    <div class="reel-list">
+      <% @projects.each_with_index do |project, index| %>
+        <article class="reel-item" data-reel-item
+                 data-bg="<%= project[:theme_bg] %>" data-fg="<%= project[:theme_fg] %>"
+                 data-muted="<%= project[:theme_muted] %>" data-accent="<%= project[:theme_color] %>"
+                 data-film="<%= project_film_path(project[:slug]) %>"
+                 data-still="<%= image_path("rooms/#{project[:slug]}.jpg") %>"
+                 data-href="<%= project_path(project[:slug]) %>"
+                 data-tag="Nº <%= "%03d" % (index + 1) %> — <%= project[:name] %>">
+          <span class="reel-label">Nº <%= "%03d" % (index + 1) %> · <%= project[:role] %></span>
+          <h3 class="reel-name" style="<%= project[:name_font] %>">
+            <a href="<%= project_path(project[:slug]) %>" data-door data-turbo="false" data-door-color="<%= project[:theme_bg] %>"><%= project[:name] %></a>
+          </h3>
+          <p class="reel-blurb"><%= project[:blurb] %></p>
+
+          <a class="reel-poster" href="<%= project_path(project[:slug]) %>" data-door data-turbo="false" data-door-color="<%= project[:theme_bg] %>" tabindex="-1" aria-hidden="true">
+            <%= image_tag "rooms/#{project[:slug]}.jpg", alt: "", width: 1600, height: 1000, loading: "lazy", decoding: "async" %>
+          </a>
+
+          <dl class="reel-facts">
+            <% project[:facts].each do |label, value| %>
+              <div><dt><%= label %></dt><dd><%= value %></dd></div>
+            <% end %>
+          </dl>
+
+          <div class="reel-actions">
+            <a class="reel-door" href="<%= project_path(project[:slug]) %>" data-door data-turbo="false" data-door-color="<%= project[:theme_bg] %>" data-magnetic>
+              Enter the room <span aria-hidden="true">→</span>
+            </a>
+            <span class="reel-label"><%= project[:domain].presence || "Private · login only" %></span>
+          </div>
+        </article>
+      <% end %>
+    </div>
+
+    <div class="reel-stage-col" aria-hidden="true">
+      <a class="reel-stage" data-reel-stage data-door data-turbo="false" tabindex="-1"
+         href="<%= project_path(@projects.first[:slug]) %>" data-door-color="<%= @projects.first[:theme_bg] %>" data-cursor-text="Enter">
+        <span class="reel-screen">
+        <img class="reel-still" data-reel-still src="<%= image_path("rooms/#{@projects.first[:slug]}.jpg") %>" alt="" width="1600" height="1000">
+        <iframe class="reel-frame" data-reel-frame title="Project film" loading="lazy" tabindex="-1"></iframe>
+        <span class="reel-tag" data-reel-tag>Nº 001 — <%= @projects.first[:name] %></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

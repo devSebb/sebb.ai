@@ -1,0 +1,54 @@
+<%# What I do — three capabilities, each with numbers and the rooms that prove them %>
+<% all_tools = @tech_stack.flat_map { |group| group[:items] } %>
+<section class="section-room py-24 md:py-32 !min-h-0" id="practice" data-animate="experience">
+  <div class="flex items-baseline justify-between mb-12 md:mb-16">
+    <span class="meta-label exp-label"><span class="text-accent">02</span> — Practice</span>
+    <span class="meta-label hidden sm:block">Design to deployment</span>
+  </div>
+
+  <h2 class="font-display font-extrabold text-display-lg text-surface-light max-w-4xl mb-16"><%= @practice[:heading] %></h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
+    <% @practice[:items].each_with_index do |item, index| %>
+      <article class="exp-item bg-surface-black p-8 md:p-10 flex flex-col">
+        <span class="meta-label text-accent exp-number"><%= "%02d" % (index + 1) %></span>
+        <h3 class="font-display font-bold text-display-sm text-surface-light mt-4 mb-4"><%= item[:title] %></h3>
+        <p class="text-body text-[#A3A3A0] leading-relaxed mb-10"><%= item[:body] %></p>
+
+        <dl class="mt-auto space-y-5">
+          <% item[:proofs].each do |value, label| %>
+            <div class="border-t border-border pt-4">
+              <dt class="font-display font-extrabold text-display-sm text-surface-light"><%= value %></dt>
+              <dd class="text-body text-[#A3A3A0] mt-1"><%= label %></dd>
+            </div>
+          <% end %>
+        </dl>
+
+        <div class="flex flex-wrap gap-2 mt-8">
+          <% item[:rooms].each do |slug| %>
+            <% room = @projects.find { |project| project[:slug] == slug } %>
+            <% next unless room %>
+            <a href="<%= project_path(slug) %>" data-door data-turbo="false" data-door-color="<%= room[:theme_bg] %>"
+               class="font-mono text-meta uppercase tracking-widest border border-border rounded-full px-3 py-1.5 text-surface-light hover:border-accent hover:text-accent transition-colors">
+              <%= room[:name] %> →
+            </a>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+
+  <%# The tools, as one quiet moving line %>
+  <%= tech_logo_sprite(all_tools.map { |tool| tool[:logo] }) %>
+  <div class="tool-line" aria-label="Tools I work with">
+    <div class="tool-line-track">
+      <% 2.times do |pass| %>
+        <ul <%= 'aria-hidden="true"'.html_safe if pass == 1 %>>
+          <% all_tools.each do |tool| %>
+            <li><%= tech_logo(tool[:logo]) %><span><%= tool[:name] %></span></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</section>

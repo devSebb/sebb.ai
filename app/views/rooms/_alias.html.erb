@@ -1,0 +1,415 @@
+<section class="room" id="alias">
+ <div class="wrap">
+  <header class="room-head">
+    <div><span class="kicker">Nº 006 · Sole engineer and designer</span><h2 class="room-name">alias</h2></div>
+    <div>
+      <p class="standfirst">Two partners run a group of print-on-demand shops on Etsy and split the profit 50/50. alias is the private, login-only command center I built to work out true profit and each partner's payout without ever calling the marketplace's API. It reads the shops' own order emails, the print provider's costs and the fee statements, and every number on screen can explain itself.</p>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Engineer and designer</dd></div>
+        <div><dt>Users</dt><dd>Two partners, login only</dd></div>
+        <div><dt>Data in</dt><dd>Emails, print API, CSVs</dd></div>
+        <div><dt>Tests</dt><dd>187 app · 124 database</dd></div>
+        <div><dt>Money</dt><dd>Integer cents</dd></div>
+      </dl>
+      <div class="chips"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>zod 4</span><span>Supabase Postgres</span><span>Row-level security</span><span>pgTAP</span><span>Playwright</span><span>Vercel cron</span><span>Hand-written CSS</span></div>
+    </div>
+  </header>
+
+  <div class="film" data-film>
+    <div class="stage">
+
+      <!-- 1 · LOGIN -->
+      <div class="scene on s-login" data-title="Sign in" data-cap="The only public page is this door. There is <b>no registration</b>: two partners sign in, and everything behind it is their own books, drawn on near-black panels with one lit accent per section.">
+        <div class="lg-glow"></div>
+        <div class="lg-top"><span class="mono"><i class="lamp ok"></i>Private workspace</span><span class="demo">Demo data</span>
+          <span class="th"><i class="on"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></i><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></i><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18.5 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></i></span>
+        </div>
+        <div class="lg-grid">
+          <aside class="lg-side">
+            <h5>Behind the door</h5>
+            <div class="lg-sec" style="--c:#3dd8f0"><i></i><div><b>Company</b><p>Every business rolled into one view, and where the money went.</p></div></div>
+            <div class="lg-sec" style="--c:#ff8a3d"><i></i><div><b>Shops</b><p>What the shops sell, what it costs to run them, and what is left for the partners.</p></div></div>
+            <div class="lg-sec" style="--c:#b794ff"><i></i><div><b>Engine</b><p>Ideas in, sales out. Who owns each job and what is due today.</p></div></div>
+            <div class="lg-kv"><span>Sections</span><b>3</b><span>Shop tabs</span><b>8</b><span>Themes</span><b>3</b></div>
+          </aside>
+          <div class="lg-mid">
+            <div class="lg-brand"><span class="wm">alias</span><p>Private financial command center</p></div>
+            <div class="lg-card">
+              <h4>Welcome back.</h4><p class="lg-p">Sign in to your workspace.</p>
+              <label>Email</label><div class="lg-in"><span class="ph">you@example.com</span></div>
+              <label>Password</label><div class="lg-in focus"><span class="pw">••••••••••••</span><i class="caret"></i></div>
+              <div class="lg-btn">Sign in</div>
+              <p class="lg-note">Private access only. No public registration.</p>
+            </div>
+            <p class="lg-legal">Privacy policy · Terms of service</p>
+          </div>
+          <aside class="lg-side">
+            <h5>System</h5>
+            <div class="lg-st"><i class="lamp ok"></i><span>Daily sync</span><b>06:00 · OK</b></div>
+            <div class="lg-st"><i class="lamp ok"></i><span>Order emails</span><b>Read-only</b></div>
+            <div class="lg-st"><i class="lamp ok"></i><span>Print provider</span><b>Connected</b></div>
+            <div class="lg-st"><i class="lamp warn pulse"></i><span>Fee statements</span><b>3 of 5 loaded</b></div>
+            <div class="lg-st"><i class="lamp ok"></i><span>Row-level security</span><b>On</b></div>
+            <div class="lg-st"><i class="lamp ok"></i><span>Audit log</span><b>Recording</b></div>
+            <div class="lg-spark"><span>Sync runs, last 14 days</span><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- 2 · COMPANY -->
+      <div class="scene s-company" data-title="Company" data-cap="The Company page rolls every business into one screen. <b>Where the money went</b> splits settled profit into taken home, reinvested and still held, then enlarges the reinvested slice into a second bar on its own scale.">
+        <div class="tb">
+          <span class="wm">alias</span>
+          <nav class="tn"><span class="on" style="--c:#3dd8f0;--from:6em"><i></i>Company</span><span style="--c:#ff8a3d"><i></i>Shops</span><span style="--c:#b794ff"><i></i>Engine</span></nav>
+          <div class="tb-r"><span class="th"><i class="on"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></i><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></i><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i></span><span class="ck"><b data-clock>14<u>:</u>32</b><small>Local</small></span><span class="av">PA</span></div>
+        </div>
+        <div class="pg">
+          <div class="intro">
+            <div><span class="eyebrow">Company · All time</span><h4 class="ttl">Company</h4></div>
+            <div class="intro-r">
+              <div class="trust"><span><i class="lamp ok"></i>Sales<em>Current</em></span><span><i class="lamp ok"></i>Production costs<em>Current</em></span><span><i class="lamp warn pulse"></i>October<em>Settling</em></span><span><i class="lamp ok"></i>Daily sync<em>06:00</em></span></div>
+              <div class="seg"><span>Month</span><span>Quarter</span><span>Year</span><span class="on">All time</span><span class="demo">Demo data</span></div>
+            </div>
+          </div>
+          <div class="tiles">
+            <article class="tile" style="--d:.1s"><div class="lb">Revenue<u>ⓘ</u></div><div class="val">$412,860.25</div><div class="dl">All time · 5 shops</div></article>
+            <article class="tile" style="--d:.17s"><div class="lb">Operating profit<u>ⓘ</u></div><div class="val">$148,204.60</div><div class="dl"><b class="up">▲ 9.5%</b> October vs September</div></article>
+            <article class="tile" style="--d:.24s"><div class="lb">Profit margin<u>ⓘ</u></div><div class="val">35.9%</div><div class="dl">Based on: revenue after tax</div></article>
+            <article class="tile" style="--d:.31s"><div class="lb">Each partner took home<u>ⓘ</u></div><div class="val">$48,200.00</div><div class="dl">of $70,650.00 earned · 1/2 each</div></article>
+          </div>
+          <article class="card flowcard" style="--d:.38s">
+            <div class="ch"><div><h5 class="ct"><i>01</i>Where the money went</h5><p class="cs">All time · cash · both partners together</p></div><span class="chip">2 scales</span></div>
+            <div class="flow">
+              <div class="fh"><span>Shop profit, settled months</span><strong>$141,300.00</strong></div>
+              <div class="fb"><i style="width:68.2%;background:#3987e5"></i><i style="width:22.3%;background:#d95926"></i><i style="width:9.5%;background:#199e70"></i></div>
+              <ul class="fl"><li><i style="background:#3987e5"></i><span>Taken home</span><b>$96,400.00</b><em>68.2%</em></li><li><i style="background:#d95926"></i><span>Reinvested in venture two</span><b>$31,500.00</b><em>22.3%</em></li><li><i style="background:#199e70"></i><span>Still in the marketplace</span><b>$13,400.00</b><em>9.5%</em></li></ul>
+              <div class="fz"><svg viewBox="0 0 100 24" preserveAspectRatio="none"><polygon points="68.2,0 90.5,0 100,24 0,24"/><line x1="68.2" y1="0" x2="0" y2="24"/><line x1="90.5" y1="0" x2="100" y2="24"/></svg><span>Reinvested in venture two, enlarged</span></div>
+              <div class="fh"><span>Venture two money in: $31,500.00 from shop payouts, $4,000.00 personal</span><strong>$35,500.00</strong></div>
+              <div class="fb fb2"><i style="width:51.4%;background:#c98500"></i><i style="width:17.2%;background:#d55181"></i><i style="width:15.2%;background:#9085e9"></i><i style="width:16.2%;background:#80858e"></i></div>
+              <ul class="fl fl4"><li><i style="background:#c98500"></i><span>Launch spending</span><b>$18,250.00</b><em>51.4%</em></li><li><i style="background:#d55181"></i><span>Running expenses</span><b>$6,120.00</b><em>17.2%</em></li><li><i style="background:#9085e9"></i><span>Supplier advances</span><b>$5,400.00</b><em>15.2%</em></li><li><i style="background:#80858e"></i><span>Not yet spent</span><b>$5,730.00</b><em>16.1%</em></li></ul>
+            </div>
+          </article>
+          <div class="row2">
+            <article class="card" style="--d:.46s">
+              <div class="ch"><div><h5 class="ct"><i>02</i>Shops</h5><p class="cs">Operating · 5 stores · all time</p></div><span class="lnk">Open Shops →</span></div>
+              <table class="tbl"><thead><tr><th>Store</th><th class="n">Revenue</th><th class="n">Store profit</th><th class="n">Margin</th></tr></thead><tbody>
+                <tr><td><i class="sw" style="background:#3987e5"></i>Paper Finch</td><td class="n">$141,220.10</td><td class="n">$54,310.20</td><td class="n">38.5%</td></tr>
+                <tr><td><i class="sw" style="background:#d95926"></i>Quiet Harbor</td><td class="n">$103,480.55</td><td class="n">$37,902.15</td><td class="n">36.6%</td></tr>
+                <tr><td><i class="sw" style="background:#199e70"></i>Moss &amp; Ink</td><td class="n">$79,905.30</td><td class="n">$28,140.75</td><td class="n">35.2%</td></tr>
+                <tr><td><i class="sw" style="background:#c98500"></i>Lantern Lane</td><td class="n">$53,144.20</td><td class="n">$18,204.30</td><td class="n">34.3%</td></tr>
+                <tr><td><i class="sw" style="background:#d55181"></i>Tin Robin</td><td class="n">$35,110.10</td><td class="n">$9,647.20</td><td class="n">27.5%</td></tr>
+              </tbody></table>
+            </article>
+            <article class="card" style="--d:.54s">
+              <div class="ch"><div><h5 class="ct"><i>03</i>By month</h5><p class="cs">Newest first · operating profit · shop months in US Pacific</p></div></div>
+              <table class="tbl"><thead><tr><th>Month</th><th class="n">Shop profit</th><th class="n">Venture two</th><th class="n">Group profit</th><th class="n">Reinvested</th><th class="n">Taken home</th><th>Shops</th></tr></thead><tbody>
+                <tr><td>October</td><td class="n">$17,422.34</td><td class="n neg">−$1,240.00</td><td class="n"><b>$16,182.34</b></td><td class="n">$4,000.00</td><td class="n">$0.00</td><td><span class="st warn">Settling</span></td></tr>
+                <tr><td>September</td><td class="n">$15,906.10</td><td class="n neg">−$980.50</td><td class="n"><b>$14,925.60</b></td><td class="n">$3,500.00</td><td class="n">$11,200.00</td><td><span class="st ok">Settled</span></td></tr>
+                <tr><td>August</td><td class="n">$14,212.88</td><td class="n neg">−$2,310.00</td><td class="n"><b>$11,902.88</b></td><td class="n">$5,000.00</td><td class="n">$9,000.00</td><td><span class="st ok">Settled</span></td></tr>
+                <tr><td>July</td><td class="n">$12,870.42</td><td class="n neg">−$640.25</td><td class="n"><b>$12,230.17</b></td><td class="n">$2,000.00</td><td class="n">$10,400.00</td><td><span class="st ok">Settled</span></td></tr>
+              </tbody></table>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · SHOPS P&L -->
+      <div class="scene s-shops" data-title="Profit and loss" data-cap="The profit bridge walks from revenue down to operating profit, one cost at a time. Click any number and it states <b>what it is, its formula, its source and how much of the data it covers</b>, so a partial month is never mistaken for a final one.">
+        <div class="tb">
+          <span class="wm">alias</span>
+          <nav class="tn"><span style="--c:#3dd8f0"><i></i>Company</span><span class="on" style="--c:#ff8a3d;--from:-6.4em"><i></i>Shops</span><span style="--c:#b794ff"><i></i>Engine</span></nav>
+          <div class="tb-r"><span class="th"><i class="on"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></i><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></i><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i></span><span class="ck"><b data-clock>14<u>:</u>32</b><small>Local</small></span><span class="av">PA</span></div>
+        </div>
+        <div class="pg">
+          <div class="intro">
+            <div><span class="eyebrow">Shops · October · All stores</span><h4 class="ttl">Shops</h4></div>
+            <div class="intro-r"><p class="desc">What the shops sell, what it costs to run them, and what is left for the partners.</p>
+              <div class="seg"><span class="on">October</span><span>Quarter</span><span>Year</span><span>All stores ▾</span><span class="demo">Demo data</span></div></div>
+          </div>
+          <div class="tabs"><span>Overview</span><span class="on">Profit &amp; loss</span><span>Stores</span><span>Products</span><span>Orders</span><span>Costs</span><span>Partners</span><span>Data</span></div>
+          <div class="stores">
+            <article class="tile stt" style="--d:0.10s"><div class="lb"><span><i class="sw" style="background:#3987e5"></i>Paper Finch</span><u>ⓘ</u></div><div class="val">$6,420.10</div><div class="sbar"><i style="width:100%;--bd:0.50s"></i><b style="width:39%;--bd:0.60s"></b></div><div class="dl">$16,480.20 revenue · 39.0%</div></article>
+            <article class="tile stt" style="--d:0.16s"><div class="lb"><span><i class="sw" style="background:#d95926"></i>Quiet Harbor</span><u>ⓘ</u></div><div class="val">$4,388.52</div><div class="sbar"><i style="width:73.5%;--bd:0.58s"></i><b style="width:26.6%;--bd:0.68s"></b></div><div class="dl">$12,105.75 revenue · 36.3%</div></article>
+            <article class="tile stt" style="--d:0.22s"><div class="lb"><span><i class="sw" style="background:#199e70"></i>Moss &amp; Ink</span><u>ⓘ</u></div><div class="val">$3,301.40</div><div class="sbar"><i style="width:56.7%;--bd:0.66s"></i><b style="width:20%;--bd:0.76s"></b></div><div class="dl">$9,340.10 revenue · 35.3%</div></article>
+            <article class="tile stt" style="--d:0.28s"><div class="lb"><span><i class="sw" style="background:#c98500"></i>Lantern Lane</span><u>ⓘ</u></div><div class="val">$2,190.12</div><div class="sbar"><i style="width:37.7%;--bd:0.74s"></i><b style="width:13.3%;--bd:0.84s"></b></div><div class="dl">$6,212.35 revenue · 35.3%</div></article>
+            <article class="tile stt" style="--d:0.34s"><div class="lb"><span><i class="sw" style="background:#d55181"></i>Tin Robin</span><u>ⓘ</u></div><div class="val">$1,122.20</div><div class="sbar"><i style="width:24.7%;--bd:0.82s"></i><b style="width:6.8%;--bd:0.92s"></b></div><div class="dl">$4,072.00 revenue · 27.6%</div></article>
+          </div>
+          <article class="card bridgecard" style="--d:.45s">
+            <div class="ch"><div><h5 class="ct"><i>01</i>Profit bridge</h5><p class="cs">October · all stores · from revenue down to operating profit · 1,604 orders</p></div><span class="leg"><i></i>Recorded<i class="h"></i>Partial: some source rows missing</span><span class="chip warnc">Settling</span></div>
+            <div class="bridge">
+              <div class="br"><span>Revenue</span><div class="trk"><i class="z"></i><b style="left:0;width:100%;--bd:.7s"></b></div><em>$48,210.40<u>ⓘ</u></em></div>
+              <div class="br"><span>Marketplace fees</span><div class="trk"><i class="z"></i><b class="hat" style="left:86.7%;width:13.3%;--bd:.82s"></b></div><em>−$6,412.18<u>ⓘ</u></em></div>
+              <div class="br hot"><span>Production cost</span><div class="trk"><i class="z"></i><b class="hat" style="left:45.45%;width:41.25%;--bd:.94s"></b></div><em>−$19,884.62<u class="on">ⓘ</u></em>
+                <div class="pop">
+                  <dl>
+                    <div class="w"><dt>What</dt><dd>What the print provider charged to make and ship these orders.</dd></div>
+                    <div><dt>Exact value</dt><dd class="mono">−$19,884.62</dd></div>
+                    <div><dt>Dates and stores</dt><dd>October · all 5 stores</dd></div>
+                    <div class="w"><dt>Formula</dt><dd>Production + provider shipping, per matched order · Based on: 1,604 orders</dd></div>
+                    <div><dt>Source</dt><dd>Print provider API, synced daily</dd></div>
+                    <div><dt>Status</dt><dd><i class="lamp warn pulse"></i>Partial · 1,562 of 1,604 matched (97.4%)</dd></div>
+                  </dl>
+                  <div class="pa"><span class="ghost">See calculation</span><span class="ghost">Close explanation</span></div>
+                </div>
+              </div>
+              <div class="br"><span>Advertising</span><div class="trk"><i class="z"></i><b style="left:39.34%;width:6.12%;--bd:1.06s"></b></div><em>−$2,950.00<u>ⓘ</u></em></div>
+              <div class="br"><span>Refunds</span><div class="trk"><i class="z"></i><b style="left:37%;width:2.34%;--bd:1.18s"></b></div><em>−$1,128.35<u>ⓘ</u></em></div>
+              <div class="br"><span>Software and other</span><div class="trk"><i class="z"></i><b style="left:36.14%;width:.9%;--bd:1.3s"></b></div><em>−$412.91<u>ⓘ</u></em></div>
+              <div class="br tot"><span>Operating profit</span><div class="trk"><i class="z"></i><b style="left:0;width:36.14%;--bd:1.45s"></b></div><em>$17,422.34<u>ⓘ</u></em></div>
+            </div>
+            <div class="bfoot"><span class="ghost">Explain this bridge</span><span class="mono">Margin 36.1% · $30.06 average order · each partner $8,711.17</span></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- 4 · ENGINE -->
+      <div class="scene s-engine" data-title="Engine" data-cap="Engine is the operations side. Four rings show each quarterly objective against <b>today's pace</b>, the scorecard grades every weekly number against its target, and the board shows who owns each job.">
+        <div class="tb">
+          <span class="wm">alias</span>
+          <nav class="tn"><span style="--c:#3dd8f0"><i></i>Company</span><span style="--c:#ff8a3d"><i></i>Shops</span><span class="on" style="--c:#b794ff;--from:-5.2em"><i></i>Engine</span></nav>
+          <div class="tb-r"><span class="th"><i class="on"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></i><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></i><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i></span><span class="ck"><b data-clock>14<u>:</u>32</b><small>Local</small></span><span class="av">PA</span></div>
+        </div>
+        <div class="pg">
+          <div class="etop">
+            <div class="eintro">
+              <span class="eyebrow">Engine · Q4 · Week 45</span><h4 class="ttl">Engine</h4>
+              <p class="desc">Ideas in, sales out. Who owns each job, what's due today, and whether every number is on target this week and this quarter.</p>
+              <div class="today"><span><b>4</b>due today</span><span class="w"><b>1</b>overdue</span><span><b>7/9</b>numbers on target this week</span><span><b>13</b>jobs open</span></div>
+              <div class="tabs"><span>Today</span><span>Goals</span><span class="on">Scorecard</span><span>Line</span><span>Crew</span><span>Boards</span><span class="demo">Demo data</span></div>
+            </div>
+            <div class="obj" style="--d:.15s">
+              <svg viewBox="0 0 148 148" aria-hidden="true">
+                <circle cx="74" cy="74" r="62" class="trk"/><circle cx="74" cy="74" r="62" class="arc" stroke="#3987e5" stroke-dasharray="389.6 389.6" transform="rotate(-90 74 74)"/>
+                <circle cx="74" cy="74" r="48" class="trk"/><circle cx="74" cy="74" r="48" class="arc a2" stroke="#199e70" stroke-dasharray="274.5 301.6" transform="rotate(-90 74 74)"/>
+                <circle cx="74" cy="74" r="34" class="trk"/><circle cx="74" cy="74" r="34" class="arc a3" stroke="#c98500" stroke-dasharray="153.8 213.6" transform="rotate(-90 74 74)"/>
+                <circle cx="74" cy="74" r="20" class="trk"/><circle cx="74" cy="74" r="20" class="arc a4" stroke="#d95926" stroke-dasharray="60.3 125.7" transform="rotate(-90 74 74)"/>
+                <circle class="pulse" cx="101.8" cy="138.3" r="3"/>
+              </svg>
+              <div class="oside">
+                <div class="otop"><strong>Q4 objectives</strong><span>Day 40 of 92 · 2/4</span></div>
+                <div class="qbar"><i style="width:43.5%"></i></div>
+                <div class="orow"><i style="background:#3987e5"></i><span>List 120 new designs<s><b style="width:86.6%;background:#5ee0a0"></b><u></u></s></span><em style="color:#5ee0a0">104%</em></div>
+                <div class="orow"><i style="background:#199e70"></i><span>Hold margin above 35%<s><b style="width:75.8%;background:#5ee0a0"></b><u></u></s></span><em style="color:#5ee0a0">91%</em></div>
+                <div class="orow"><i style="background:#c98500"></i><span>Ship 95% of orders within 3 days<s><b style="width:60%;background:#f5c451"></b><u></u></s></span><em style="color:#f5c451">72%</em></div>
+                <div class="orow"><i style="background:#d95926"></i><span>Open two new shops<s><b style="width:40%;background:#ff6b6b"></b><u></u></s></span><em style="color:#ff6b6b">48%</em></div>
+              </div>
+            </div>
+          </div>
+          <div class="cols ecols">
+            <article class="card" style="--d:.3s">
+              <div class="ch"><div><h5 class="ct"><i>01</i>Scorecard</h5><p class="cs">Weekly numbers against target · last 6 weeks</p></div><span class="leg2"><i style="background:#5ee0a0"></i>On target<i style="background:#f5c451"></i>Close<i style="background:#ff6b6b"></i>Off</span></div>
+              <table class="tbl sc"><thead><tr><th>Metric</th><th>Owner</th><th class="n">Target</th><th class="c">W40</th><th class="c">W41</th><th class="c">W42</th><th class="c">W43</th><th class="c">W44</th><th class="c">W45</th></tr></thead><tbody>
+                <tr class="grp"><td colspan="9">Ideas and design</td></tr>
+                <tr><td>Ideas logged</td><td><span class="who">PA</span></td><td class="n">20</td><td class="c ok">22</td><td class="c wn">18</td><td class="c ok">24</td><td class="c ok">21</td><td class="c wn">19</td><td class="c ok">23</td></tr>
+                <tr><td>Designs finished</td><td><span class="who">DS</span></td><td class="n">12</td><td class="c ok">12</td><td class="c ok">13</td><td class="c bd">9</td><td class="c wn">11</td><td class="c ok">14</td><td class="c ok">12</td></tr>
+                <tr><td>Approved first pass</td><td><span class="who">PB</span></td><td class="n">80%</td><td class="c ok">83%</td><td class="c wn">79%</td><td class="c bd">71%</td><td class="c ok">85%</td><td class="c ok">88%</td><td class="c ok">82%</td></tr>
+                <tr class="grp"><td colspan="9">Listings and sales</td></tr>
+                <tr><td>New listings live</td><td><span class="who">PB</span></td><td class="n">10</td><td class="c ok">10</td><td class="c ok">11</td><td class="c bd">8</td><td class="c bd">6</td><td class="c ok">12</td><td class="c ok">10</td></tr>
+                <tr><td>Orders</td><td><span class="who">PA</span></td><td class="n">380</td><td class="c wn">362</td><td class="c wn">371</td><td class="c ok">390</td><td class="c ok">402</td><td class="c ok">398</td><td class="c ok">411</td></tr>
+                <tr><td>Conversion rate</td><td><span class="who">PA</span></td><td class="n">2.4%</td><td class="c wn">2.2%</td><td class="c wn">2.3%</td><td class="c ok">2.5%</td><td class="c ok">2.4%</td><td class="c ok">2.6%</td><td class="c ok">2.5%</td></tr>
+                <tr class="grp"><td colspan="9">Fulfilment and service</td></tr>
+                <tr><td>Shipped within 3 days</td><td><span class="who">CS</span></td><td class="n">95%</td><td class="c ok">96%</td><td class="c ok">97%</td><td class="c wn">93%</td><td class="c wn">91%</td><td class="c ok">96%</td><td class="c ok">98%</td></tr>
+                <tr><td>First reply under 4 hours</td><td><span class="who">CS</span></td><td class="n">90%</td><td class="c ok">92%</td><td class="c wn">88%</td><td class="c ok">94%</td><td class="c ok">90%</td><td class="c wn">85%</td><td class="c ok">93%</td></tr>
+                <tr><td>Review average</td><td><span class="who">CS</span></td><td class="n">4.8</td><td class="c ok">4.8</td><td class="c ok">4.9</td><td class="c ok">4.8</td><td class="c wn">4.7</td><td class="c ok">4.8</td><td class="c ok">4.9</td></tr>
+              </tbody></table>
+            </article>
+            <div class="rcol">
+              <article class="card" style="--d:.4s">
+                <div class="ch"><div><h5 class="ct"><i>02</i>Who owns what</h5><p class="cs">Design line · each move is dated</p></div><span class="chip">13 open</span></div>
+                <div class="board">
+                  <div><h6>Idea<b>4</b></h6><p>Mushroom field guide<span class="who">PA</span></p><p>Tide chart prints<span class="who">PA</span></p><p class="due">Winter birds set<span class="who">PB</span></p></div>
+                  <div><h6>Design<b>3</b></h6><p>Constellation mugs<span class="who">DS</span></p><p class="due">Fern alphabet<span class="who">DS</span></p><p>Lighthouse series<span class="who">DS</span></p></div>
+                  <div><h6>Review<b>3</b></h6><p>Kitchen herbs tee<span class="who">PB</span></p><p>Map of small rivers<span class="who">PB</span></p><p class="due">Paper boats print<span class="who">PA</span></p></div>
+                  <div><h6>Listed<b>3</b></h6><p class="done">Moth study tote<span class="who">PB</span></p><p class="done">Orchard calendar<span class="who">PA</span></p><p class="done">Heron notebook<span class="who">PB</span></p></div>
+                </div>
+              </article>
+              <article class="card" style="--d:.5s">
+                <div class="ch"><div><h5 class="ct"><i>03</i>Timing</h5><p class="cs">Fulfilment and customer service · last 30 days</p></div></div>
+                <div class="timing">
+                  <div><span class="lb">Order to shipped</span><strong>2.4 days</strong><small>median · target 3.0</small><div class="hist"><i style="height:22%"></i><i style="height:64%"></i><i style="height:100%"></i><i style="height:71%"></i><i style="height:38%" class="w"></i><i style="height:17%" class="b"></i><i style="height:8%" class="b"></i></div></div>
+                  <div><span class="lb">First reply</span><strong>3h 10m</strong><small>median · target 4h</small><div class="hist"><i style="height:48%"></i><i style="height:100%"></i><i style="height:82%"></i><i style="height:55%"></i><i style="height:30%" class="w"></i><i style="height:14%" class="b"></i><i style="height:6%" class="b"></i></div></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 · INGEST -->
+      <div class="scene s-data" data-title="How a sale gets in" data-cap="No marketplace API is involved. An order email is read, <b>checked against itself</b>, turned into whole cents, matched to its production cost and fee lines, and written to the ledger. What could not be matched is reported as coverage.">
+        <div class="tb">
+          <span class="wm">alias</span>
+          <nav class="tn"><span style="--c:#3dd8f0"><i></i>Company</span><span class="on" style="--c:#ff8a3d"><i></i>Shops</span><span style="--c:#b794ff"><i></i>Engine</span></nav>
+          <div class="tb-r"><span class="th"><i class="on"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></i><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></i><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i></span><span class="ck"><b data-clock>14<u>:</u>32</b><small>Local</small></span><span class="av">PA</span></div>
+        </div>
+        <div class="pg">
+          <div class="intro">
+            <div><span class="eyebrow">Shops · Data · Daily sync 06:00</span><h4 class="ttl">Data</h4></div>
+            <div class="intro-r"><div class="trust"><span><i class="lamp ok pulse"></i>Email reader<em>Read-only</em></span><span><i class="lamp ok"></i>Print provider<em>Synced</em></span><span><i class="lamp warn pulse"></i>Statements<em>3 of 5</em></span></div>
+              <div class="seg"><span class="on">Sync now</span><span>Upload statement</span><span class="demo">Demo data</span></div></div>
+          </div>
+          <div class="tabs"><span>Overview</span><span>Profit &amp; loss</span><span>Stores</span><span>Products</span><span>Orders</span><span>Costs</span><span>Partners</span><span class="on">Data</span></div>
+          <div class="pipe">
+            <article class="card mail" style="--d:.1s">
+              <div class="ch"><div><h5 class="ct"><i>01</i>Order email</h5><p class="cs">Gmail API · read-only scope</p></div><span class="chip acc">sale</span></div>
+              <div class="msg">
+                <div class="scan"></div>
+                <p class="sub">You made a sale on Etsy - Ship by Oct 13 - [<mark>$31.94</mark>, Order <mark>#3000000417</mark>]</p>
+                <p><span>Item:</span> Fern study print</p>
+                <p><span>Size:</span> 8 × 10 in</p>
+                <p><span>Quantity:</span> 1</p>
+                <p><span>Item total:</span> <mark>$28.00</mark></p>
+                <p><span>Shipping:</span> <mark>$1.99</mark></p>
+                <p><span>Sales tax:</span> <mark>$1.95</mark></p>
+                <p><span>Order total:</span> <mark>$31.94</mark></p>
+                <p class="red"><span>Buyer:</span> <s></s></p>
+                <p class="red"><span>Ship to:</span> <s class="l"></s></p>
+                <small>Buyer name, address and email are never extracted.</small>
+              </div>
+            </article>
+            <i class="wire" style="--d:.5s"></i>
+            <article class="card parse" style="--d:.6s">
+              <div class="ch"><div><h5 class="ct"><i>02</i>Parse and check</h5><p class="cs">The email must agree with itself</p></div><span class="chip okc">4 of 4</span></div>
+              <ul class="chk">
+                <li style="--d:.9s"><i></i>Subject amount = order total<b>3194 = 3194</b></li>
+                <li style="--d:1.15s"><i></i>Items + shipping + tax = total<b>2800 + 199 + 195</b></li>
+                <li style="--d:1.4s"><i></i>Item total − discount = subtotal<b>2800 − 0</b></li>
+                <li style="--d:1.65s"><i></i>Order number matches invoice link<b>…0417</b></li>
+              </ul>
+              <div class="code"><p><span>orderTotalCents</span><b>3194</b></p><p><span>salesTaxCents</span><b>195</b></p><p><span>shippingCents</span><b>199</b></p><p><span>revenueCents</span><b class="hi">2999</b></p><p><span>units</span><b>1</b></p></div>
+            </article>
+            <i class="wire" style="--d:1.2s"></i>
+            <div class="match">
+              <article class="card" style="--d:1.3s">
+                <div class="ch"><div><h5 class="ct"><i>03</i>Production cost</h5><p class="cs">Print-on-demand API · matched by order number</p></div><span class="chip okc">Matched</span></div>
+                <div class="code"><p><span>productionCents</span><b>895</b></p><p><span>shippingCents</span><b>247</b></p><p><span>cost</span><b class="hi">−1142</b></p></div>
+              </article>
+              <article class="card" style="--d:1.5s">
+                <div class="ch"><div><h5 class="ct"><i>04</i>Fee lines</h5><p class="cs">Monthly statement CSV · downloaded by hand</p></div><span class="chip okc">3 lines</span></div>
+                <div class="code"><p><span>Transaction fee 6.5%</span><b>195</b></p><p><span>Payment processing</span><b>121</b></p><p><span>Listing fee</span><b>20</b></p><p><span>fees</span><b class="hi">−336</b></p></div>
+              </article>
+            </div>
+          </div>
+          <div class="cols lcols">
+            <article class="card" style="--d:1.7s">
+              <div class="ch"><div><h5 class="ct"><i>05</i>Ledger</h5><p class="cs">Integer cents in the database · dollars only on screen</p></div><span class="lnk">2999 − 336 − 1142 = 1521</span></div>
+              <table class="tbl"><thead><tr><th>Order</th><th>Store</th><th class="n">Revenue</th><th class="n">Fees</th><th class="n">Production</th><th class="n">Profit</th><th>Status</th></tr></thead><tbody>
+                <tr class="new"><td class="mono">#…0417</td><td>Paper Finch</td><td class="n">$29.99</td><td class="n neg">−$3.36</td><td class="n neg">−$11.42</td><td class="n"><b>$15.21</b></td><td><span class="st ok">Complete</span></td></tr>
+                <tr><td class="mono">#…0416</td><td>Quiet Harbor</td><td class="n">$24.50</td><td class="n neg">−$2.84</td><td class="n neg">−$9.18</td><td class="n"><b>$12.48</b></td><td><span class="st ok">Complete</span></td></tr>
+                <tr><td class="mono">#…0415</td><td>Moss &amp; Ink</td><td class="n">$42.00</td><td class="n neg">−$4.57</td><td class="n neg">−$17.90</td><td class="n"><b>$19.53</b></td><td><span class="st ok">Complete</span></td></tr>
+                <tr><td class="mono">#…0414</td><td>Tin Robin</td><td class="n">$31.20</td><td class="n dim">Not recorded</td><td class="n neg">−$12.05</td><td class="n dim">Partial</td><td><span class="st warn">Fees pending</span></td></tr>
+              </tbody></table>
+            </article>
+            <article class="card cov" style="--d:1.85s">
+              <div class="ch"><div><h5 class="ct"><i>06</i>Coverage</h5><p class="cs">October · what the numbers rest on</p></div></div>
+              <div class="cv"><span>Sale emails parsed</span><b>99.6%</b><div><i style="width:99.6%;--bd:2s"></i></div><small>1,604 of 1,611 · 7 rejected, listed by reason</small></div>
+              <div class="cv"><span>Production cost matched</span><b>97.4%</b><div><i style="width:97.4%;--bd:2.1s"></i></div><small>1,562 of 1,604 orders</small></div>
+              <div class="cv w"><span>Fee statements loaded</span><b>60.0%</b><div><i style="width:60%;--bd:2.2s"></i></div><small>3 of 5 stores · month marked Settling</small></div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="story">
+    <div><h3>The problem</h3><p>A shop dashboard shows sales. It does not show profit. Production costs sit with the print provider, fees arrive in monthly statements, and refunds and ad charges land weeks later. With several shops and two partners, the question "what can each of us take out this month?" meant an evening in spreadsheets, and the answer was still a guess.</p></div>
+    <div><h3>What I built</h3><p>A private web app with three sections. Company rolls everything up and shows where the money went. Shops has eight tabs covering profit and loss, stores, products, orders, costs, partner payouts and the data behind them. Engine tracks quarterly objectives, a weekly scorecard, who owns each job, and fulfilment and customer-service timing.</p><p>A scheduled sync runs once a day. I designed the interface and wrote all of it, including about 5,000 lines of CSS with no framework and three themes.</p></div>
+    <div><h3>What made it hard</h3><p>I chose to depend on nothing from the marketplace's API, so sales come from parsing order-notification emails. Layouts differ between shops and change without notice. A sale is accepted only when the email agrees with itself: the subject amount must equal the order total, and the lines must add up to it.</p><p>Anything that fails is counted and shown as missing coverage. Nothing is guessed, and money is held as integer cents everywhere so totals never drift.</p></div>
+  </div>
+
+  <div class="block-title"><h3>Specimens</h3><span class="label">Live components. Touch them.</span></div>
+  <div class="specimens">
+
+    <article class="spec" style="--span:7"><div class="spec-live sx1" data-th="dark"><span class="spec-hint">Move pointer · switch theme</span>
+      <div class="sx-head"><span class="eyebrow">Company</span><span class="demo">Demo data</span></div>
+      <div class="thsw" role="group" aria-label="Theme">
+        <button type="button" data-set="dark" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Dark</button>
+        <button type="button" data-set="light" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>Light</button>
+        <button type="button" data-set="funky" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18.5 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg>Funky</button>
+      </div>
+      <div class="sx-tiles">
+        <article class="sp xtile"><div class="lb">Revenue</div><div class="val">$48,210.40</div><div class="dl"><b class="up">▲ 8.2%</b> vs September</div></article>
+        <article class="sp xtile"><div class="lb">Operating profit</div><div class="val">$17,422.34</div><div class="dl">October · 5 stores</div></article>
+        <article class="sp xtile"><div class="lb">Profit margin</div><div class="val">36.1%</div><div class="dl">Revenue after tax</div></article>
+      </div>
+      <div class="sx-cards">
+        <article class="sp xcard"><h5 class="ct">Stores by profit</h5><p class="cs">October</p>
+          <div class="xbars"><div><span>Paper Finch</span><i style="width:100%"></i></div><div><span>Quiet Harbor</span><i style="width:68%"></i></div><div><span>Moss &amp; Ink</span><i style="width:51%"></i></div><div><span>Lantern Lane</span><i style="width:34%"></i></div></div></article>
+        <article class="sp xcard"><h5 class="ct">Data health</h5><p class="cs">What the numbers rest on</p>
+          <div class="xlamps"><span><i class="lamp ok"></i>Sales<em>Current</em></span><span><i class="lamp ok"></i>Production costs<em>Current</em></span><span><i class="lamp warn pulse"></i>Fee statements<em>Settling</em></span><span><i class="lamp ok"></i>Daily sync<em>06:00</em></span></div></article>
+        <article class="sp xcard"><h5 class="ct">Each partner</h5><p class="cs">1/2 each</p>
+          <dl class="xkv"><div><dt>Earned</dt><dd>$8,711.17</dd></div><div><dt>Paid out</dt><dd>$6,000.00</dd></div><div><dt>Available</dt><dd>$2,711.17</dd></div></dl></article>
+      </div>
+    </div>
+      <div class="spec-note"><h4>Spotlight panels and the theme switch</h4><p>A radial gradient masked to each panel's one-pixel border follows the pointer, with a faint wash inside. Panels number themselves with a CSS counter. The switch repaints every specimen in this room in Dark, Light or Funky; the app keeps the choice in a cookie so the server renders the right theme on first paint.</p></div></article>
+
+    <article class="spec" style="--span:5"><div class="spec-live sx2" data-th="dark"><span class="spec-hint">Hover an arc · click to replay</span>
+      <div class="sx-head"><span class="eyebrow">Engine · Q4 objectives</span></div>
+      <div class="rg">
+        <svg viewBox="0 0 320 320" role="img" aria-label="Progress rings, one per objective">
+          <circle cx="160" cy="160" r="132" class="trk"/><circle cx="160" cy="160" r="132" class="arc" data-i="0" stroke="#3987e5" stroke-dasharray="829.4 829.4" transform="rotate(-90 160 160)"/>
+          <circle cx="160" cy="160" r="106" class="trk"/><circle cx="160" cy="160" r="106" class="arc" data-i="1" stroke="#199e70" stroke-dasharray="606.1 666.0" transform="rotate(-90 160 160)"/>
+          <circle cx="160" cy="160" r="80" class="trk"/><circle cx="160" cy="160" r="80" class="arc" data-i="2" stroke="#c98500" stroke-dasharray="361.9 502.7" transform="rotate(-90 160 160)"/>
+          <circle cx="160" cy="160" r="54" class="trk"/><circle cx="160" cy="160" r="54" class="arc" data-i="3" stroke="#d95926" stroke-dasharray="162.9 339.3" transform="rotate(-90 160 160)"/>
+          <circle class="pulse" cx="219.6" cy="297.7" r="4"/>
+          <text x="160" y="164" text-anchor="middle" class="big" data-big>2/4</text>
+          <text x="160" y="178" text-anchor="middle" class="sm" data-sm>ON TRACK</text>
+        </svg>
+        <div class="rl">
+          <div class="rtop"><span>Day 40 of 92</span><div class="qbar"><i style="width:43.5%"></i></div></div>
+          <button type="button" data-i="0"><i style="background:#3987e5"></i><span><b>List 120 new designs</b><small>Partner A · 3 key results</small></span><em class="ok">104%</em></button>
+          <button type="button" data-i="1"><i style="background:#199e70"></i><span><b>Hold margin above 35%</b><small>Partner B · 2 key results</small></span><em class="ok">91%</em></button>
+          <button type="button" data-i="2"><i style="background:#c98500"></i><span><b>Ship 95% within 3 days</b><small>Service · 2 key results</small></span><em class="wn">72%</em></button>
+          <button type="button" data-i="3"><i style="background:#d95926"></i><span><b>Open two new shops</b><small>Partner A · 4 key results</small></span><em class="bd">48%</em></button>
+        </div>
+      </div>
+    </div>
+      <div class="spec-note"><h4>Objective rings</h4><p>Each ring is one quarterly objective, and a full ring means exactly on pace for today, so a goal at 48% reads as behind even early in the quarter. The white dot marks how far through the quarter we are.</p></div></article>
+
+    <article class="spec" style="--span:5"><div class="spec-live sx3" data-th="dark"><span class="spec-hint">Click a number</span>
+      <div class="sx-head"><span class="eyebrow">Shops · Profit &amp; loss · October</span></div>
+      <div class="pl" data-pl></div>
+      <div class="ex" data-ex aria-live="polite"></div>
+    </div>
+      <div class="spec-note"><h4>Numbers that explain themselves</h4><p>Every metric in the app is an object carrying what it is, its formula, its source and its coverage. The same object draws the value and this explanation, so the two cannot disagree. Partial values say what is missing.</p></div></article>
+
+    <article class="spec" style="--span:7"><div class="spec-live sx4" data-th="dark"><span class="spec-hint">Click a segment</span>
+      <div class="sx-head"><span class="eyebrow">Company · Where the money went</span></div>
+      <div class="mf" data-mf>
+        <div class="fh"><span>Shop profit, settled months</span><strong>$141,300.00</strong></div>
+        <div class="fb" data-top></div>
+        <div class="fz"><svg viewBox="0 0 100 24" preserveAspectRatio="none"><polygon points="68.2,0 90.5,0 100,24 0,24"/><line data-l1 x1="68.2" y1="0" x2="0" y2="24"/><line data-l2 x1="90.5" y1="0" x2="100" y2="24"/></svg><span data-zl>Reinvested, enlarged</span></div>
+        <div class="fh"><span data-bt></span><strong data-bv></strong></div>
+        <div class="fb" data-bot></div>
+        <ul class="fl" data-leg></ul>
+      </div>
+    </div>
+      <div class="spec-note"><h4>Money-flow zoom</h4><p>Two bars on two different scales would mislead if they simply sat next to each other. The trapezoid shows that the lower bar is one slice of the upper bar, enlarged. Slices too small to see still get a sliver of 0.8% so they can be followed.</p></div></article>
+  </div>
+
+  <div class="block-title"><h3>Under the floor</h3><span class="label">How it works</span></div>
+  <div class="eng">
+    <div class="eng-diagram"><div class="dg">
+      <div class="dg-cron"><i class="lamp ok pulse"></i><b>Scheduled sync</b><span>once a day · 06:00 Pacific · also on demand</span></div>
+      <div class="dg-lanes">
+        <div class="dg-lane"><div class="nd src"><b>Order emails</b><small>Gmail API, read-only</small></div><i class="w"></i><div class="nd"><b>Classify, parse</b><small>sale · refund · deposit</small></div><i class="w"></i><div class="nd"><b>Self-check</b><small>4 sums must agree</small></div></div>
+        <div class="dg-lane"><div class="nd src"><b>Print provider</b><small>print-on-demand API</small></div><i class="w d2"></i><div class="nd"><b>Cost planner</b><small>pure function, no IO</small></div><i class="w d2"></i><div class="nd"><b>Match</b><small>by order number</small></div></div>
+        <div class="dg-lane"><div class="nd src"><b>Fee statements</b><small>CSV, uploaded by hand</small></div><i class="w d3"></i><div class="nd"><b>Line classifier</b><small>unknown type refuses file</small></div><i class="w d3"></i><div class="nd"><b>Fee lines</b><small>per order, per month</small></div></div>
+      </div>
+      <div class="dg-drop"><i></i><i></i><i></i></div>
+      <div class="dg-row"><div class="nd big"><b>Postgres ledger</b><small>integer cents · row-level security · audit log</small></div><i class="w"></i><div class="nd big"><b>Metric layer</b><small>what · formula · source · coverage</small></div><i class="w"></i><div class="nd big out"><b>Screens</b><small>Company · Shops · Engine</small></div></div>
+      <div class="dg-foot"><span>No marketplace API anywhere in this picture.</span><span>Rejected rows are counted, never dropped.</span></div>
+    </div></div>
+    <div class="eng-notes">
+      <div><h4>An email has to agree with itself</h4><p>Before a sale is stored, four checks run: the subject amount equals the body's order total, the lines add up to that total, item total minus discount equals the subtotal, and the order number matches the invoice link. A failure is recorded under one of eight named reasons.</p></div>
+      <div><h4>Whole cents from the first parse</h4><p>A dollar string becomes an integer number of cents once, at the parser. Database columns, sums, margins and the 50/50 split all work on integers, and dollars are formatted only when drawn. Floating-point rounding never touches a payout.</p></div>
+      <div><h4>A number knows how complete it is</h4><p>Each metric has one of four states: known, partial, unknown or not applicable. A sum built from 1,562 of 1,604 source rows is marked partial and drawn hatched, with the count stated, so the screen cannot show a confident total it does not have.</p></div>
+      <div><h4>Tests at the database, the logic and the screen</h4><p>Row-level security in Postgres decides who can read each row, across 40+ migrations, and 124 pgTAP tests exercise those rules in the database itself. Another 187 app tests cover parsing and maths, and Playwright checks layouts from 320 to 1920 pixels in Chromium and WebKit.</p></div>
+    </div>
+  </div>
+
+  <div class="room-foot"><span>Sole engineer and designer · 2026</span><span>Private · login only</span></div>
+ </div>
+</section>

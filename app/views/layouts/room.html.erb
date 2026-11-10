@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<%# A room is its own world: no Tailwind, no site-wide cursor or transitions.
+    Only the shared room shell plus this product's stylesheet, fonts and script. %>
+<% nxt = @adjacent[:next]; prv = @adjacent[:prev] %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <%= render "shared/seo" %>
+    <meta name="theme-color" content="<%= @project[:theme_bg] %>">
+    <%= favicon_link_tag "devSebb_logo.svg", type: "image/svg+xml" %>
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="<%= google_fonts_url(["Syne:wght@500..800", "Instrument+Sans:wght@400;500;600", "IBM+Plex+Mono:wght@400;500"] + @project[:fonts]) %>">
+    <%= stylesheet_link_tag "exhibition/base", "exhibition/chrome", "exhibition/rooms/#{@project[:slug]}" %>
+  </head>
+  <body class="room-page" style="--b:<%= @project[:theme_bg] %>;--t:<%= @project[:theme_fg] %>;--m:<%= @project[:theme_muted] %>;--l:color-mix(in srgb,<%= @project[:theme_fg] %> 16%,transparent);--xa:<%= @project[:theme_color] %>">
+    <nav class="room-nav" aria-label="Exhibition">
+      <a class="brand" href="<%= root_path %>#projects" aria-label="Back to the collection">← devSebb</a>
+      <span class="where">Room <%= "%02d" % @position %> of <%= "%02d" % @projects.size %></span>
+      <span class="step">
+        <a href="<%= project_path(prv[:slug]) %>" rel="prev">Prev</a>
+        <a href="<%= project_path(nxt[:slug]) %>" rel="next">Next</a>
+      </span>
+    </nav>
+
+    <main><%= yield %></main>
+
+    <a class="room-door" href="<%= project_path(nxt[:slug]) %>"
+       style="--nb:<%= nxt[:theme_bg] %>;--nt:<%= nxt[:theme_fg] %>;--nm:<%= nxt[:theme_muted] %>;--na:<%= nxt[:theme_color] %>">
+      <span class="wrap" style="display:block">
+        <span class="label">Next room · <%= nxt[:tagline] %></span>
+        <strong><%= nxt[:name] %> <i aria-hidden="true">→</i></strong>
+      </span>
+    </a>
+    <footer class="room-end"><div class="wrap">
+      <a href="<%= root_path %>">devSebb · A Working Exhibition</a>
+      <a href="<%= root_path %>#contact">Get in touch</a>
+    </div></footer>
+
+    <%= javascript_include_tag "exhibition/core", defer: true %>
+    <%= javascript_include_tag "exhibition/rooms/#{@project[:slug]}", defer: true %>
+  </body>
+</html>

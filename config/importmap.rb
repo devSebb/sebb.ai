@@ -17,11 +17,9 @@ pin "utils/lifecycle", to: "utils/lifecycle.js"
 # Animation modules
 pin "hero_animations", to: "hero_animations.js", preload: true
 pin "about_animations", to: "about_animations.js", preload: true
-pin "projects_animations", to: "projects_animations.js", preload: true
-pin "skills_animations", to: "skills_animations.js", preload: true
+pin "collection", to: "collection.js", preload: true
 pin "experience_animations", to: "experience_animations.js", preload: true
 pin "contact_animations", to: "contact_animations.js", preload: true
-pin "project_detail_animations", to: "project_detail_animations.js", preload: true
 pin "resume_animations", to: "resume_animations.js", preload: true
 pin "smooth_scroll", to: "smooth_scroll.js", preload: true
 pin "hero_grid", to: "hero_grid.js", preload: true
