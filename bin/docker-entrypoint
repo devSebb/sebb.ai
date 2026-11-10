@@ -6,7 +6,9 @@ if [ -z "${LD_PRELOAD+x}" ] && [ -f /usr/lib/*/libjemalloc.so.2 ]; then
 fi
 
 # If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+#   Matches both `./bin/rails server` (Dockerfile CMD) and `bin/rails server`
+#   (render.yaml startCommand), otherwise migrations silently never run.
+if { [ "${1}" == "./bin/rails" ] || [ "${1}" == "bin/rails" ]; } && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
 fi
 
