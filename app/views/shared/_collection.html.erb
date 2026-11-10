@@ -17,7 +17,7 @@
                  data-href="<%= project_path(project[:slug]) %>"
                  data-tag="Nº <%= "%03d" % (index + 1) %> — <%= project[:name] %>">
           <span class="reel-label">Nº <%= "%03d" % (index + 1) %> · <%= project[:role] %></span>
-          <h3 class="reel-name" style="<%= project[:name_font] %>">
+          <h3 class="reel-name" style="<%= project[:name_font] %>;--len:<%= project[:name].length %>">
             <a href="<%= project_path(project[:slug]) %>" data-door data-turbo="false" data-door-color="<%= project[:theme_bg] %>"><%= project[:name] %></a>
           </h3>
           <p class="reel-blurb"><%= project[:blurb] %></p>

@@ -193,100 +193,6 @@ experience:
 # the door to the next room. `fonts` are Google Fonts css2 family strings
 # loaded only on that room's page.
 projects:
-  - slug: "twitchmetrics"
-    name: "TwitchMetrics"
-    tagline: "Creator analytics and media kits"
-    description: "Creator analytics and free media kits across six platforms, with the data pipeline behind 32K+ creator profiles."
-    blurb: "One verified, always-updating link that replaces the screenshots creators send to brands. I rebuilt the product and the pipeline that feeds it."
-    theme_color: "#E32C19"
-    theme_bg: "#1E1F22"
-    theme_fg: "#F2F3F5"
-    theme_muted: "#A9AFB8"
-    name_font: "font-family:'Nunito',sans-serif;font-weight:900"
-    year: "2026"
-    role: "Forward Deployed Engineer"
-    status: "live"
-    domain: "twitchmetrics.net"
-    link: "https://twitchmetrics.net"
-    facts:
-      - ["Scale", "32K+ creators"]
-      - ["Sources", "6 platforms"]
-      - ["Stack", "Next.js, tRPC, Prisma"]
-    fonts:
-      - "Nunito:wght@500;700;800;900"
-    technologies: ["next.js", "typescript", "trpc", "prisma", "postgres", "redis"]
-
-  - slug: "hatchet"
-    name: "Hatchet"
-    tagline: "Gaming intelligence, rebuilt"
-    description: "The rebuilt public site of a gaming intelligence platform: static, edge-served, and safe for a marketing team to edit."
-    blurb: "A marketing site with no server left to break. New visual language, 2,935 legacy URLs carried over, and guardrails that let marketers edit it themselves."
-    theme_color: "#E23C42"
-    theme_bg: "#151F2C"
-    theme_fg: "#FFFFFF"
-    theme_muted: "#A9B8CC"
-    name_font: "font-family:'Golos Text',sans-serif;font-weight:800"
-    year: "2026"
-    role: "Rebuild and redesign lead"
-    status: "live"
-    domain: "hatchet.gg"
-    link: "https://hatchet.gg"
-    facts:
-      - ["Migration", "2,935 URLs kept"]
-      - ["Delivery", "Static, edge-served"]
-      - ["Stack", "Next.js, Tailwind 4"]
-    fonts:
-      - "Golos+Text:wght@400;500;600;800"
-    technologies: ["next.js", "typescript", "tailwind", "aws"]
-
-  - slug: "click"
-    name: "Click"
-    tagline: "Agency site with a living signal"
-    description: "An influencer agency's site with a particle field that changes behaviour by section, a faceted talent directory, and every page in a CMS."
-    blurb: "White capitals on electric blue, a particle field that reacts to every section, and a site the agency runs without calling a developer."
-    theme_color: "#FFFFFF"
-    theme_bg: "#186DFC"
-    theme_fg: "#FFFFFF"
-    theme_muted: "rgba(255,255,255,.86)"
-    name_font: "font-family:'Archivo',sans-serif;font-stretch:75%;font-weight:800;text-transform:uppercase"
-    year: "2026"
-    role: "Design and build"
-    status: "live"
-    domain: "clickmedia.group"
-    link: "https://www.clickmedia.group"
-    facts:
-      - ["Content", "Every page in the CMS"]
-      - ["Redirects", "504 legacy URLs"]
-      - ["Stack", "Next.js, Sanity, GSAP"]
-    fonts:
-      - "Archivo:wdth,wght@62..125,100..900"
-      - "Hanken+Grotesk:wght@400;500;600;700"
-      - "JetBrains+Mono:wght@400;500"
-    technologies: ["next.js", "typescript", "sanity", "gsap", "tailwind"]
-
-  - slug: "papayal"
-    name: "Papayal"
-    tagline: "Gift cards for Ecuador remittances"
-    description: "Gift cards that replace cash remittances to Ecuador: a web app, iOS and Android apps, and a ledger that checks itself every night."
-    blurb: "Instead of wiring cash home, buy a gift card for the pharmacy. My own product: web, two native apps, and the money system underneath."
-    theme_color: "#E98A00"
-    theme_bg: "#FDF1E1"
-    theme_fg: "#0D2F32"
-    theme_muted: "rgba(13,47,50,.74)"
-    name_font: "font-family:'Raleway',sans-serif;font-weight:900;letter-spacing:-.035em"
-    year: "2025"
-    role: "Founder, full stack and design"
-    status: "live"
-    domain: "papayal.app"
-    link: "https://papayal.app"
-    facts:
-      - ["Platforms", "Web, iOS, Android"]
-      - ["Money", "Self-checking ledger"]
-      - ["Stack", "Rails, React Native, Stripe"]
-    fonts:
-      - "Raleway:wght@500;700;800;900"
-    technologies: ["rails", "postgres", "react-native", "stripe", "gsap"]
-
   - slug: "noria"
     name: "Noria"
     tagline: "AI engineering studio"
@@ -336,6 +242,100 @@ projects:
       - "Martian+Mono:wght@400;500;600"
       - "Doto:wght@600;800"
     technologies: ["next.js", "typescript", "postgres", "supabase"]
+
+  - slug: "papayal"
+    name: "Papayal"
+    tagline: "Gift cards for Ecuador remittances"
+    description: "Gift cards that replace cash remittances to Ecuador: a web app, iOS and Android apps, and a ledger that checks itself every night."
+    blurb: "Instead of wiring cash home, buy a gift card for the pharmacy. My own product: web, two native apps, and the money system underneath."
+    theme_color: "#E98A00"
+    theme_bg: "#FDF1E1"
+    theme_fg: "#0D2F32"
+    theme_muted: "rgba(13,47,50,.74)"
+    name_font: "font-family:'Raleway',sans-serif;font-weight:900;letter-spacing:-.035em"
+    year: "2025"
+    role: "Founder, full stack and design"
+    status: "live"
+    domain: "papayal.app"
+    link: "https://papayal.app"
+    facts:
+      - ["Platforms", "Web, iOS, Android"]
+      - ["Money", "Self-checking ledger"]
+      - ["Stack", "Rails, React Native, Stripe"]
+    fonts:
+      - "Raleway:wght@500;700;800;900"
+    technologies: ["rails", "postgres", "react-native", "stripe", "gsap"]
+
+  - slug: "hatchet"
+    name: "Hatchet"
+    tagline: "Gaming intelligence, rebuilt"
+    description: "The rebuilt public site of a gaming intelligence platform: static, edge-served, and safe for a marketing team to edit."
+    blurb: "A marketing site with no server left to break. New visual language, 2,935 legacy URLs carried over, and guardrails that let marketers edit it themselves."
+    theme_color: "#E23C42"
+    theme_bg: "#151F2C"
+    theme_fg: "#FFFFFF"
+    theme_muted: "#A9B8CC"
+    name_font: "font-family:'Golos Text',sans-serif;font-weight:800"
+    year: "2026"
+    role: "Rebuild and redesign lead"
+    status: "live"
+    domain: "hatchet.gg"
+    link: "https://hatchet.gg"
+    facts:
+      - ["Migration", "2,935 URLs kept"]
+      - ["Delivery", "Static, edge-served"]
+      - ["Stack", "Next.js, Tailwind 4"]
+    fonts:
+      - "Golos+Text:wght@400;500;600;800"
+    technologies: ["next.js", "typescript", "tailwind", "aws"]
+
+  - slug: "twitchmetrics"
+    name: "TwitchMetrics"
+    tagline: "Creator analytics and media kits"
+    description: "Creator analytics and free media kits across six platforms, with the data pipeline behind 32K+ creator profiles."
+    blurb: "One verified, always-updating link that replaces the screenshots creators send to brands. I rebuilt the product and the pipeline that feeds it."
+    theme_color: "#E32C19"
+    theme_bg: "#1E1F22"
+    theme_fg: "#F2F3F5"
+    theme_muted: "#A9AFB8"
+    name_font: "font-family:'Nunito',sans-serif;font-weight:900"
+    year: "2026"
+    role: "Forward Deployed Engineer"
+    status: "live"
+    domain: "twitchmetrics.net"
+    link: "https://twitchmetrics.net"
+    facts:
+      - ["Scale", "32K+ creators"]
+      - ["Sources", "6 platforms"]
+      - ["Stack", "Next.js, tRPC, Prisma"]
+    fonts:
+      - "Nunito:wght@500;700;800;900"
+    technologies: ["next.js", "typescript", "trpc", "prisma", "postgres", "redis"]
+
+  - slug: "click"
+    name: "Click"
+    tagline: "Agency site with a living signal"
+    description: "An influencer agency's site with a particle field that changes behaviour by section, a faceted talent directory, and every page in a CMS."
+    blurb: "White capitals on electric blue, a particle field that reacts to every section, and a site the agency runs without calling a developer."
+    theme_color: "#FFFFFF"
+    theme_bg: "#186DFC"
+    theme_fg: "#FFFFFF"
+    theme_muted: "rgba(255,255,255,.86)"
+    name_font: "font-family:'Archivo',sans-serif;font-stretch:75%;font-weight:800;text-transform:uppercase"
+    year: "2026"
+    role: "Design and build"
+    status: "live"
+    domain: "clickmedia.group"
+    link: "https://www.clickmedia.group"
+    facts:
+      - ["Content", "Every page in the CMS"]
+      - ["Redirects", "504 legacy URLs"]
+      - ["Stack", "Next.js, Sanity, GSAP"]
+    fonts:
+      - "Archivo:wdth,wght@62..125,100..900"
+      - "Hanken+Grotesk:wght@400;500;600;700"
+      - "JetBrains+Mono:wght@400;500"
+    technologies: ["next.js", "typescript", "sanity", "gsap", "tailwind"]
 
 resume:
   experience:

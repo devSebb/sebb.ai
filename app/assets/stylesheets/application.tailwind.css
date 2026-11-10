@@ -567,7 +567,9 @@
 .reel-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; }
 .reel-item { padding: 4rem 0; border-top: 1px solid color-mix(in srgb, var(--rt) 16%, transparent); }
 .reel-item:first-child { border-top: 0; }
-.reel-name { font-size: clamp(3rem, 11vw, 6.5rem); line-height: .92; margin: 1rem 0 1.25rem; }
+.reel-item { container-type: inline-size; }
+/* Long names shrink to fit their column; short ones stay at full size. */
+.reel-name { font-size: min(clamp(3rem, 11vw, 6.5rem), calc(185cqw / var(--len, 8))); line-height: .92; margin: 1rem 0 1.25rem; }
 .reel-name a { color: inherit; text-decoration: none; }
 .reel-blurb { font-size: 1.2rem; line-height: 1.5; max-width: 34ch; }
 .reel-poster { display: block; margin-top: 2rem; border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px color-mix(in srgb, var(--rt) 16%, transparent); }
