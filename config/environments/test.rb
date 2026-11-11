@@ -1,9 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 # The test environment is used exclusively to run your application's
-# test suite. You never need to work with it otherwise. Remember that
-# your test database is "scratch space" for the test suite and is wiped
-# and recreated between test runs. Don't rely on the data there!
+# test suite. You never need to work with it otherwise.
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -31,9 +29,6 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
-  # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :test
-
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
@@ -42,10 +37,6 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-
-  # Enqueue jobs (incl. deliver_later) instead of running them, so the suite
-  # can assert on enqueued emails deterministically.
-  config.active_job.queue_adapter = :test
 
   # Unlike controllers, the mailer instance doesn't have any context about the
   # incoming request so you'll need to provide the :host parameter yourself.

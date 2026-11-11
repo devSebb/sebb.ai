@@ -32,14 +32,9 @@ Set these environment variables in Render:
 
 - `RAILS_ENV`: `production`
 - `RAILS_MASTER_KEY`: Copy the content of `config/credentials/production.key`
-- `DATABASE_URL`: Will be auto-set by Render
-- `SEBB_AI_DATABASE_PASSWORD`: Will be auto-set by Render
+- `MAILER_FROM`, `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`: the contact form emails your inbox. The site has no database.
 
-### 4. **Database Setup**
-
-Render will automatically create a PostgreSQL database for you. The connection details will be automatically configured.
-
-### 5. **Build & Deploy**
+### 4. **Build & Deploy**
 
 Click "Create Web Service" and Render will:
 1. Build your Docker image
