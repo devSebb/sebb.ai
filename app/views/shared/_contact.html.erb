@@ -50,6 +50,12 @@
               placeholder: "Tell me about your project..." %>
         </div>
 
+        <%# Honeypot: hidden from people, filled in by bots. See ContactsController#bot? %>
+        <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+          <label for="contact_homepage">Leave this empty</label>
+          <%= f.text_field :homepage, tabindex: -1, autocomplete: "off" %>
+        </div>
+
         <%= f.submit "Send Message", class: "btn-magnetic cursor-pointer mt-4 disabled:opacity-60 disabled:cursor-wait", data: { magnetic: true, contact_submit: true } %>
       <% end %>
     </div>

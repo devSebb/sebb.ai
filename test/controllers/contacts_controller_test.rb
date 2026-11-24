@@ -31,6 +31,21 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-controller='flash'][role='alert']"
   end
 
+  test "a filled-in honeypot sends nothing but still looks like success" do
+    assert_no_emails do
+      post contact_url, params: { contact: VALID.merge(homepage: "http://spam.example") }
+    end
+
+    assert_redirected_to root_url
+    follow_redirect!
+    assert_select "[data-controller='flash']", text: /get back to you/
+  end
+
+  test "the form renders the hidden honeypot field" do
+    get root_url
+    assert_select "input[name='contact[homepage]'][tabindex='-1']"
+  end
+
   test "a failed send tells the visitor instead of returning a 500" do
     ContactMailer.stub(:contact_email, ->(_contact) { raise Errno::ECONNREFUSED }) do
       post contact_url, params: { contact: VALID }

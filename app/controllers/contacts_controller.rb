@@ -2,7 +2,11 @@ class ContactsController < ApplicationController
   def create
     contact = Contact.new(contact_params)
 
-    if contact.invalid?
+    if bot?
+      # Look like a normal send so the bot has no reason to try again.
+      flash[:success] = "Thanks for reaching out — I'll get back to you soon."
+      return redirect_to root_path, status: :see_other
+    elsif contact.invalid?
       flash[:error] = contact.errors.full_messages.to_sentence
     elsif send_to_inbox(contact)
       flash[:success] = "Thanks for reaching out — I'll get back to you soon."
@@ -18,6 +22,11 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :email, :message)
+  end
+
+  # The form has a hidden "homepage" field. People never see it, bots fill it in.
+  def bot?
+    params.dig(:contact, :homepage).present?
   end
 
   # The email is the only copy of the message, so send it during the request.

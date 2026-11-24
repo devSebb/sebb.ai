@@ -22,11 +22,13 @@ services:
         sync: false
       - key: SMTP_PASSWORD
         sync: false
+      - key: CONTACT_RECIPIENT
+        sync: false
       - key: RAILS_LOG_TO_STDOUT
         value: true
       - key: PORT
         value: 10000
-    plan: free
+    plan: starter
     region: oregon
     buildCommand: |
       gem install bundler -v 2.5.11
