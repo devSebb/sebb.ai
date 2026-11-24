@@ -5,6 +5,15 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
 
   VALID = { name: "Test User", email: "test@example.com", message: "Hello" }.freeze
 
+  # A local .env may set CONTACT_RECIPIENT. Each test decides it for itself.
+  setup do
+    @saved_recipient = ENV.delete("CONTACT_RECIPIENT")
+  end
+
+  teardown do
+    ENV["CONTACT_RECIPIENT"] = @saved_recipient
+  end
+
   test "valid submission emails the owner and flashes success" do
     assert_emails 1 do
       post contact_url, params: { contact: VALID }
@@ -19,6 +28,13 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "[data-controller='flash'][role='status']"
     assert_select "[data-controller='flash']", text: /get back to you/
+  end
+
+  test "CONTACT_RECIPIENT overrides the address shown on the site" do
+    ENV["CONTACT_RECIPIENT"] = "inbox@example.com"
+    post contact_url, params: { contact: VALID }
+
+    assert_equal [ "inbox@example.com" ], ActionMailer::Base.deliveries.last.to
   end
 
   test "invalid submission sends no mail and flashes an error" do
