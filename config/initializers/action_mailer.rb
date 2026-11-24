@@ -10,7 +10,9 @@
 # For Gmail: Enable 2FA, then create an App Password at
 # https://myaccount.google.com/apppasswords
 
-if ENV["SMTP_ADDRESS"].present?
+# Tests never use SMTP, even when .env has real settings: they must record
+# mail in ActionMailer::Base.deliveries, not send it.
+if ENV["SMTP_ADDRESS"].present? && !Rails.env.test?
   Rails.application.config.action_mailer.delivery_method = :smtp
   Rails.application.config.action_mailer.smtp_settings = {
     address: ENV["SMTP_ADDRESS"],
